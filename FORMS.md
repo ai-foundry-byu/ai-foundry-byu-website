@@ -6,6 +6,14 @@
 >
 > Quote form is on `/quote`, network form is on `/network`, survey is emailed.
 >
+> **End-to-end verified 2026-07-29 16:00.** A real submission was made through each
+> of the two public forms and confirmed to arrive as a row in the correct response
+> sheet, including the multi-select checkbox field, which arrives as a single
+> comma-joined cell. Both test submissions were then removed from **both** places
+> a response lives: the sheet row and the form's own response store. Deleting one
+> does not remove the other. `scripts/remove-test-submissions.gs` is how, and it
+> refuses to touch anything that is not the test email.
+>
 > | | Edit | Responses |
 > |---|---|---|
 > | Get a quote | [form](https://docs.google.com/forms/d/1tfwnK9BDuG8fKrhLtL8uy8RK9enbHGSUMrYkYufOiB0/edit) | [sheet](https://docs.google.com/spreadsheets/d/1mG0PeVp1ZsuheWYM3tGDJ3FwgZ7qSw0Vk1iN9d_cyyE/edit) |
