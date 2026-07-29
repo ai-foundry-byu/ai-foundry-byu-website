@@ -52,10 +52,10 @@ export default function NetworkPage() {
                 <ul className="mt-6 space-y-6">
                   {NETWORK_INTERESTS.map((interest) => (
                     <li key={interest.title} className="border-l-2 border-border-accent pl-5">
-                      <p className="text-sm font-semibold text-text-primary">
+                      <p className="text-base font-semibold text-text-primary">
                         {interest.title}
                       </p>
-                      <p className="mt-1.5 text-sm leading-relaxed text-text-primary opacity-80">
+                      <p className="mt-1.5 text-base leading-relaxed text-text-primary opacity-80">
                         {interest.blurb}
                       </p>
                     </li>
@@ -69,7 +69,7 @@ export default function NetworkPage() {
                   title="Join the network"
                   height={780}
                 />
-                <p className="mt-6 text-sm text-text-primary opacity-80">
+                <p className="mt-6 text-base text-text-primary opacity-80">
                   No spam. Leave at any time.
                 </p>
               </div>

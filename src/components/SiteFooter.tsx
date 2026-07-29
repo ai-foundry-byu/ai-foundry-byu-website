@@ -21,7 +21,7 @@ export function SiteFooter() {
               height={360}
               className="h-8 w-auto"
             />
-            <p className="mt-5 text-sm leading-relaxed text-text-on-inverse-muted">
+            <p className="mt-5 max-w-[32rem] text-base leading-relaxed text-text-on-inverse-muted">
               An experiential learning program where students build production
               AI systems for real clients.
             </p>
@@ -34,7 +34,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-text-on-inverse transition-opacity hover:opacity-70"
+                    className="text-base text-text-on-inverse transition-opacity hover:opacity-70"
                   >
                     {link.label}
                   </Link>
@@ -43,7 +43,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href={QUOTE_CTA.href}
-                  className="text-sm text-text-on-inverse transition-opacity hover:opacity-70"
+                  className="text-base text-text-on-inverse transition-opacity hover:opacity-70"
                 >
                   {QUOTE_CTA.label}
                 </Link>
@@ -52,7 +52,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p className="mt-12 border-t border-border-on-inverse pt-6 text-xs text-text-on-inverse-muted">
+        <p className="mt-12 border-t border-border-on-inverse pt-6 text-sm leading-relaxed text-text-on-inverse-muted">
           {PROGRAM}, {SCHOOL_FULL}. Provo, Utah.
         </p>
       </div>

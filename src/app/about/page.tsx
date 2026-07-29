@@ -29,7 +29,7 @@ export default function AboutPage() {
                 </h1>
               </div>
             </div>
-            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-text-on-inverse-muted">
+            <p className="mt-8 max-w-[46rem] text-lg leading-relaxed text-text-on-inverse-muted">
               {ERA_NARRATIVE}
             </p>
           </div>
@@ -45,7 +45,7 @@ export default function AboutPage() {
               <p className="mt-3 font-serif text-2xl font-semibold text-text-primary md:text-3xl">
                 {FACULTY.name}
               </p>
-              <p className="mt-3 text-base leading-relaxed text-text-primary">
+              <p className="mt-3 max-w-[38rem] text-base leading-relaxed text-text-primary">
                 {FACULTY.detail}
               </p>
             </div>
@@ -82,7 +82,7 @@ export default function AboutPage() {
                       {member.name}
                     </h3>
                     {member.bio && (
-                      <p className="mt-3 text-sm leading-relaxed text-text-primary opacity-90">
+                      <p className="mt-3 text-base leading-relaxed text-text-primary opacity-90">
                         {member.bio}
                       </p>
                     )}
@@ -90,7 +90,7 @@ export default function AboutPage() {
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="link-ember mt-auto inline-flex w-fit items-center pt-5 text-sm font-semibold"
+                      className="link-ember mt-auto inline-flex w-fit items-center pt-5 text-base font-semibold"
                     >
                       LinkedIn
                     </a>

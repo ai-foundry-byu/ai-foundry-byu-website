@@ -37,14 +37,14 @@ export function SiteHeader() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="block px-4 py-2 text-sm font-semibold text-text-on-inverse transition-opacity hover:opacity-70"
+                  className="block px-4 py-2 text-base font-semibold text-text-on-inverse transition-opacity hover:opacity-70"
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
             <li className="ml-3">
-              <Link href={NAV_CTA.href} className="btn-ember px-6 py-2.5 text-sm">
+              <Link href={NAV_CTA.href} className="btn-ember px-6 py-2.5 text-base">
                 {NAV_CTA.label}
               </Link>
             </li>
@@ -53,7 +53,7 @@ export function SiteHeader() {
 
         {/* mobile nav: native disclosure, no script */}
         <details className="relative md:hidden">
-          <summary className="cursor-pointer list-none px-2 py-2 text-sm font-semibold text-text-on-inverse [&::-webkit-details-marker]:hidden">
+          <summary className="cursor-pointer list-none px-2 py-2 text-base font-semibold text-text-on-inverse [&::-webkit-details-marker]:hidden">
             Menu
           </summary>
           <nav
@@ -65,7 +65,7 @@ export function SiteHeader() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block px-4 py-3 text-sm font-semibold text-text-on-inverse transition-colors hover:bg-surface-inverse-soft"
+                    className="block px-4 py-3 text-base font-semibold text-text-on-inverse transition-colors hover:bg-surface-inverse-soft"
                   >
                     {link.label}
                   </Link>
@@ -74,7 +74,7 @@ export function SiteHeader() {
               <li className="px-4 pb-2 pt-3">
                 <Link
                   href={NAV_CTA.href}
-                  className="btn-ember w-full px-4 py-2.5 text-sm"
+                  className="btn-ember w-full px-4 py-2.5 text-base"
                 >
                   {NAV_CTA.label}
                 </Link>

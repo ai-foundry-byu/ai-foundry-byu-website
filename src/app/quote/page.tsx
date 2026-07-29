@@ -61,10 +61,10 @@ export default function QuotePage() {
                   <span className="eyebrow block text-text-on-inverse-muted">
                     {String(step.n).padStart(2, "0")}
                   </span>
-                  <span className="mt-2 block text-sm font-semibold text-text-on-inverse">
+                  <span className="mt-2 block text-base font-semibold text-text-on-inverse">
                     {step.title}
                   </span>
-                  <span className="mt-1.5 block text-sm leading-relaxed text-text-on-inverse-muted">
+                  <span className="mt-1.5 block text-base leading-relaxed text-text-on-inverse-muted">
                     {step.detail}
                   </span>
                 </li>
@@ -72,7 +72,7 @@ export default function QuotePage() {
             </ol>
           </div>
 
-          <p className="mt-14 text-center text-sm text-text-on-inverse-muted">
+          <p className="mt-14 text-center text-base text-text-on-inverse-muted">
             Not ready yet?{" "}
             <Link href="/#quote" className="font-semibold text-text-on-inverse underline underline-offset-4">
               Read what we build

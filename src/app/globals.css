@@ -209,9 +209,11 @@ body {
 /* ── Eyebrow / label: all-caps Inter, letter-spaced ── */
 .eyebrow {
   font-family: var(--font-inter), sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  /* All-caps needs more tracking than lowercase to stay legible, and this is
+     a label rather than a heading, so it carries the wider value. */
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 

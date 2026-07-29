@@ -88,12 +88,12 @@ function Hero() {
             scroll-behavior smooth, so the browser animates it with no
             JavaScript at all.
           */}
-          <a href="#quote" className="btn-ember px-8 py-4 text-sm">
+          <a href="#quote" className="btn-ember px-8 py-4 text-base">
             Submit a project
           </a>
           <Link
             href="/network"
-            className="inline-flex items-center justify-center border border-border-on-inverse px-8 py-4 text-sm font-semibold text-text-on-inverse transition-colors hover:border-border-accent"
+            className="inline-flex items-center justify-center border border-border-on-inverse px-8 py-4 text-base font-semibold text-text-on-inverse transition-colors hover:border-border-accent"
           >
             Join the network
           </Link>
@@ -164,7 +164,7 @@ function MissionVisionValues() {
                     {value.name}
                   </h3>
                 </div>
-                <p className="max-w-2xl text-base leading-relaxed text-text-primary">
+                <p className="max-w-[34rem] text-base leading-relaxed text-text-primary">
                   {value.body}
                 </p>
               </li>
@@ -218,7 +218,7 @@ function GetAQuote() {
                 <h4 className="font-serif text-lg font-semibold leading-snug md:text-xl">
                   {offering.name}
                 </h4>
-                <p className="mt-4 text-sm leading-relaxed text-text-on-inverse-muted">
+                <p className="mt-4 text-base leading-relaxed text-text-on-inverse-muted">
                   {offering.blurb}
                 </p>
 
@@ -230,7 +230,7 @@ function GetAQuote() {
                 */}
                 <ul className="mx-auto mt-6 space-y-3 text-left">
                   {offering.points.map((point) => (
-                    <li key={point} className="flex gap-3 text-sm leading-relaxed">
+                    <li key={point} className="flex gap-3 text-base leading-relaxed">
                       {/* The accent as a fill, never as text. Orange type on
                           navy is 2.90:1 and fails, but a square of it is not
                           type and carries no meaning on its own. */}
@@ -250,10 +250,10 @@ function GetAQuote() {
         {/* The one way through to the form, and the same button treatment as
             the top bar so the call to action reads as one thing site-wide. */}
         <div className="mt-16">
-          <Link href={QUOTE_CTA.href} className="btn-ember px-9 py-4 text-sm">
+          <Link href={QUOTE_CTA.href} className="btn-ember px-9 py-4 text-base">
             {QUOTE_CTA.label}
           </Link>
-          <p className="mt-5 text-sm text-text-on-inverse-muted">
+          <p className="mt-5 text-base text-text-on-inverse-muted">
             Eight fields. Two minutes.
           </p>
         </div>

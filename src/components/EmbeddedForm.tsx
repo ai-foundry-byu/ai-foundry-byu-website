@@ -35,7 +35,7 @@ export function EmbeddedForm({
         <p className="mt-3 font-serif text-xl text-text-primary">
           This form is being finalized.
         </p>
-        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-text-primary">
+        <p className="mx-auto mt-2 max-w-md text-base leading-relaxed text-text-primary">
           It will appear here as soon as it is live. Nothing else on this page
           changes when it does.
         </p>

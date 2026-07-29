@@ -149,6 +149,37 @@ contract. `npm run check:contrast` fails the build on a violation.
 - Use the co-brand lockup only, never a standalone AI Foundry mark. The real one
   arrived 2026-07-28 and is in `public/brand/`
 
+## Type scale, set 2026-07-28
+
+Measured off the rendered pages, not eyeballed. The rule that matters: **no prose
+below 16px, nothing at all below 12px.**
+
+| Size | Used for | Line height |
+|---|---|---|
+| 12px | labels and eyebrows only, `.eyebrow`, tracked 0.1em | 1.5 |
+| 14px | the footer colophon, and nothing else | 1.63 |
+| **16px** | **all body copy, nav, links, buttons** | 1.63 |
+| 18px | section leads | 1.63 |
+| 20 to 30px | card and sub headings | 1.2 to 1.4 |
+| 36 to 72px | page headings | 1.0 to 1.11 |
+
+What this replaced: body copy was running at 14px in the offering cards, team bios,
+network interests and quote steps, eyebrows were 11px, and the footer colophon was
+12px at 1.33 line height, the tightest text on the site.
+
+Measure is capped where prose was running past the readable band. Values body was
+84 characters and faculty 93; the comfortable range is 65 to 75, so both are capped
+in rem rather than left to fill the column.
+
+Two things worth knowing if you change type again:
+
+- The dev server caches CSS aggressively. A change to `globals.css` that does not
+  show up is probably stale Turbopack cache, not a broken selector. `rm -rf .next`
+  and restart before debugging anything else
+- Card body copy sits at roughly 37 characters a line because the cards are narrow.
+  That is below the optimal band and it is fine: in a three-up card grid, size is
+  what carries legibility, not measure
+
 ## Build status, 2026-07-28
 
 All three pages are built and all three gates pass. `npm run dev`, then look.
