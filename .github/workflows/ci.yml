@@ -1,0 +1,40 @@
+name: CI
+
+# This is the safety gate. Every pull request runs these checks before it can
+# be merged. If the site doesn't build or lint cleanly, the merge is blocked.
+# This is what lets a non-coder ship confidently: a broken change can't reach prod.
+
+on:
+  pull_request:
+    branches: [main]
+
+# Cancel older runs on the same PR when new commits are pushed.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check contrast contract
+        run: npm run check:contrast
+
+      - name: Build the site
+        run: npm run build
