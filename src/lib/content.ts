@@ -121,8 +121,12 @@ export const BUILDERS_EYEBROW = "The builders"
 export const BUILDERS_HEADLINE =
   "Our builders have shipped at National Grid, Ford, Redo, and Yatta Golf."
 
+/** "Velocity pods" is Brandon's term and is used deliberately. Note that it is
+ *  internal language: a first-time visitor will not know what a velocity pod is,
+ *  so it works as a signal of how the program operates rather than as an
+ *  explanation. If it ever needs to explain, it needs a clause after it. */
 export const BUILDERS_DETAIL =
-  "Fifteen MBAs and fifteen undergraduates, working in cohorts of one to two years."
+  "Fifteen MBAs and fifteen undergraduates, working in velocity pods."
 
 export const BUILD_HEADING = "What we build"
 
