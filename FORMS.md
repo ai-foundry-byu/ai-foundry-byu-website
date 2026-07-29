@@ -89,13 +89,24 @@ Closing message, verbatim from the brief:
 
 ---
 
-## Wiring it up
+## Building them
 
-1. Build both forms in Google Forms
-2. For each: Responses tab, link to a Google Sheet
-3. Form 1 only: Send, `<>` embed tab, copy the `src` URL out of the iframe snippet
-4. Paste it into `FORMS.intake` in `src/lib/content.ts`
-5. `npm run dev` and look at `/quote`
+`scripts/create-google-forms.gs` builds both forms exactly to this spec, wires each
+to its own response spreadsheet, and files all four in **02 Deals & Clients** in the
+AI Foundry shared Drive (`1x6toDmtaR28SdMDiCpnOfaQBzNxkmRsh`).
+
+Run it once at script.google.com, signed in as whichever account should **own** the
+forms. Ownership matters more than it looks: the owner keeps the form and its
+responses. A form owned by a student's personal Gmail leaves with that student.
+
+It logs the embed URL. Paste that into `FORMS.intake` in `src/lib/content.ts`,
+`npm run dev`, and look at `/quote`. That is the only code change.
+
+Safe to re-run: it creates new files rather than editing existing ones, so nothing
+already collecting responses can be clobbered.
+
+Doing it by hand instead: build the form, Responses tab, link a Google Sheet, then
+Send, the `<>` embed tab, and copy the `src` URL out of the iframe snippet.
 
 Form 2 never touches the site. It gets emailed.
 
