@@ -222,7 +222,11 @@ function GetAQuote() {
       id="quote"
       className="surface-iron scroll-mt-20 text-text-on-inverse"
     >
-      <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-32">
+      {/* max-w-7xl here, wider than the max-w-6xl the rest of the page uses.
+          The three cards need the extra width to hold their headings on one
+          line, and the heading and lead above stay capped and centred so the
+          wider band reads as deliberate rather than as a broken column. */}
+      <div className="mx-auto max-w-7xl px-6 py-24 text-center md:py-32">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-serif text-3xl font-semibold tracking-[-0.02em] md:text-5xl">
             {BUILD_HEADING}
@@ -250,10 +254,23 @@ function GetAQuote() {
                 key={offering.name}
                 className="flex flex-col bg-surface-inverse p-8"
               >
-                <h4 className="font-serif text-lg font-semibold leading-snug md:text-xl">
+                {/*
+                  22px at md, up from 20px, and it must stay on one line.
+
+                  The measurement that drives this: "AI integration and
+                  orchestration" is the longest heading and needs 306px on one
+                  line at 20px, while the card only had 303px of inner width. It
+                  missed by three pixels, which is why it wrapped. At max-w-7xl
+                  the inner width is about 346px and the same string needs 335px
+                  at 22px, so it now fits with room to spare.
+
+                  If a heading ever gets longer, this wraps again. Shorten the
+                  heading rather than shrinking the type.
+                */}
+                <h4 className="font-serif text-lg font-semibold leading-snug md:text-[1.375rem]">
                   {offering.name}
                 </h4>
-                <p className="mt-4 text-base leading-relaxed text-text-on-inverse-muted">
+                <p className="mt-4 text-lg leading-relaxed text-text-on-inverse-muted">
                   {offering.blurb}
                 </p>
 
@@ -262,10 +279,16 @@ function GetAQuote() {
                   list with a centred ragged left edge is unreadable: the eye
                   loses the return sweep. So the block is centred and the lines
                   stay flush left inside it, which reads as deliberate.
+
+                  Bullets are text-lg, up from text-base. They still wrap to two
+                  lines and cannot be made to fit one: the longest bullet needs
+                  596px on a single line and the card has about 346px. Going
+                  16px to 18px costs no extra lines, so the size increase is
+                  free.
                 */}
                 <ul className="mx-auto mt-6 space-y-3 text-left">
                   {offering.points.map((point) => (
-                    <li key={point} className="flex gap-3 text-base leading-relaxed">
+                    <li key={point} className="flex gap-3 text-lg leading-relaxed">
                       {/* The accent as a fill, never as text. Orange type on
                           navy is 2.90:1 and fails, but a square of it is not
                           type and carries no meaning on its own. */}
