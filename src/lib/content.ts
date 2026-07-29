@@ -75,48 +75,55 @@ export const ERA_NARRATIVE =
    fields live in the form tool, not in this repo.
    ──────────────────────────────────────────────────────────── */
 
-/** The section is called "Get a quote". The button that jumps to it is called
- *  "Submit a project". Both labels are Brandon's, and they are not the same word
- *  on purpose: the button describes what you do, the section what you get. */
-export const QUOTE_HEADING = "Get a quote"
+/**
+ * The section heading on the landing page.
+ *
+ * It was "Get a quote", which mislabelled the section: nearly all of it is what
+ * we build, and only the button at the end is the quote. It also collided with
+ * the nav button and the form page, so a visitor met three near-identical
+ * labels in one funnel and could not tell whether they had arrived.
+ *
+ * Now the section is named for its content and the button carries the action.
+ */
+export const BUILD_HEADING = "What we build"
 
 /**
- * What we sell. This runs BEFORE the form fields, so someone arriving cold from
- * the top bar reads what the engagement actually is before being asked for their
- * phone number.
+ * The three things we sell.
+ *
+ * There used to be a "Three offerings." heading and a paragraph above these
+ * explaining that engagements combine them. Both were filler: the cards say it,
+ * and counting them for the reader is not information.
+ *
+ * Every blurb is one plain line. The bullets carry the specifics, so a blurb
+ * that also explains costs the reader twice. Language is deliberately
+ * unjargoned: no "line-of-business systems", no "B2C" and "B2B" shorthand,
+ * because the buyer here may be a small business owner rather than a CTO.
  */
-export const OFFERINGS_HEADING = "Three offerings."
-
-export const OFFERINGS_LEAD =
-  "Engagements usually combine them. Most clients start with one and add the others as the work proves out."
-
 export type Offering = { name: string; blurb: string; points: string[] }
 
 export const OFFERINGS: Offering[] = [
   {
     name: "Full-stack applications",
-    blurb:
-      "Net-new web and mobile applications, built end to end on a modern stack and shipped to production. Any language the job calls for.",
+    blurb: "Net-new web and mobile applications.",
     points: [
-      "Customer-facing products (B2C)",
-      "Products you sell to other businesses (B2B)",
-      "Internal tools and line-of-business systems",
+      "Customer-facing products",
+      "Products you sell to other businesses",
+      "Internal tools your own team uses every day",
     ],
   },
   {
     name: "AI integration and orchestration",
-    blurb:
-      "AI wired into the systems you already run, rather than a standalone prototype that never reaches anyone's daily work.",
+    blurb: "AI wired into the systems you already run today.",
     points: [
-      "Agents and copilots that work against your data",
-      "Automations across Slack, Notion, and your existing stack",
+      // "with your data", not "against your data". Against sounds adversarial.
+      "Agents and copilots that work with your data",
+      "Automations across Slack, Notion, and other tools in your existing stack",
       "Document processing, extraction, routing, and summarization",
     ],
   },
   {
     name: "AI enablement and training",
-    blurb:
-      "We set your team up to build this way themselves, using the same tooling we use on the engagement.",
+    blurb: "We train your own team to build this way, with the same tools we use.",
     points: [
       "Claude Code, Codex, and frontier agent tooling",
       "Agentic workflow and automation setup",
@@ -124,6 +131,9 @@ export const OFFERINGS: Offering[] = [
     ],
   },
 ]
+
+/** Under the button. Sets the effort expectation without itemising the form. */
+export const QUOTE_CTA_NOTE = "(Approximately two minutes)"
 
 export const QUOTE_LEAD =
   "Tell us what you want built. We come back with a scope of work, a cost estimate, and a delivery timeline. All information is treated as confidential."

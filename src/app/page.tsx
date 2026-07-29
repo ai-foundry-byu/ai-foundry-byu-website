@@ -6,11 +6,10 @@ import {
   HERO_STATEMENT,
   HERO_SUPPORT,
   MISSION,
+  BUILD_HEADING,
   OFFERINGS,
-  OFFERINGS_HEADING,
-  OFFERINGS_LEAD,
   QUOTE_CTA,
-  QUOTE_HEADING,
+  QUOTE_CTA_NOTE,
   QUOTE_LEAD,
   VALUES,
   VISION,
@@ -226,7 +225,7 @@ function GetAQuote() {
       <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-32">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-serif text-3xl font-semibold tracking-[-0.02em] md:text-5xl">
-            {QUOTE_HEADING}
+            {BUILD_HEADING}
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-text-on-inverse-muted">
             {QUOTE_LEAD}
@@ -234,19 +233,18 @@ function GetAQuote() {
         </div>
 
         {/*
-          What we sell. The form itself is not here: it has its own page, so
-          this section stays about the work rather than turning into paperwork
-          halfway down.
-        */}
-        <div className="mt-20">
-          <h3 className="font-serif text-2xl font-semibold tracking-[-0.01em] md:text-3xl">
-            {OFFERINGS_HEADING}
-          </h3>
-          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-text-on-inverse-muted">
-            {OFFERINGS_LEAD}
-          </p>
+          The three things we build. The form is not here, it has its own page,
+          so this section stays about the work rather than turning into
+          paperwork halfway down.
 
-          <div className="mt-12 grid gap-px border border-border-on-inverse bg-border-on-inverse md:grid-cols-3">
+          There was a "Three offerings." heading and an explanatory paragraph
+          above this grid. Both are gone as filler: the cards already say what
+          they are, and counting them for the reader is not information. The
+          cards now sit directly under the section lead, which is why this
+          wrapper carries the block gap the removed heading used to.
+        */}
+        <div className="mt-14">
+          <div className="grid gap-px border border-border-on-inverse bg-border-on-inverse md:grid-cols-3">
             {OFFERINGS.map((offering) => (
               <article
                 key={offering.name}
@@ -291,7 +289,7 @@ function GetAQuote() {
             {QUOTE_CTA.label}
           </Link>
           <p className="mt-5 text-base text-text-on-inverse-muted">
-            Eight fields. Two minutes.
+            {QUOTE_CTA_NOTE}
           </p>
         </div>
       </div>
