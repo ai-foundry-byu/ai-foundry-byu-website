@@ -76,16 +76,6 @@ export const ERA_NARRATIVE =
    ──────────────────────────────────────────────────────────── */
 
 /**
- * The section heading on the landing page.
- *
- * It was "Get a quote", which mislabelled the section: nearly all of it is what
- * we build, and only the button at the end is the quote. It also collided with
- * the nav button and the form page, so a visitor met three near-identical
- * labels in one funnel and could not tell whether they had arrived.
- *
- * Now the section is named for its content and the button carries the action.
- */
-/**
  * Proof. Deliberately modest, because there is no client work to name yet.
  *
  * Every employer below is traceable to a named person's bio on /about, and that
@@ -121,13 +111,36 @@ export const BUILDERS_EYEBROW = "The builders"
 export const BUILDERS_HEADLINE =
   "Our builders have shipped at National Grid, Ford, Redo, and Yatta Golf."
 
-/** "Velocity pods" is Brandon's term and is used deliberately. Note that it is
- *  internal language: a first-time visitor will not know what a velocity pod is,
- *  so it works as a signal of how the program operates rather than as an
- *  explanation. If it ever needs to explain, it needs a clause after it. */
+/**
+ * "Velocity pods" is Brandon's term and is used deliberately. It is internal
+ * language, so a first-time visitor will not know what a velocity pod is. The
+ * clause after it now does the explaining, which is what makes the term usable
+ * here: the reader does not need to know what a pod is to understand that the
+ * mix of people is matched to the job.
+ *
+ * The undergraduates are not counted in this line any more. Brandon's call. The
+ * roster on /about is fifteen MBAs, so this and that page now agree.
+ *
+ * "15" as a numeral, not spelled out, also Brandon's call. It is a credibility
+ * stat and numerals read as more concrete than words for a number a buyer is
+ * meant to weigh. Note that "(Approximately two minutes)" under the quote button
+ * is still spelled out, so the site is not internally consistent on this. That is
+ * defensible, since one is a claim about scale and the other is an aside about
+ * effort, but if it ever gets normalised, normalise it everywhere at once.
+ */
 export const BUILDERS_DETAIL =
-  "Fifteen MBAs and fifteen undergraduates, working in velocity pods."
+  "15 MBAs from a range of disciplines and backgrounds, working in velocity pods matched to the expertise your project needs."
 
+/**
+ * The section heading on the landing page.
+ *
+ * It was "Get a quote", which mislabelled the section: nearly all of it is what
+ * we build, and only the button at the end is the quote. It also collided with
+ * the nav button and the form page, so a visitor met three near-identical
+ * labels in one funnel and could not tell whether they had arrived.
+ *
+ * Now the section is named for its content and the button carries the action.
+ */
 export const BUILD_HEADING = "What we build"
 
 /**
@@ -265,16 +278,38 @@ export const SURVEY_SECTIONS: IntakeSection[] = [
    Join the network
    ──────────────────────────────────────────────────────────── */
 
-export const NETWORK_LEAD =
-  "Alumni, friends, and builders. Tell us what you want in on: events, the weekly digest, the talent network, or a project of your own."
+/**
+ * There was a NETWORK_LEAD here: "Alumni, friends, and builders. Tell us what
+ * you want in on: events, the weekly digest, the talent network, or a project of
+ * your own."
+ *
+ * It is deleted rather than left orphaned, because that sentence is already the
+ * Google Form's own description and renders inside the embedded form on
+ * /network. Keeping it on the page above the form printed it twice, roughly a
+ * screen apart. If you want it back on the page, take it off the form first.
+ */
 
 export type Interest = { title: string; blurb: string }
 
+/**
+ * The four things a visitor can opt into, and the same four options as the
+ * checkbox field in the embedded form. They must stay in step: /network renders
+ * these ABOVE the form as the legend for that checkbox group, so a title that
+ * drifts from its checkbox turns the legend into a contradiction.
+ *
+ * FORMS.md, form 3, is the record of the form side. It still says these render
+ * "beside the form", which was true of the old two-column layout.
+ *
+ * Known drift, left alone because it is a copy call, not a layout one: the
+ * Resolved 2026-07-29: this list now matches the live form exactly, including
+ * "Submitting a project proposal". The form is the source of truth, because it
+ * is the thing a visitor actually answers.
+ */
 export const NETWORK_INTERESTS: Interest[] = [
   { title: "Live BYU-sponsored AI events", blurb: "In-person sessions on the most cutting-edge technologies as they land." },
   { title: "Weekly AI digest", blurb: "A tight weekly read on what is moving in AI, curated for the BYU network." },
   { title: "Access to the cohort for talent", blurb: "An introduction to the cohort when you are hiring builders." },
-  { title: "Submit a project proposal", blurb: "Something you want built. This routes to the project intake brief." },
+  { title: "Submitting a project proposal", blurb: "Something you want built. This routes to the project intake brief." },
 ]
 
 /* ────────────────────────────────────────────────────────────

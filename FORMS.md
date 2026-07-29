@@ -130,8 +130,8 @@ pure cost. Email is the only thing actually required.
 | 5 | LinkedIn | Short answer | No |
 | 6 | I'm interested in | Checkboxes | No |
 
-Checkbox options, which **must** stay in step with `NETWORK_INTERESTS` in
-`src/lib/content.ts`, since that is what the page renders beside the form:
+Checkbox options. These **must** stay in step with `NETWORK_INTERESTS` in
+`src/lib/content.ts`, since the page renders them above the form as its legend:
 
 - Live BYU-sponsored AI events
 - Weekly AI digest
