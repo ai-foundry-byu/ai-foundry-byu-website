@@ -127,13 +127,69 @@ contract. `npm run check:contrast` fails the build on a violation.
 - Never a standalone "AI Foundry" without BYU identification
 - No approved standalone logo exists. Use the co-brand lockup only
 
+## Build status, 2026-07-28
+
+All three pages are built and all three gates pass. `npm run dev`, then look.
+
+| Page | Route | State |
+|---|---|---|
+| Landing | `/` | Built. Hero, mission/vision/values, `#submit` |
+| Join the Network | `/network` | Built. Interests list plus the form slot |
+| About Us | `/about` | Built. Faculty, then 15 tiles with headshots |
+
+Where the code lives:
+
+- `src/lib/content.ts` — **every word of copy on the site.** Change text here, not in JSX
+- `src/components/SiteHeader.tsx` — nav, dropdowns, typographic wordmark
+- `src/components/SiteFooter.tsx`
+- `src/components/EmbeddedForm.tsx` — the form slot and its fallback
+- `src/app/{page,network/page,about/page}.tsx` — layout only, no copy
+
+Notes on how it was built:
+
+- **Zero client JavaScript.** The dropdowns open on CSS hover and `focus-within`,
+  the mobile menu is a native `<details>`, and the hero button is a plain `#submit`
+  anchor that the browser scrolls smoothly on its own. Every route prerenders static
+- **Zero dependencies beyond Next and React.** Dropped `@supabase/supabase-js` and
+  `motion`, both unused here. Nothing left to misconfigure
+- The hero background is a separate layer already in place, so the video can drop in
+  later without restructuring the section
+- `data-scroll-behavior="smooth"` is set on `<html>`. Next 16 stopped suppressing CSS
+  smooth scroll during navigation, so without it every route change would slowly glide
+
+### The logo decision, worth knowing about
+
+The header wordmark is **set in type, not placed as an image**, and that was a call
+made during the build. AI Foundry has no approved logo on file. BYU requires a
+co-brand lockup produced by BYU Marriott Marketing, and the `af-*` mark shipping on
+the old sites is an AI-generated derivative of BYU's Block Y that was never approved.
+Shipping it on a `byu.edu` domain is the kind of thing that gets a site taken down.
+
+A typographic lockup is compliant, and it is a one-file swap once Marketing delivers
+the real one. Request it from `byumarriottlogos@byu.edu`.
+
+Same category of issue, not yet resolved: `favicon-*.png` and `og-image.png` were
+carried over and may contain that same derivative mark. They need a look before launch.
+
 ## Still needed from Brandon
 
-- [ ] The form embed code or share URL for the project intake brief
-- [ ] The form embed for Join the Network, if different
-- [ ] Headshot files for the 15 MBAs, and where they live
-- [ ] Confirmation of each person's current role title
-- [ ] What sits in the two nav dropdowns
+- [ ] **The share URL for the project intake form.** Paste into `FORMS.intake` in
+      `src/lib/content.ts`. That is the entire change, nothing else moves
+- [ ] **The share URL for Join the Network.** Same, `FORMS.network`
+- [ ] Confirm the 15 roles. Titles were carried from the old site and are unverified
+- [ ] Confirm Scott Murff's title before it goes public. It is the highest-credibility
+      line on the site and the one most worth getting exactly right
+- [ ] Check `og-image.png` and the favicons for the unapproved Block Y derivative
+
+Two things I decided rather than block on, both easy to reverse:
+
+- **Nav dropdown contents.** Every entry points at a page or section that actually
+  exists, so nothing is a stub: Join the network → `/network`, `/#submit`;
+  About us → `/about`, `/#mission`. Add items in `NAV` in `content.ts`
+- **The 30-field form question, answered.** The brief's eleven sections are listed
+  on the page *beside* the form rather than being fields in it, so a visitor sees
+  the scope before starting. The fields themselves live in Tally or Google Forms,
+  so form length is now a choice you make in the form tool, not a code change
 
 ## Verification before any push
 

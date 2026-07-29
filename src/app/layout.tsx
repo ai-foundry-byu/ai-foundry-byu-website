@@ -16,6 +16,10 @@ const fraunces = Fraunces({
   axes: ["opsz", "SOFT", "WONK"],
 });
 
+const TITLE = "AI Foundry | BYU Marriott School of Business";
+const DESCRIPTION =
+  "An AI-native product studio and consultancy, and an experiential learning program of the BYU Marriott School of Business. Students scope real projects and ship production systems for real clients.";
+
 export const metadata: Metadata = {
   // byu-aifoundry.com currently serves a second live copy of this site from
   // another Vercel account. Until that redirects, this tells search engines
@@ -23,24 +27,27 @@ export const metadata: Metadata = {
   // against the official domain rather than whichever host served the page.
   metadataBase: new URL("https://aifoundry.byu.edu"),
   alternates: { canonical: "/" },
-  title: "AI Foundry | Where MBAs forge AI strategy",
-  description:
-    "BYU Marriott's AI Foundry. MBAs and undergrads who forge AI strategy — and ship production systems for real clients. Not case studies. Real stakes.",
+  // Subpages set only their own title; this appends the identification that
+  // brand rules require, so "AI Foundry" never appears on its own.
+  title: {
+    default: TITLE,
+    template: "%s | AI Foundry, BYU Marriott School of Business",
+  },
+  description: DESCRIPTION,
   icons: {
     icon: [{ url: "/favicon-32.png", sizes: "32x32", type: "image/png" }],
     apple: [{ url: "/favicon-180.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
-    title: "AI Foundry | Where MBAs forge AI strategy",
-    description:
-      "BYU Marriott's AI Foundry. MBAs and undergrads who forge AI strategy — and ship production systems for real clients.",
+    title: TITLE,
+    description: DESCRIPTION,
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "BYU AI Foundry" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Foundry | Where MBAs forge AI strategy",
-    description: "BYU Marriott's AI Foundry — forging intelligent solutions.",
+    title: TITLE,
+    description: DESCRIPTION,
     images: ["/og-image.png"],
   },
 };
@@ -51,8 +58,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // data-scroll-behavior is required as of Next 16. globals.css sets
+    // scroll-behavior: smooth for the #submit anchor, and without this
+    // attribute Next no longer suppresses it during route changes, so
+    // navigating between pages would slowly glide instead of landing at top.
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
