@@ -3,10 +3,14 @@ import Link from "next/link"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
 import {
+  BUILD_HEADING,
+  BUILDERS_DETAIL,
+  BUILDERS_EYEBROW,
+  BUILDERS_HEADLINE,
+  FACULTY,
   HERO_STATEMENT,
   HERO_SUPPORT,
   MISSION,
-  BUILD_HEADING,
   OFFERINGS,
   QUOTE_CTA,
   QUOTE_CTA_NOTE,
@@ -22,6 +26,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <MissionVisionValues />
+        <Proof />
         <GetAQuote />
       </main>
       <SiteFooter />
@@ -213,7 +218,57 @@ function MissionVisionValues() {
 }
 
 /* ────────────────────────────────────────────────────────────
-   3. Get a quote, the #quote anchor target
+   3. Proof
+
+   Sits between the values and What we build on purpose: a buyer
+   meets credibility on the way to the form rather than after it.
+   Scott also appears on /about, and the duplication is deliberate.
+   Nobody deciding whether to fill in the form will visit /about
+   first.
+
+   Copy, sourcing rules, and what is deliberately absent: see the
+   proof block in content.ts. Short version, no logos, and no name
+   goes here unless a person on /about backs it.
+   ──────────────────────────────────────────────────────────── */
+
+function Proof() {
+  return (
+    <section className="surface-paper-dim">
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+          {/* The accent bar as a rule, matching the faculty treatment already
+              on /about so the two read as the same component. */}
+          <div className="border-l-2 border-border-accent pl-6">
+            {/* Not text-accent for this eyebrow. Orange on the tinted surface
+                is 4.27:1, which is large-text-only and fails at 12px. */}
+            <p className="eyebrow text-text-primary opacity-80">{FACULTY.role}</p>
+            <p className="mt-3 font-serif text-2xl font-semibold text-text-primary md:text-3xl">
+              {FACULTY.name}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-text-primary">
+              {FACULTY.detail}
+            </p>
+          </div>
+
+          <div className="border-l-2 border-border-accent pl-6">
+            <p className="eyebrow text-text-primary opacity-80">
+              {BUILDERS_EYEBROW}
+            </p>
+            <p className="mt-3 font-serif text-2xl font-semibold leading-snug text-text-primary md:text-[1.75rem]">
+              {BUILDERS_HEADLINE}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-text-primary opacity-90">
+              {BUILDERS_DETAIL}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ────────────────────────────────────────────────────────────
+   4. Get a quote, the #quote anchor target
    ──────────────────────────────────────────────────────────── */
 
 function GetAQuote() {

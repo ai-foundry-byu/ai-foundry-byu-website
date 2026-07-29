@@ -85,6 +85,45 @@ export const ERA_NARRATIVE =
  *
  * Now the section is named for its content and the button carries the action.
  */
+/**
+ * Proof. Deliberately modest, because there is no client work to name yet.
+ *
+ * Every employer below is traceable to a named person's bio on /about, and that
+ * traceability is the entire point: a reader who clicks through can verify it.
+ * That makes this biography about our own people rather than a claim of any
+ * relationship with those companies.
+ *
+ *   National Grid   JD Davenport
+ *   Ford            Jorge Beltran
+ *   Redo            Brandon Jeppson
+ *   Yatta Golf      Abe Bedard
+ *
+ * The rules matter more than the copy:
+ *
+ *   - **No logos, ever.** A logo reads as endorsement, and there is no
+ *     agreement with any of these companies.
+ *   - Never "trusted by", "partners", or "in collaboration with". Those claim a
+ *     relationship. "Our builders have shipped at" claims a resume.
+ *   - Add a name only when you can point at the person on /about whose
+ *     employment backs it. Siemens was proposed and left out for exactly this
+ *     reason: nobody on the roster lists it.
+ *
+ * Deliberately NOT here yet: the Anthropic Claude Partner Network membership
+ * and the Claude Certified Architect certification. voice.md says students
+ * "pursue" that certification, and pursuing is not holding. Confirm both before
+ * either goes up, because a false certification claim is worse than no proof.
+ *
+ * All of this is a placeholder for the real thing. The moment a client agrees
+ * to be named, one sentence about shipped work replaces this whole block.
+ */
+export const BUILDERS_EYEBROW = "The builders"
+
+export const BUILDERS_HEADLINE =
+  "Our builders have shipped at National Grid, Ford, Redo, and Yatta Golf."
+
+export const BUILDERS_DETAIL =
+  "Fifteen MBAs and fifteen undergraduates, working in cohorts of one to two years."
+
 export const BUILD_HEADING = "What we build"
 
 /**

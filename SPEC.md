@@ -22,6 +22,7 @@ Zero env vars is a feature. It removes the entire class of failure that broke th
 /                     landing
   #hero               big statement + 2 buttons
   #mission            mission, vision, values
+                      then the proof band, faculty + builder experience
   #quote              Get a quote, offerings and the button out (anchor)
 /quote                the form, and nothing else
 /network              Join the Network subpage
@@ -241,7 +242,13 @@ the real lockup before launch.
 - [ ] **The share URL for Join the Network.** Same, `FORMS.network`
 - [ ] Confirm the 15 roles. Titles were carried from the old site and are unverified
 - [ ] Confirm Scott Murff's title before it goes public. It is the highest-credibility
-      line on the site and the one most worth getting exactly right
+      line on the site and the one most worth getting exactly right, and it is now on
+      the landing page as well as `/about`
+- [ ] **Confirm the Anthropic Claude Partner Network membership.** One line goes on the
+      proof band once it is verified
+- [ ] **Do not claim the Claude Certified Architect certification until somebody holds
+      it.** `voice.md` says students *pursue* it. Pursuing is not holding, and a false
+      certification claim is worse than having no proof at all
 - [ ] Regenerate `og-image.png` and the favicons from the real lockup. The carried-over ones probably still hold the unapproved Block Y derivative
 
 Two things I decided rather than block on, both easy to reverse:
