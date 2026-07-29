@@ -16,8 +16,10 @@ Out come the rasters:
 
     lockup.png         full colour, background knocked out, for light surfaces
     lockup-white.png   white reversal, for navy surfaces
+    lockup-navy.png    all-navy reversal, for white surfaces
     anvil.png          full colour, trimmed
     anvil-white.png    white reversal, trimmed
+    anvil-navy.png     all-navy reversal
 
 and, for the anvil only, vectors traced from the raster:
 
@@ -68,8 +70,8 @@ def knockout(im: Image.Image) -> Image.Image:
     return out
 
 
-def to_white(im: Image.Image) -> Image.Image:
-    """White reversal for dark surfaces.
+def to_solid(im: Image.Image, rgb: tuple) -> Image.Image:
+    """Single-colour reversal.
 
     The gamma matters. Orange is a lighter ink than navy, so a straight alpha
     copy renders the "AI" visibly translucent next to "FOUNDRY", which the
@@ -82,8 +84,19 @@ def to_white(im: Image.Image) -> Image.Image:
     dst = out.load()
     for y in range(h):
         for x in range(w):
-            dst[x, y] = (255, 255, 255, int(255 * ((src[x, y][3] / 255) ** 0.6)))
+            dst[x, y] = (*rgb, int(255 * ((src[x, y][3] / 255) ** 0.6)))
     return out
+
+
+def to_white(im: Image.Image) -> Image.Image:
+    """White reversal for dark surfaces.
+
+    The gamma matters. Orange is a lighter ink than navy, so a straight alpha
+    copy renders the "AI" visibly translucent next to "FOUNDRY", which the
+    original lockup does not do. Lifting the mid alphas evens the two words
+    out, and 0 stays 0 so the edges stay clean.
+    """
+    return to_solid(im, (255, 255, 255))
 
 
 def trim(im: Image.Image) -> Image.Image:
@@ -151,6 +164,11 @@ def main() -> int:
         im = trim(knockout(im) if needs_knockout else im)
         im.save(os.path.join(OUT, f"{stem}.png"))
         to_white(im).save(os.path.join(OUT, f"{stem}-white.png"))
+        # All-navy, for placing on white. Distinct from the full-colour file
+        # above, which keeps the orange "AI". BYU allows navy or white, so both
+        # the navy reversal and the original colourway are legal on a light
+        # surface; which one to use is a design call, not a compliance one.
+        to_solid(im, (0, 46, 93)).save(os.path.join(OUT, f"{stem}-navy.png"))
         print(f"{stem:8} {im.size[0]}x{im.size[1]}")
         # Only the anvil gets vectorised. The lockup is type, and tracing type
         # produces outlines that are not the typeface: ask BYU Marriott
