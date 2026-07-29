@@ -187,7 +187,7 @@ All three pages are built and all three gates pass. `npm run dev`, then look.
 | Page | Route | State |
 |---|---|---|
 | Landing | `/` | Built. Hero, mission/vision/values, `#quote` |
-| Request a quote | `/quote` | Built. The form, alone |
+| Request a quote | `/quote` | Built, and the real form is live |
 | Join the Network | `/network` | Built. Interests list plus the form slot |
 | About Us | `/about` | Built. Faculty, then 15 tiles with headshots |
 
@@ -237,8 +237,7 @@ the real lockup before launch.
 
 ## Still needed from Brandon
 
-- [ ] **The share URL for the project intake form.** Paste into `FORMS.intake` in
-      `src/lib/content.ts`. That is the entire change, nothing else moves
+- [x] ~~The share URL for the project intake form~~ **Done 2026-07-29.** Live on `/quote`
 - [ ] **The share URL for Join the Network.** Same, `FORMS.network`
 - [ ] Confirm the 15 roles. Titles were carried from the old site and are unverified
 - [ ] Confirm Scott Murff's title before it goes public. It is the highest-credibility

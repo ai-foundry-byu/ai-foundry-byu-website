@@ -281,7 +281,12 @@ export const FACULTY = {
    ──────────────────────────────────────────────────────────── */
 
 export const FORMS: { intake: string | null; network: string | null } = {
-  intake: null,
+  // "AI Foundry: Request a quote", owned by aifoundry.byu@gmail.com, filed in
+  // 02 Deals & Clients. Built by scripts/create-google-forms.gs on 2026-07-29.
+  // Responses land in "AI Foundry: Quote requests" in the same folder.
+  intake:
+    "https://docs.google.com/forms/d/e/1FAIpQLSc0fG4nrUqMch40-KFW6gdF4lTzibDxxORGlB8yXCfZDuoj3g/viewform?embedded=true",
+  // Still to build. The network form is a different set of fields, see FORMS.md.
   network: null,
 }
 

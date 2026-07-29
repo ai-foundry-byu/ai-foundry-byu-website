@@ -1,5 +1,17 @@
 # The two forms
 
+> **Built and live, 2026-07-29.** Both owned by `aifoundry.byu@gmail.com`, filed in
+> **02 Deals & Clients**. Verified publicly reachable: all eight questions render for
+> an anonymous visitor with no Google sign-in.
+>
+> | | Edit | Responses |
+> |---|---|---|
+> | Get a quote | [form](https://docs.google.com/forms/d/1tfwnK9BDuG8fKrhLtL8uy8RK9enbHGSUMrYkYufOiB0/edit) | [sheet](https://docs.google.com/spreadsheets/d/1mG0PeVp1ZsuheWYM3tGDJ3FwgZ7qSw0Vk1iN9d_cyyE/edit) |
+> | Project intake survey | [form](https://docs.google.com/forms/d/1yUVL6nKvG-LUWGogazSH2H5kIp7vOK8q5_cxz6WpJYo/edit) | [sheet](https://docs.google.com/spreadsheets/d/1kaTEwirk5_cdHkrbnXJ1H_P8eyX4n7YoGRQ6g659lqQ/edit) |
+>
+> Survey share link, for emailing after first contact:
+> `https://docs.google.com/forms/d/e/1FAIpQLSfzSBpHwIw9E5ppyx1WcEFseNBNvkUBBBwR3LvX6SIh7C_C1A/viewform`
+
 Both are Google Forms writing into one Google Sheet each. No backend, no API keys,
 nothing that can fail at deploy. Build them, then paste each share URL into `FORMS`
 in `src/lib/content.ts`. That is the only code change.
