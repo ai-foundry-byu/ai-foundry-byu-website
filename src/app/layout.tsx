@@ -59,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     // data-scroll-behavior is required as of Next 16. globals.css sets
-    // scroll-behavior: smooth for the #submit anchor, and without this
+    // scroll-behavior: smooth for the #quote anchor, and without this
     // attribute Next no longer suppresses it during route changes, so
     // navigating between pages would slowly glide instead of landing at top.
     <html

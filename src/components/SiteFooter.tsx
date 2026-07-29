@@ -23,26 +23,28 @@ export function SiteFooter() {
             </p>
           </div>
 
-          <nav aria-label="Footer" className="flex gap-14">
-            {NAV.map((group) => (
-              <div key={group.label}>
-                <p className="eyebrow text-text-on-inverse-muted">
-                  {group.label}
-                </p>
-                <ul className="mt-3 space-y-2">
-                  {group.items.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="text-sm text-text-on-inverse transition-opacity hover:opacity-70"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <nav aria-label="Footer">
+            <p className="eyebrow text-text-on-inverse-muted">Go to</p>
+            <ul className="mt-3 space-y-2">
+              {NAV.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-text-on-inverse transition-opacity hover:opacity-70"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/#quote"
+                  className="text-sm text-text-on-inverse transition-opacity hover:opacity-70"
+                >
+                  Get a quote
+                </Link>
+              </li>
+            </ul>
           </nav>
         </div>
 

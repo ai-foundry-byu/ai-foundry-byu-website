@@ -74,6 +74,11 @@ export const ERA_NARRATIVE =
    fields live in the form tool, not in this repo.
    ──────────────────────────────────────────────────────────── */
 
+/** The section is called "Get a quote". The button that jumps to it is called
+ *  "Submit a project". Both labels are Brandon's, and they are not the same word
+ *  on purpose: the button describes what you do, the section what you get. */
+export const QUOTE_HEADING = "Get a quote"
+
 export const INTAKE_LEAD =
   "Please complete this form to the extent possible. Your responses are used to prepare a scope of work, cost estimate, and delivery timeline. All information is treated as confidential."
 
@@ -181,24 +186,10 @@ export const FORMS: { intake: string | null; network: string | null } = {
    Nothing here is a placeholder for a page yet to be built.
    ──────────────────────────────────────────────────────────── */
 
-export type NavLink = { label: string; href: string; blurb: string }
-export type NavGroup = { label: string; href: string; items: NavLink[] }
+export type NavLink = { label: string; href: string }
 
-export const NAV: NavGroup[] = [
-  {
-    label: "Join the network",
-    href: "/network",
-    items: [
-      { label: "Join the network", href: "/network", blurb: "Events, the weekly digest, and the talent network." },
-      { label: "Submit a project", href: "/#submit", blurb: "Start a scope of work with the intake brief." },
-    ],
-  },
-  {
-    label: "About us",
-    href: "/about",
-    items: [
-      { label: "The team", href: "/about", blurb: "The people who run the program." },
-      { label: "Mission, vision, values", href: "/#mission", blurb: "What we do, where it goes, and the standard." },
-    ],
-  },
+/** Two tabs. Click either one and it takes you straight there. */
+export const NAV: NavLink[] = [
+  { label: "Join the network", href: "/network" },
+  { label: "About us", href: "/about" },
 ]

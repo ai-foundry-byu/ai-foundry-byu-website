@@ -2,11 +2,11 @@ import Link from "next/link"
 import { NAV, PROGRAM, SCHOOL_FULL } from "@/lib/content"
 
 /**
- * Top bar. Two dropdown tabs, per the spec.
+ * Top bar. Two tabs, Join the network and About us. Click either and it takes
+ * you straight to that page: no dropdown, nothing to hover open first.
  *
- * Deliberately a server component. The dropdowns open on hover and on
- * keyboard focus using CSS only, so the header ships zero JavaScript. The
- * mobile menu is a native <details>, which is why it also needs none.
+ * Deliberately a server component. The mobile menu is a native <details>, so
+ * the header ships zero JavaScript.
  *
  * The wordmark is set in type, not placed as an image, and that is on
  * purpose. AI Foundry has no approved logo on file: BYU Marriott Marketing
@@ -23,38 +23,15 @@ export function SiteHeader() {
 
         {/* desktop nav */}
         <nav aria-label="Main" className="hidden md:block">
-          <ul className="flex items-center gap-1">
-            {NAV.map((group) => (
-              <li key={group.label} className="group relative">
+          <ul className="flex items-center gap-2">
+            {NAV.map((link) => (
+              <li key={link.href}>
                 <Link
-                  href={group.href}
-                  className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-text-primary transition-colors hover:text-text-accent"
+                  href={link.href}
+                  className="block px-4 py-2 text-sm font-semibold text-text-primary transition-colors hover:text-text-accent"
                 >
-                  {group.label}
-                  <Chevron />
+                  {link.label}
                 </Link>
-
-                {/* Opens on hover, and on keyboard focus anywhere inside the
-                    group, which is what makes it reachable without a mouse. */}
-                <div className="invisible absolute left-0 top-full w-72 translate-y-1 opacity-0 transition duration-150 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <ul className="mt-1 border border-border-subtle bg-surface-default py-2 shadow-lg">
-                    {group.items.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          className="block px-4 py-2.5 transition-colors hover:bg-surface-subtle"
-                        >
-                          <span className="block text-sm font-semibold text-text-primary">
-                            {item.label}
-                          </span>
-                          <span className="mt-0.5 block text-xs font-normal text-text-primary">
-                            {item.blurb}
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </li>
             ))}
           </ul>
@@ -67,25 +44,20 @@ export function SiteHeader() {
           </summary>
           <nav
             aria-label="Main"
-            className="absolute right-0 top-full z-50 mt-1 w-64 border border-border-subtle bg-surface-default py-2 shadow-lg"
+            className="absolute right-0 top-full z-50 mt-1 w-56 border border-border-subtle bg-surface-default py-2 shadow-lg"
           >
-            {NAV.map((group) => (
-              <div key={group.label} className="px-4 py-2">
-                <p className="eyebrow text-text-primary">{group.label}</p>
-                <ul className="mt-2 space-y-1.5">
-                  {group.items.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="block text-sm font-semibold text-text-primary"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <ul>
+              {NAV.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="block px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:bg-surface-subtle"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
         </details>
       </div>
@@ -114,17 +86,3 @@ function Wordmark() {
   )
 }
 
-function Chevron() {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 12 12"
-      className="h-2.5 w-2.5 transition-transform group-hover:rotate-180"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-    >
-      <path d="M2.5 4.5 6 8l3.5-3.5" strokeLinecap="square" />
-    </svg>
-  )
-}

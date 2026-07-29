@@ -10,6 +10,7 @@ import {
   INTAKE_LEAD,
   INTAKE_SECTIONS,
   MISSION,
+  QUOTE_HEADING,
   VALUES,
   VISION,
 } from "@/lib/content"
@@ -61,10 +62,11 @@ function Hero() {
         <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center">
           {/*
             A plain anchor, not a Link, and that is deliberate. This scrolls
-            down the same page to #submit. globals.css sets scroll-behavior
-            smooth, so the browser animates it with no JavaScript at all.
+            down the same page to the Get a quote section. globals.css sets
+            scroll-behavior smooth, so the browser animates it with no
+            JavaScript at all.
           */}
-          <a href="#submit" className="btn-ember px-8 py-4 text-sm">
+          <a href="#quote" className="btn-ember px-8 py-4 text-sm">
             Submit a project
           </a>
           <Link
@@ -131,19 +133,19 @@ function MissionVisionValues() {
 }
 
 /* ────────────────────────────────────────────────────────────
-   3. Submit a project, the #submit anchor target
+   3. Get a quote, the #quote anchor target
    ──────────────────────────────────────────────────────────── */
 
 function SubmitAProject() {
   return (
-    <section id="submit" className="surface-paper-dim scroll-mt-16">
+    <section id="quote" className="surface-paper-dim scroll-mt-16">
       <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
         <div className="max-w-3xl">
-          <p className="eyebrow text-text-primary opacity-70">
-            Project intake brief
+          <p className="eyebrow text-text-primary opacity-80">
+            Start a project
           </p>
           <h2 className="mt-4 font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-5xl">
-            Tell us what you want built.
+            {QUOTE_HEADING}
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-text-primary">
             {INTAKE_LEAD}
