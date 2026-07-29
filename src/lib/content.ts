@@ -98,10 +98,15 @@ export const ERA_NARRATIVE =
  *     employment backs it. Siemens was proposed and left out for exactly this
  *     reason: nobody on the roster lists it.
  *
- * Deliberately NOT here yet: the Anthropic Claude Partner Network membership
- * and the Claude Certified Architect certification. voice.md says students
- * "pursue" that certification, and pursuing is not holding. Confirm both before
- * either goes up, because a false certification claim is worse than no proof.
+ * The Anthropic Claude Partner Network membership is HERE as of 2026-07-29,
+ * confirmed by Brandon. It is the strongest of the three because it is an actual
+ * organisational relationship rather than a resume, so unlike the employer names
+ * it is a claim about AI Foundry itself.
+ *
+ * Still deliberately NOT here: the Claude Certified Architect certification.
+ * voice.md says students "pursue" it, and pursuing is not holding. It goes up
+ * when somebody has actually passed and not before, because a false
+ * certification claim is worse than having no proof at all.
  *
  * All of this is a placeholder for the real thing. The moment a client agrees
  * to be named, one sentence about shipped work replaces this whole block.
@@ -141,6 +146,23 @@ export const BUILDERS_DETAIL =
  *
  * Now the section is named for its content and the button carries the action.
  */
+/**
+ * The third ethos item, alongside Scott and the builder experience.
+ *
+ * Confirmed by Brandon 2026-07-29. Stated as membership and nothing more: no
+ * "certified by", no "endorsed by", no "in partnership with Anthropic", because
+ * membership in a partner network is what is true and each of those would claim
+ * something further. The detail line ties it to what a client gets rather than
+ * inventing benefits of the programme that nobody has verified.
+ */
+export const PARTNER_EYEBROW = "Partner network"
+
+export const PARTNER_HEADLINE =
+  "Member of the Anthropic Claude Partner Network."
+
+export const PARTNER_DETAIL =
+  "We build on the same frontier tooling we train your team to use."
+
 export const BUILD_HEADING = "What we build"
 
 /**

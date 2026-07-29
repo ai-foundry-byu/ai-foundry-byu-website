@@ -275,11 +275,16 @@ the real lockup before launch.
 - [ ] Confirm Scott Murff's title before it goes public. It is the highest-credibility
       line on the site and the one most worth getting exactly right, and it is now on
       the landing page as well as `/about`
-- [ ] **Confirm the Anthropic Claude Partner Network membership.** One line goes on the
-      proof band once it is verified
+- [x] ~~Confirm the Anthropic Claude Partner Network membership~~ **Confirmed by Brandon
+      2026-07-29.** It is the third column of the proof band, stated as membership only
 - [ ] **Do not claim the Claude Certified Architect certification until somebody holds
       it.** `voice.md` says students *pursue* it. Pursuing is not holding, and a false
       certification claim is worse than having no proof at all
+- [ ] **Before using any Anthropic partner badge**, get the actual asset and its usage
+      terms from `partnerportal.anthropic.com`. Do not approximate one. Note also that
+      the Services Track tiers (Select, Preferred, Global Premier) are gated on counts
+      of *certified individuals*, starting at ten for Select, so a tier badge is a
+      different and stronger claim than plain membership and may not apply yet
 - [ ] Regenerate `og-image.png` and the favicons from the real lockup. The carried-over ones probably still hold the unapproved Block Y derivative
 
 Two things I decided rather than block on, both easy to reverse:

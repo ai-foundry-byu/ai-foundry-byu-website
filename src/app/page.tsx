@@ -12,6 +12,9 @@ import {
   HERO_SUPPORT,
   MISSION,
   OFFERINGS,
+  PARTNER_DETAIL,
+  PARTNER_EYEBROW,
+  PARTNER_HEADLINE,
   QUOTE_CTA,
   QUOTE_CTA_NOTE,
   QUOTE_LEAD,
@@ -238,7 +241,11 @@ function Proof() {
           strip on the way to the form, not a section in its own right, so it
           sits well under the 96/128px the real sections use. */}
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-14">
-        <div className="grid gap-10 md:grid-cols-2 md:gap-12">
+        {/* Three columns from md. Each is one appeal to ethos: a named faculty
+            advisor, the builders' track record, and an organisational
+            relationship. They stack on narrow screens in that order, which is
+            also strongest-first if only the top one gets read. */}
+        <div className="grid gap-10 md:grid-cols-3 md:gap-10">
           {/* The accent bar as a rule, matching the faculty treatment already
               on /about so the two read as the same component. */}
           <div className="border-l-2 border-border-accent pl-6">
@@ -268,6 +275,18 @@ function Proof() {
             </p>
             <p className="mt-2 text-base leading-relaxed text-text-primary opacity-90">
               {BUILDERS_DETAIL}
+            </p>
+          </div>
+
+          <div className="border-l-2 border-border-accent pl-6">
+            <p className="eyebrow text-text-primary opacity-80">
+              {PARTNER_EYEBROW}
+            </p>
+            <p className="mt-2 font-serif text-xl font-semibold leading-snug text-text-primary md:text-2xl">
+              {PARTNER_HEADLINE}
+            </p>
+            <p className="mt-2 text-base leading-relaxed text-text-primary opacity-90">
+              {PARTNER_DETAIL}
             </p>
           </div>
         </div>
