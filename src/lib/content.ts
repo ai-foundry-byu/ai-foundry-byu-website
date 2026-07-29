@@ -301,10 +301,16 @@ export const NAV: NavLink[] = [
 ]
 
 /**
- * The one call to action in the bar, styled as a button rather than a tab.
+ * Two steps, two destinations, and they do not overlap.
  *
- * It points at the same place the hero button does. There is deliberately only
- * one Get a quote destination on the site: two would mean two versions of the
- * offerings and the form to keep in step, and they would drift.
+ *   NAV_CTA   -> /#quote   what we build, and what an engagement is
+ *   QUOTE_CTA -> /quote    the form, and nothing else
+ *
+ * The offerings live in exactly one place and the form lives in exactly one
+ * place, so neither can drift out of step with a second copy of itself. The
+ * hero button and the top bar both land on the offerings; the only route to
+ * the form is through them.
  */
 export const NAV_CTA: NavLink = { label: "Get a quote", href: "/#quote" }
+
+export const QUOTE_CTA: NavLink = { label: "Request a quote", href: "/quote" }

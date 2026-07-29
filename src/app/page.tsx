@@ -2,18 +2,16 @@ import Image from "next/image"
 import Link from "next/link"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
-import { EmbeddedForm } from "@/components/EmbeddedForm"
 import {
-  FORMS,
   HERO_STATEMENT,
   HERO_SUPPORT,
   MISSION,
   OFFERINGS,
   OFFERINGS_HEADING,
   OFFERINGS_LEAD,
+  QUOTE_CTA,
   QUOTE_HEADING,
   QUOTE_LEAD,
-  QUOTE_STEPS,
   VALUES,
   VISION,
 } from "@/lib/content"
@@ -188,8 +186,8 @@ function GetAQuote() {
       id="quote"
       className="surface-iron scroll-mt-20 text-text-on-inverse"
     >
-      <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
-        <div className="max-w-3xl">
+      <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-32">
+        <div className="mx-auto max-w-3xl">
           <h2 className="font-serif text-3xl font-semibold tracking-[-0.02em] md:text-5xl">
             {QUOTE_HEADING}
           </h2>
@@ -199,22 +197,19 @@ function GetAQuote() {
         </div>
 
         {/*
-          What we sell, before what we ask for.
-
-          Someone arriving on Get a quote from the top bar has not necessarily
-          read anything else on the site. Putting the offerings above the form
-          means the first thing they meet is what the engagement is, not a
-          request for their phone number.
+          What we sell. The form itself is not here: it has its own page, so
+          this section stays about the work rather than turning into paperwork
+          halfway down.
         */}
         <div className="mt-20">
           <h3 className="font-serif text-2xl font-semibold tracking-[-0.01em] md:text-3xl">
             {OFFERINGS_HEADING}
           </h3>
-          <p className="mt-4 max-w-2xl leading-relaxed text-text-on-inverse-muted">
+          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-text-on-inverse-muted">
             {OFFERINGS_LEAD}
           </p>
 
-          <div className="mt-10 grid gap-px border border-border-on-inverse bg-border-on-inverse md:grid-cols-3">
+          <div className="mt-12 grid gap-px border border-border-on-inverse bg-border-on-inverse md:grid-cols-3">
             {OFFERINGS.map((offering) => (
               <article
                 key={offering.name}
@@ -226,7 +221,14 @@ function GetAQuote() {
                 <p className="mt-4 text-sm leading-relaxed text-text-on-inverse-muted">
                   {offering.blurb}
                 </p>
-                <ul className="mt-6 space-y-3">
+
+                {/*
+                  The card is centred, the list inside it is not. A bulleted
+                  list with a centred ragged left edge is unreadable: the eye
+                  loses the return sweep. So the block is centred and the lines
+                  stay flush left inside it, which reads as deliberate.
+                */}
+                <ul className="mx-auto mt-6 space-y-3 text-left">
                   {offering.points.map((point) => (
                     <li key={point} className="flex gap-3 text-sm leading-relaxed">
                       {/* The accent as a fill, never as text. Orange type on
@@ -245,42 +247,15 @@ function GetAQuote() {
           </div>
         </div>
 
-        <div className="mt-20 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)] lg:gap-20">
-          {/* The form leads now. It is eight fields, so there is nothing to
-              warn anyone about before they start. */}
-          <div>
-            <EmbeddedForm
-              src={FORMS.intake}
-              title="Get a quote"
-              height={720}
-              tone="inverse"
-            />
-          </div>
-
-          <div>
-            <h3 className="eyebrow text-text-on-inverse-muted">
-              What happens next
-            </h3>
-            <ol className="mt-6 space-y-6">
-              {QUOTE_STEPS.map((step) => (
-                <li key={step.n} className="flex gap-4">
-                  {/* On navy the muted token is BYU Light Blue at 8.99:1, so
-                      unlike the tinted band this needs no opacity juggling. */}
-                  <span className="eyebrow mt-0.5 shrink-0 text-text-on-inverse-muted">
-                    {String(step.n).padStart(2, "0")}
-                  </span>
-                  <span>
-                    <span className="block text-sm font-semibold text-text-on-inverse">
-                      {step.title}
-                    </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-text-on-inverse-muted">
-                      {step.detail}
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ol>
-          </div>
+        {/* The one way through to the form, and the same button treatment as
+            the top bar so the call to action reads as one thing site-wide. */}
+        <div className="mt-16">
+          <Link href={QUOTE_CTA.href} className="btn-ember px-9 py-4 text-sm">
+            {QUOTE_CTA.label}
+          </Link>
+          <p className="mt-5 text-sm text-text-on-inverse-muted">
+            Eight fields. Two minutes.
+          </p>
         </div>
       </div>
     </section>

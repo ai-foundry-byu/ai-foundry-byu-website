@@ -21,7 +21,7 @@ nobody finishes. So: eight fields up front, the rest once there is a conversatio
 
 ## Form 1: Get a quote
 
-Lives on the landing page at `#quote`. **Eight fields.**
+Lives on its own page at `/quote`. **Eight fields.**
 
 | # | Field | Type | Required | Notes |
 |---|---|---|---|---|
@@ -95,7 +95,7 @@ Closing message, verbatim from the brief:
 2. For each: Responses tab, link to a Google Sheet
 3. Form 1 only: Send, `<>` embed tab, copy the `src` URL out of the iframe snippet
 4. Paste it into `FORMS.intake` in `src/lib/content.ts`
-5. `npm run dev` and look at `#quote`
+5. `npm run dev` and look at `/quote`
 
 Form 2 never touches the site. It gets emailed.
 

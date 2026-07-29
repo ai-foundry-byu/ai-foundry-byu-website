@@ -22,7 +22,8 @@ Zero env vars is a feature. It removes the entire class of failure that broke th
 /                     landing
   #hero               big statement + 2 buttons
   #mission            mission, vision, values
-  #quote              Get a quote, the short form (anchor target)
+  #quote              Get a quote, offerings and the button out (anchor)
+/quote                the form, and nothing else
 /network              Join the Network subpage
 /about                About Us, 15 MBA tiles
 ```
@@ -31,9 +32,12 @@ Zero env vars is a feature. It removes the entire class of failure that broke th
 as a button, all on a navy bar. No dropdowns.
 
 `Get a quote` in the bar points at `/#quote`, the same place the hero button goes.
-**There is deliberately only one Get a quote destination.** A separate `/quote` page
-would mean two copies of the offerings and the form to keep in step, and they would
-drift. `Submit a project` is the hero button only, never a nav item.
+`Submit a project` is the hero button only, never a nav item.
+
+**Two steps, two destinations, no overlap.** `/#quote` is what we build. `/quote` is
+the form and nothing else. The offerings exist in exactly one place and the form
+exists in exactly one place, so neither can drift out of step with a second copy of
+itself. The only route to the form is through the offerings.
 
 ## Landing page, in order
 
@@ -80,10 +84,23 @@ Someone arriving here from the top bar has not necessarily read anything else on
 the site, so the first thing they meet is what the engagement is, not a request
 for their phone number.
 
+Centred, matching the hero.
+
 1. Heading and lead
 2. **Three offerings**: full-stack applications, AI integration and orchestration,
    AI enablement and training. Copy lives in `OFFERINGS` in `content.ts`
-3. The eight-field form, with What happens next beside it
+3. A `Request a quote` button out to `/quote`
+
+The card text is centred but the bullet lists inside are not: a bulleted list with a
+centred ragged left edge is unreadable, so the block is centred and the lines stay
+flush left inside it.
+
+### 4. The form page, `/quote`
+
+Exists to hold the form and nothing else. Someone arrives having already read the
+offerings and decided to act, so anything competing for attention is a reason to
+stop before submitting. One column, no offerings repeated, What happens next below
+the form rather than above it.
 
 The eleven-section intake brief is **split across two forms**, decided 2026-07-28
 after a teardown of byumarketinglab.com. Nothing from the brief was dropped, it was
@@ -139,6 +156,7 @@ All three pages are built and all three gates pass. `npm run dev`, then look.
 | Page | Route | State |
 |---|---|---|
 | Landing | `/` | Built. Hero, mission/vision/values, `#quote` |
+| Request a quote | `/quote` | Built. The form, alone |
 | Join the Network | `/network` | Built. Interests list plus the form slot |
 | About Us | `/about` | Built. Faculty, then 15 tiles with headshots |
 

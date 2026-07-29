@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { NAV, PROGRAM, SCHOOL_FULL } from "@/lib/content"
+import { NAV, PROGRAM, QUOTE_CTA, SCHOOL_FULL } from "@/lib/content"
 
 /**
  * Footer. Navy surface, so every text colour here comes from the
@@ -42,10 +42,10 @@ export function SiteFooter() {
               ))}
               <li>
                 <Link
-                  href="/#quote"
+                  href={QUOTE_CTA.href}
                   className="text-sm text-text-on-inverse transition-opacity hover:opacity-70"
                 >
-                  Get a quote
+                  {QUOTE_CTA.label}
                 </Link>
               </li>
             </ul>
