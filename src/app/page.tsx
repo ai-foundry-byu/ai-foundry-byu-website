@@ -234,18 +234,27 @@ function MissionVisionValues() {
 function Proof() {
   return (
     <section className="surface-paper-dim">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+      {/* Deliberately the shallowest band on the page. It is a credential
+          strip on the way to the form, not a section in its own right, so it
+          sits well under the 96/128px the real sections use. */}
+      <div className="mx-auto max-w-6xl px-6 py-12 md:py-14">
+        <div className="grid gap-10 md:grid-cols-2 md:gap-12">
           {/* The accent bar as a rule, matching the faculty treatment already
               on /about so the two read as the same component. */}
           <div className="border-l-2 border-border-accent pl-6">
             {/* Not text-accent for this eyebrow. Orange on the tinted surface
                 is 4.27:1, which is large-text-only and fails at 12px. */}
             <p className="eyebrow text-text-primary opacity-80">{FACULTY.role}</p>
-            <p className="mt-3 font-serif text-2xl font-semibold text-text-primary md:text-3xl">
+            {/* One step down from the 30px this was. These two are supporting
+                credentials, not section headings, so they should not compete
+                with the values above or What we build below. */}
+            <p className="mt-2 font-serif text-xl font-semibold text-text-primary md:text-2xl">
               {FACULTY.name}
             </p>
-            <p className="mt-3 text-base leading-relaxed text-text-primary">
+            {/* Stays 16px. The type scale in SPEC.md sets a 16px floor for
+                prose and this is prose, so the size reduction in this band is
+                taken out of the display type instead. */}
+            <p className="mt-2 text-base leading-relaxed text-text-primary">
               {FACULTY.detail}
             </p>
           </div>
@@ -254,10 +263,10 @@ function Proof() {
             <p className="eyebrow text-text-primary opacity-80">
               {BUILDERS_EYEBROW}
             </p>
-            <p className="mt-3 font-serif text-2xl font-semibold leading-snug text-text-primary md:text-[1.75rem]">
+            <p className="mt-2 font-serif text-xl font-semibold leading-snug text-text-primary md:text-2xl">
               {BUILDERS_HEADLINE}
             </p>
-            <p className="mt-3 text-base leading-relaxed text-text-primary opacity-90">
+            <p className="mt-2 text-base leading-relaxed text-text-primary opacity-90">
               {BUILDERS_DETAIL}
             </p>
           </div>
