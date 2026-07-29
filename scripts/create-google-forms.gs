@@ -357,12 +357,20 @@ function section_(form, title) {
 /**
  * Move specific files to the Drive trash, by id.
  *
- * Written to clean up the duplicates from the 2026-07-29 incident. Trash, not
- * permanent deletion: Drive keeps trashed files for 30 days, so a wrong id here
- * is recoverable. It logs the title of every file before trashing it, so the
- * log is the record of exactly what went.
+ * ALREADY RUN, 2026-07-29 15:43. The four ids below are trashed and the folder
+ * is clean. Kept as the record of what was removed and as the tool if it is
+ * ever needed again: replace the ids, then run.
  *
- * Edit the list, select this function in the dropdown, Run.
+ * Trash, not permanent deletion: Drive keeps trashed files for 30 days, so a
+ * wrong id here is recoverable. It logs the title and creation date of every
+ * file before trashing it, so the execution log is the receipt.
+ *
+ * A note on actually running it. The function dropdown next to Run cannot be
+ * trusted: it displayed trashFilesByIdOnly while Run executed createNetworkForm
+ * anyway, twice, once via Escape reverting the selection and once with the label
+ * simply out of step with the real target. The reliable move is to paste a file
+ * containing ONE function, so Run has nothing else to choose, then paste the
+ * full builder back. That is how these four were finally removed.
  */
 function trashFilesByIdOnly() {
   const ids = [
