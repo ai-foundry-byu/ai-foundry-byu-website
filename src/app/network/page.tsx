@@ -225,10 +225,16 @@ export default function NetworkPage() {
               both, and the desktop case is the one that was broken.
             */}
             <div className="mt-16">
+              {/* Six questions. Measured content: about 1515px at a 390px
+                  viewport, about 1415px from md up. These sit roughly 85px
+                  above that, which clears Submit and the help icon without
+                  leaving a few hundred pixels of dead white under the form.
+                  1460 at md was tried first and left only 45px, which is too
+                  thin to survive Google changing anything. */}
               <EmbeddedForm
                 src={FORMS.network}
                 title="Join the network"
-                height={1440}
+                heightClass="h-[1600px] sm:h-[1540px] md:h-[1500px]"
               />
               <p className="mt-6 text-center text-base text-text-primary opacity-80">
                 No spam. Leave at any time.

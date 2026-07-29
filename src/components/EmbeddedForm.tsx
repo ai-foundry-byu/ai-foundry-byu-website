@@ -13,12 +13,26 @@
 export function EmbeddedForm({
   src,
   title,
-  height = 900,
+  heightClass = "h-[900px]",
   tone = "light",
 }: {
   src: string | null
   title: string
-  height?: number
+  /**
+   * Height as Tailwind classes, not a pixel attribute, so it can be responsive.
+   *
+   * A cross-origin iframe cannot report its own content height, so the height
+   * has to be declared from outside. Google Forms rewraps its question labels as
+   * the frame narrows, which makes the content TALLER on small screens, so the
+   * classes go from tall to short as the breakpoints go up.
+   *
+   * Getting this wrong in either direction is visible. Too short and the frame
+   * becomes a nested scroll region that swallows trackpad and touch scrolling
+   * and hides the Submit button behind an inner scrollbar most people never
+   * find. Too tall and there is dead white space under Submit. Too tall is the
+   * better failure, so these values are deliberately generous.
+   */
+  heightClass?: string
   /** Which surface this sits on. A hosted form is always a light rectangle, so
    *  on navy it gets a white plate rather than pretending to be transparent. */
   tone?: "light" | "inverse"
@@ -45,12 +59,23 @@ export function EmbeddedForm({
 
   return (
     <div className={frame}>
+      {/*
+        loading="eager", and this was a real bug rather than a preference.
+
+        It was loading="lazy". On both pages that use this the iframe sits below
+        the fold, so the browser deferred fetching it and a visitor saw a blank
+        white rectangle until they happened to scroll far enough to trigger the
+        load. A second visit looked fine because it was cached, which is exactly
+        the pattern that makes this kind of thing survive testing.
+
+        Lazy-loading the one element the page exists for is backwards. On /quote
+        the form IS the page. A blank form is a silently lost lead.
+      */}
       <iframe
         src={src}
         title={title}
-        loading="lazy"
-        height={height}
-        className="w-full"
+        loading="eager"
+        className={`w-full ${heightClass}`}
       />
     </div>
   )

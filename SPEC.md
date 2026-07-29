@@ -181,6 +181,37 @@ Two things worth knowing if you change type again:
   That is below the optimal band and it is fine: in a three-up card grid, size is
   what carries legibility, not measure
 
+## Responsive, verified 2026-07-29
+
+Checked at 360, 390, 640, 768, 1024 and 1440 on all four pages. **No horizontal
+overflow anywhere**, gutters a consistent 24px, smallest rendered text 12px, and the
+About tiles step 1 to 2 to 3 columns correctly.
+
+`resize_window` does not work on this machine, it clamps at about 1456px, so this was
+done with a throwaway page holding a same-origin iframe at a fixed width. An iframe of
+a given width is a real viewport of that width, so media queries fire correctly, and
+because it is same-origin the inner document can be measured directly rather than
+eyeballed from a screenshot. Worth rebuilding if this needs checking again.
+
+### The embedded form heights
+
+A cross-origin iframe cannot report its own content height, so the height is declared
+from outside in `EmbeddedForm`. Google Forms rewraps its labels as the frame narrows,
+which makes the content **taller** on small screens, so the classes shrink as the
+breakpoints rise. Measured content, and the values chosen:
+
+| | content at 390px | content from md | height set |
+|---|---|---|---|
+| `/quote`, 8 questions | about 1895px | about 1705px | `h-[1950px] sm:h-[1890px] md:h-[1840px]` |
+| `/network`, 6 questions | about 1515px | about 1415px | `h-[1600px] sm:h-[1540px] md:h-[1500px]` |
+
+Too short is much worse than too tall: the frame becomes a nested scroll region that
+swallows touch and trackpad scrolling and hides Submit behind an inner scrollbar most
+people never find. Aim for 80 to 130px of slack. 1460 was tried on `/network` and left
+only 45px, which is too thin to survive Google changing anything.
+
+If the form's questions are edited, remeasure. Nothing warns you when this drifts.
+
 ## Build status, 2026-07-28
 
 All three pages are built and all three gates pass. `npm run dev`, then look.
