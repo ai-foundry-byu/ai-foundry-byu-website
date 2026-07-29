@@ -29,10 +29,11 @@ export const SCHOOL_SHORT = "BYU Marriott"
 
 export const HERO_STATEMENT = "An AI-native product studio and consultancy."
 
+/** One sentence, by Brandon's decision. It does one job: say whose program this
+ *  is, on first reference and in full, per the naming rule above. Anything about
+ *  who builds and what ships belongs further down the page, not here. */
 export const HERO_SUPPORT =
-  "An experiential learning program of the " +
-  SCHOOL_FULL +
-  ". MBAs and undergraduates scope real projects, architect the solution, and ship systems that keep running after the semester ends."
+  "An official experiential learning program of the " + SCHOOL_FULL + "."
 
 /* ────────────────────────────────────────────────────────────
    Mission, vision, values. VERBATIM. Do not edit without Brandon.
