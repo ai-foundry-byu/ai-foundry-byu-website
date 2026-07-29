@@ -1,25 +1,34 @@
+import Image from "next/image"
 import Link from "next/link"
 import { NAV, PROGRAM, SCHOOL_FULL } from "@/lib/content"
 
 /**
- * Top bar. Two tabs, Join the network and About us. Click either and it takes
- * you straight to that page: no dropdown, nothing to hover open first.
+ * Top bar. Navy, so it reads as one surface with the hero below it. Two tabs,
+ * Join the network and About us. Click either and it takes you straight there.
  *
  * Deliberately a server component. The mobile menu is a native <details>, so
  * the header ships zero JavaScript.
  *
- * The wordmark is set in type, not placed as an image, and that is on
- * purpose. AI Foundry has no approved logo on file: BYU Marriott Marketing
- * must produce the co-brand lockup, and the af-* mark in the old repo is an
- * AI-generated derivative of BYU's Block Y that was never approved. A
- * typographic lockup is the compliant thing to ship until the real one
- * arrives. See _reference/byu-static-site/_internal/BRAND-INVENTORY.md.
+ * The mark is the real co-brand lockup produced for the program, in its white
+ * reversal. BYU's rule is that marks appear in navy or white only, so a
+ * single-colour white reversal is the sanctioned treatment on a dark surface.
+ * The letterforms are untouched: `scripts/build-brand-assets.py` knocks the
+ * white background out and recolours, it never redraws.
  */
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border-subtle bg-surface-default/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Wordmark />
+    <header className="sticky top-0 z-50 bg-surface-inverse">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/brand/lockup-white.png"
+            alt={`${SCHOOL_FULL}, ${PROGRAM}`}
+            width={3305}
+            height={360}
+            priority
+            className="h-6 w-auto md:h-9"
+          />
+        </Link>
 
         {/* desktop nav */}
         <nav aria-label="Main" className="hidden md:block">
@@ -28,7 +37,7 @@ export function SiteHeader() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="block px-4 py-2 text-sm font-semibold text-text-primary transition-colors hover:text-text-accent"
+                  className="block px-4 py-2 text-sm font-semibold text-text-on-inverse transition-opacity hover:opacity-70"
                 >
                   {link.label}
                 </Link>
@@ -39,19 +48,19 @@ export function SiteHeader() {
 
         {/* mobile nav: native disclosure, no script */}
         <details className="relative md:hidden">
-          <summary className="cursor-pointer list-none px-2 py-2 text-sm font-semibold text-text-primary [&::-webkit-details-marker]:hidden">
+          <summary className="cursor-pointer list-none px-2 py-2 text-sm font-semibold text-text-on-inverse [&::-webkit-details-marker]:hidden">
             Menu
           </summary>
           <nav
             aria-label="Main"
-            className="absolute right-0 top-full z-50 mt-1 w-56 border border-border-subtle bg-surface-default py-2 shadow-lg"
+            className="absolute right-0 top-full z-50 mt-2 w-56 border border-border-on-inverse bg-surface-inverse-deep py-2 shadow-lg"
           >
             <ul>
               {NAV.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:bg-surface-subtle"
+                    className="block px-4 py-3 text-sm font-semibold text-text-on-inverse transition-colors hover:bg-surface-inverse-soft"
                   >
                     {link.label}
                   </Link>
@@ -64,25 +73,3 @@ export function SiteHeader() {
     </header>
   )
 }
-
-/**
- * The typographic co-brand lockup: school first, program second, divided by
- * the vertical accent bar that is the design system's motif. This satisfies
- * the naming rule that AI Foundry never appears without BYU identification.
- */
-function Wordmark() {
-  return (
-    <Link href="/" className="flex items-center gap-3">
-      <span aria-hidden className="ember-bar h-8 w-[3px]" />
-      <span className="leading-tight">
-        <span className="block font-serif text-lg font-semibold tracking-[-0.01em] text-text-primary">
-          {PROGRAM}
-        </span>
-        <span className="eyebrow block text-text-primary opacity-80">
-          {SCHOOL_FULL}
-        </span>
-      </span>
-    </Link>
-  )
-}
-

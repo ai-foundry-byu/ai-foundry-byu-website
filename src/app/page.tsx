@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
@@ -47,9 +48,18 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" />
 
       <div className="mx-auto flex max-w-6xl flex-col items-center px-6 py-28 text-center md:py-40">
-        {/* The accent bar moves above the headline when the hero is centred.
-            Beside it, it would pull the whole block off axis. */}
-        <span aria-hidden className="ember-bar ember-bar-heat h-14 w-1" />
+        {/* The anvil, above the headline and on the same centre axis. It is
+            decorative here: the header already carries the identifying lockup,
+            so this one is aria-hidden rather than announced twice. */}
+        <Image
+          src="/brand/anvil-white.png"
+          alt=""
+          aria-hidden
+          width={290}
+          height={181}
+          priority
+          className="h-16 w-auto md:h-20"
+        />
 
         {/*
           max-w-4xl, not the full column. Marketing Lab centres three lines of
@@ -119,19 +129,41 @@ function MissionVisionValues() {
               not say better, so it is gone. */}
           <h2 className="eyebrow text-text-accent">Values</h2>
 
-          <div className="mt-8 grid gap-px border border-border-subtle bg-border-subtle md:grid-cols-3">
-            {VALUES.map((value) => (
-              <article key={value.name} className="bg-surface-default p-8">
-                <span aria-hidden className="ember-bar block h-1 w-10" />
-                <h3 className="mt-6 font-serif text-xl font-semibold text-text-primary">
-                  {value.name}
-                </h3>
-                <p className="mt-4 text-[15px] leading-relaxed text-text-primary">
+          {/*
+            A numbered list, not three cards.
+
+            Three equal columns made these read as a feature grid, and the third
+            column of a feature grid is where text goes to die. Each value is a
+            paragraph of argument, so it wants a reading measure, not a narrow
+            column. Stacked and numbered, it reads the way it was written: as a
+            standard, in order.
+
+            An ordered list is also the honest markup. These are numbered items,
+            so <ol> is what a screen reader should announce.
+          */}
+          <ol className="mt-10 border-t border-border-subtle">
+            {VALUES.map((value, i) => (
+              <li
+                key={value.name}
+                className="grid gap-x-10 gap-y-4 border-b border-border-subtle py-10 md:grid-cols-[minmax(0,300px)_minmax(0,1fr)] md:py-12"
+              >
+                <div className="flex items-baseline gap-5">
+                  <span
+                    aria-hidden
+                    className="font-serif text-4xl font-semibold leading-none text-text-accent md:text-5xl"
+                  >
+                    {i + 1}
+                  </span>
+                  <h3 className="font-serif text-xl font-semibold leading-tight text-text-primary md:text-2xl">
+                    {value.name}
+                  </h3>
+                </div>
+                <p className="max-w-2xl text-base leading-relaxed text-text-primary">
                   {value.body}
                 </p>
-              </article>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>
@@ -144,13 +176,16 @@ function MissionVisionValues() {
 
 function SubmitAProject() {
   return (
-    <section id="quote" className="surface-paper-dim scroll-mt-16">
+    <section
+      id="quote"
+      className="surface-iron scroll-mt-20 text-text-on-inverse"
+    >
       <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
         <div className="max-w-3xl">
-          <h2 className="font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-5xl">
+          <h2 className="font-serif text-3xl font-semibold tracking-[-0.02em] md:text-5xl">
             {QUOTE_HEADING}
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-text-primary">
+          <p className="mt-6 text-lg leading-relaxed text-text-on-inverse-muted">
             {QUOTE_LEAD}
           </p>
         </div>
@@ -159,26 +194,31 @@ function SubmitAProject() {
           {/* The form leads now. It is eight fields, so there is nothing to
               warn anyone about before they start. */}
           <div>
-            <EmbeddedForm src={FORMS.intake} title="Get a quote" height={720} />
+            <EmbeddedForm
+              src={FORMS.intake}
+              title="Get a quote"
+              height={720}
+              tone="inverse"
+            />
           </div>
 
           <div>
-            <h3 className="eyebrow text-text-primary opacity-80">
+            <h3 className="eyebrow text-text-on-inverse-muted">
               What happens next
             </h3>
             <ol className="mt-6 space-y-6">
               {QUOTE_STEPS.map((step) => (
                 <li key={step.n} className="flex gap-4">
-                  {/* opacity floor is contrast, not taste: 60% navy on the
-                      tinted band measures 3.83:1 and fails AA at this size */}
-                  <span className="eyebrow mt-0.5 shrink-0 text-text-primary opacity-80">
+                  {/* On navy the muted token is BYU Light Blue at 8.99:1, so
+                      unlike the tinted band this needs no opacity juggling. */}
+                  <span className="eyebrow mt-0.5 shrink-0 text-text-on-inverse-muted">
                     {String(step.n).padStart(2, "0")}
                   </span>
                   <span>
-                    <span className="block text-sm font-semibold text-text-primary">
+                    <span className="block text-sm font-semibold text-text-on-inverse">
                       {step.title}
                     </span>
-                    <span className="mt-1 block text-sm leading-relaxed text-text-primary opacity-80">
+                    <span className="mt-1 block text-sm leading-relaxed text-text-on-inverse-muted">
                       {step.detail}
                     </span>
                   </span>

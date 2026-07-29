@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { NAV, PROGRAM, SCHOOL_FULL } from "@/lib/content"
 
@@ -13,11 +14,14 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-sm">
-            <p className="font-serif text-xl font-semibold">{PROGRAM}</p>
-            <p className="eyebrow mt-1 text-text-on-inverse-muted">
-              {SCHOOL_FULL}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-text-on-inverse-muted">
+            <Image
+              src="/brand/lockup-white.png"
+              alt={`${SCHOOL_FULL}, ${PROGRAM}`}
+              width={3305}
+              height={360}
+              className="h-8 w-auto"
+            />
+            <p className="mt-5 text-sm leading-relaxed text-text-on-inverse-muted">
               An experiential learning program where students build production
               AI systems for real clients.
             </p>

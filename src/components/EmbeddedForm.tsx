@@ -14,15 +14,24 @@ export function EmbeddedForm({
   src,
   title,
   height = 900,
+  tone = "light",
 }: {
   src: string | null
   title: string
   height?: number
+  /** Which surface this sits on. A hosted form is always a light rectangle, so
+   *  on navy it gets a white plate rather than pretending to be transparent. */
+  tone?: "light" | "inverse"
 }) {
+  const frame =
+    tone === "inverse"
+      ? "bg-surface-default"
+      : "border border-border-subtle bg-surface-default"
+
   if (!src) {
     return (
-      <div className="border border-border-subtle bg-surface-subtle p-10 text-center">
-        <p className="eyebrow text-text-primary opacity-70">Coming shortly</p>
+      <div className={`${frame} p-10 text-center`}>
+        <p className="eyebrow text-text-primary opacity-80">Coming shortly</p>
         <p className="mt-3 font-serif text-xl text-text-primary">
           This form is being finalized.
         </p>
@@ -35,7 +44,7 @@ export function EmbeddedForm({
   }
 
   return (
-    <div className="border border-border-subtle bg-surface-default">
+    <div className={frame}>
       <iframe
         src={src}
         title={title}

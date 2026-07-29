@@ -22,19 +22,22 @@ Zero env vars is a feature. It removes the entire class of failure that broke th
 /                     landing
   #hero               big statement + 2 buttons
   #mission            mission, vision, values
-  #submit             the project intake form (anchor target)
+  #quote              Get a quote, the short form (anchor target)
 /network              Join the Network subpage
 /about                About Us, 15 MBA tiles
 ```
 
-**Top nav:** `Join the Network` and `About Us`, both as dropdown tabs.
-`Submit a Project` is NOT a nav item. It lives on the landing page only.
+**Top nav:** `Join the network` and `About us`, two plain tabs on a navy bar.
+Click either and it goes straight there. No dropdowns.
+`Submit a project` is NOT a nav item. It lives on the landing page only.
 
 ## Landing page, in order
 
 ### 1. Hero
 
-Large bold statement, Marketing Lab scale:
+Centred, Marketing Lab scale, with the anvil above it on the same axis.
+The measure is capped so the sentence breaks over two lines rather than running
+the full column width:
 
 > **An AI-native product studio and consultancy.**
 
@@ -42,7 +45,7 @@ Two buttons side by side:
 
 | Button | Behaviour |
 |---|---|
-| `Submit a project` | Smooth-scrolls **down the same page** to `#submit`. Not a link to another page |
+| `Submit a project` | Smooth-scrolls **down the same page** to `#quote`. Not a link to another page |
 | `Join the network` | Navigates to `/network` |
 
 Later, not now: video or motion background behind the hero, like byumarketinglab.com.
@@ -66,33 +69,20 @@ Verbatim. Do not paraphrase, do not shorten, do not "improve."
 
 3. **Relentless Urgency.** We don't wait for permission to act on what we already know is right. Free, responsible people don't wait for institutional consensus. Urgency is a choice, the only thing that turns belief into shipped work instead of another meeting. It is how we stay at the frontier, and how we bring the frontier back to BYU.
 
-### 3. Submit a project, anchor `#submit`
+### 3. Get a quote, anchor `#quote`
 
-Content comes from `AI-Foundry-Project-Brief.pdf`, the Project Intake Brief. Eleven sections:
+The eleven-section intake brief is **split across two forms**, decided 2026-07-28
+after a teardown of byumarketinglab.com. Nothing from the brief was dropped, it was
+sequenced. `FORMS.md` is the field-by-field spec for both.
 
-1. **Client Information** — name, company, email, telephone, industry, website, brief description of the business
-2. **Current Process** — process to replace or improve step by step; frequency, personnel, hours per week; where it currently fails (errors, delays, omissions)
-3. **Objectives** — intended outcome; one or more measurable success criteria
-4. **Users** — intended users with roles and headcount; technical proficiency (High / Moderate / Low)
-5. **Scope** — required capabilities for initial release, three to five items; desired future capabilities; exclusions (must not perform, must not access)
-6. **Data and Integrations** — where relevant data lives; systems to integrate with (multi-select: Email Gmail/Outlook, Excel/spreadsheets, Google Drive/OneDrive, CRM, QuickBooks/accounting, Calendar, SMS/text, Telephone system, Website forms, Slack/Teams, Social media, Industry-specific software, Other); whether access can be provided; sample files (Available / Available with preparation / Not available)
-7. **Platform** — target environment (multi-select: Windows desktop, macOS desktop, Web browser, iOS, Android, Scheduled/unattended); continuous background operation vs on-demand
-8. **Compliance and Privacy** — applicable regulations; sensitive data and actions requiring human approval
-9. **Design References** — apps considered well designed and why; apps found difficult and why
-10. **Timeline and Budget** — target delivery date; budget range; prior attempts and outcomes; post-delivery ownership and who receives training
-11. **Additional Information** — anything else relevant to scoping
+- **On the page: eight fields.** Marketing Lab's six (first, last, phone, email,
+  company, project description) plus website and timeline. Two minutes to fill
+- **After first contact: the rest**, as a longer intake survey
+- **Budget is deliberately not up front.** It is the strongest qualifier in the brief
+  and the fastest way to lose a visitor who has no reason yet to trust a first-year
+  program. Revisit once inbound is steady
 
-Header copy from the brief:
-> Please complete this form to the extent possible. Your responses are used to prepare a scope of work, cost estimate, and delivery timeline. All information is treated as confidential.
-
-Closing copy from the brief:
-> Upon receipt, we will review your responses, follow up with any clarifying questions, and provide a written scope of work covering deliverables, cost, and schedule.
-
-> **OPEN RECOMMENDATION, needs Brandon's call.** Thirty-plus fields inline on a landing page is a
-> lot to ask of a first-time visitor. Marketing Lab's equivalent asks six. Suggested alternative:
-> a short qualifier on the page (name, company, email, one-paragraph description) that routes to
-> the full intake brief after first contact. Build the full form as specified unless Brandon says
-> otherwise, but raise it once.
+This supersedes the earlier open recommendation, which is now resolved.
 
 ## Join the Network, `/network`
 
@@ -125,7 +115,8 @@ contract. `npm run check:contrast` fails the build on a violation.
 - Sentence case headlines. **No em dashes, ever**
 - Never "the Marriott School". "BYU Marriott School of Business" first reference, "BYU Marriott" after
 - Never a standalone "AI Foundry" without BYU identification
-- No approved standalone logo exists. Use the co-brand lockup only
+- Use the co-brand lockup only, never a standalone AI Foundry mark. The real one
+  arrived 2026-07-28 and is in `public/brand/`
 
 ## Build status, 2026-07-28
 
@@ -133,23 +124,23 @@ All three pages are built and all three gates pass. `npm run dev`, then look.
 
 | Page | Route | State |
 |---|---|---|
-| Landing | `/` | Built. Hero, mission/vision/values, `#submit` |
+| Landing | `/` | Built. Hero, mission/vision/values, `#quote` |
 | Join the Network | `/network` | Built. Interests list plus the form slot |
 | About Us | `/about` | Built. Faculty, then 15 tiles with headshots |
 
 Where the code lives:
 
 - `src/lib/content.ts` — **every word of copy on the site.** Change text here, not in JSX
-- `src/components/SiteHeader.tsx` — nav, dropdowns, typographic wordmark
+- `src/components/SiteHeader.tsx` — navy bar, the co-brand lockup, two nav tabs
 - `src/components/SiteFooter.tsx`
 - `src/components/EmbeddedForm.tsx` — the form slot and its fallback
 - `src/app/{page,network/page,about/page}.tsx` — layout only, no copy
 
 Notes on how it was built:
 
-- **Zero client JavaScript.** The dropdowns open on CSS hover and `focus-within`,
-  the mobile menu is a native `<details>`, and the hero button is a plain `#submit`
-  anchor that the browser scrolls smoothly on its own. Every route prerenders static
+- **Zero client JavaScript.** The mobile menu is a native `<details>`, and the hero
+  button is a plain `#quote` anchor that the browser scrolls smoothly on its own.
+  Every route prerenders static
 - **Zero dependencies beyond Next and React.** Dropped `@supabase/supabase-js` and
   `motion`, both unused here. Nothing left to misconfigure
 - The hero background is a separate layer already in place, so the video can drop in
@@ -157,19 +148,29 @@ Notes on how it was built:
 - `data-scroll-behavior="smooth"` is set on `<html>`. Next 16 stopped suppressing CSS
   smooth scroll during navigation, so without it every route change would slowly glide
 
-### The logo decision, worth knowing about
+### The logo, resolved
 
-The header wordmark is **set in type, not placed as an image**, and that was a call
-made during the build. AI Foundry has no approved logo on file. BYU requires a
-co-brand lockup produced by BYU Marriott Marketing, and the `af-*` mark shipping on
-the old sites is an AI-generated derivative of BYU's Block Y that was never approved.
-Shipping it on a `byu.edu` domain is the kind of thing that gets a site taken down.
+**Brandon supplied the real co-brand lockup on 2026-07-28.** It is in the header and
+the footer. This closes the open compliance risk: the site no longer ships the `af-*`
+Block Y derivative, which was AI-generated and never approved.
 
-A typographic lockup is compliant, and it is a one-file swap once Marketing delivers
-the real one. Request it from `byumarriottlogos@byu.edu`.
+Sources are archived in `_brand-src/`, and `scripts/build-brand-assets.py` regenerates
+everything in `public/brand/`:
 
-Same category of issue, not yet resolved: `favicon-*.png` and `og-image.png` were
-carried over and may contain that same derivative mark. They need a look before launch.
+| File | Use |
+|---|---|
+| `lockup.png` | full colour, background knocked out, for light surfaces |
+| `lockup-white.png` | white reversal, used in the header and footer |
+| `anvil.png` | full colour, trimmed |
+| `anvil-white.png` | white reversal, used in the hero |
+
+The white reversal is the sanctioned treatment: BYU marks appear in navy or white
+only. The script recolours and trims, it never redraws, so every letterform is the
+one that arrived in the source file.
+
+Still open, same category: `favicon-*.png` and `og-image.png` were carried over from
+the old repo and probably still contain the derivative mark. Regenerate them from
+the real lockup before launch.
 
 ## Still needed from Brandon
 
@@ -179,17 +180,14 @@ carried over and may contain that same derivative mark. They need a look before 
 - [ ] Confirm the 15 roles. Titles were carried from the old site and are unverified
 - [ ] Confirm Scott Murff's title before it goes public. It is the highest-credibility
       line on the site and the one most worth getting exactly right
-- [ ] Check `og-image.png` and the favicons for the unapproved Block Y derivative
+- [ ] Regenerate `og-image.png` and the favicons from the real lockup. The carried-over ones probably still hold the unapproved Block Y derivative
 
 Two things I decided rather than block on, both easy to reverse:
 
-- **Nav dropdown contents.** Every entry points at a page or section that actually
-  exists, so nothing is a stub: Join the network → `/network`, `/#submit`;
-  About us → `/about`, `/#mission`. Add items in `NAV` in `content.ts`
-- **The 30-field form question, answered.** The brief's eleven sections are listed
-  on the page *beside* the form rather than being fields in it, so a visitor sees
-  the scope before starting. The fields themselves live in Tally or Google Forms,
-  so form length is now a choice you make in the form tool, not a code change
+- **Nav is two plain tabs**, Join the network and About us, both pointing at pages
+  that exist. Edit `NAV` in `content.ts`
+- **The 30-field form question, answered.** Split into eight fields up front and a
+  follow-up survey for the rest. See `FORMS.md` and the Get a quote section above
 
 ## Verification before any push
 
