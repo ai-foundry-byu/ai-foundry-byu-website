@@ -12,12 +12,23 @@ AI Foundry) and the official anvil mark. They arrive as flat artwork: the
 lockup on a solid white background with no alpha, the anvil as a small shape
 adrift on a 1024 square canvas.
 
-Four files come out:
+Out come the rasters:
 
     lockup.png         full colour, background knocked out, for light surfaces
     lockup-white.png   white reversal, for navy surfaces
     anvil.png          full colour, trimmed
     anvil-white.png    white reversal, trimmed
+
+and, for the anvil only, vectors traced from the raster:
+
+    anvil.svg          navy, for light surfaces
+    anvil-white.svg    white, for navy surfaces
+    anvil-black.svg    black, matches the source
+
+The SVGs are a TRACE of a 290x181 bitmap, not the original vector artwork.
+They are clean enough for screen and for large print, but if the anvil is
+going on anything where the true outline matters, get the real vector from
+whoever drew it. Tracing cannot recover precision the source never had.
 
 This recolours and trims. It never redraws. BYU's rule is "never create your
 own version" of the logo, and a single-colour white reversal is the sanctioned
@@ -29,6 +40,12 @@ import os
 import sys
 
 from PIL import Image
+
+try:
+    import numpy as np
+    import potrace  # the pure-Python "potracer" package
+except ImportError:  # tracing is optional, the rasters still build
+    np = potrace = None
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "public", "brand")
 
@@ -73,6 +90,54 @@ def trim(im: Image.Image) -> Image.Image:
     return im.crop(im.getbbox())
 
 
+def trace_svg(im: Image.Image, stem: str) -> None:
+    """Trace the alpha channel to SVG, at the source resolution.
+
+    Do not upsample first. This mark is hard-edged geometry, and tracing an
+    interpolated upsample reproduces the interpolation wobble as hundreds of
+    extra segments: 20748 characters of path data against 1639 for the same
+    shape traced at 1x.
+
+    potracer treats FALSE as the shape, the opposite of the obvious reading.
+    Verified by rendering all four polarity and fill-rule combinations against
+    the source PNG; only the inverted mask reproduces it.
+    """
+    if potrace is None:
+        print("  (skipped SVG: pip3 install --user numpy potracer)")
+        return
+    w, h = im.size
+    alpha = np.array(im.convert("RGBA"))[:, :, 3]
+    path = potrace.Bitmap(alpha <= 128).trace(
+        turdsize=2, alphamax=1.0, opticurve=True, opttolerance=0.2
+    )
+
+    def pt(p):
+        return f"{p.x:.2f} {p.y:.2f}"
+
+    d = []
+    for curve in path:
+        d.append(f"M{pt(curve.start_point)}")
+        for seg in curve:
+            d.append(
+                f"L{pt(seg.c)}L{pt(seg.end_point)}"
+                if seg.is_corner
+                else f"C{pt(seg.c1)} {pt(seg.c2)} {pt(seg.end_point)}"
+            )
+        d.append("Z")
+    d = "".join(d)
+
+    tpl = (
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" '
+        'role="img" aria-label="AI Foundry anvil">'
+        "<title>AI Foundry anvil</title>"
+        '<path fill="{fill}" fill-rule="evenodd" d="{d}"/></svg>\n'
+    )
+    for suffix, fill in [("", "#002E5D"), ("-white", "#FFFFFF"), ("-black", "#000000")]:
+        with open(os.path.join(OUT, f"{stem}{suffix}.svg"), "w") as fh:
+            fh.write(tpl.format(w=w, h=h, fill=fill, d=d))
+    print(f"  {stem}.svg + 2 variants, {len(d)} chars of path data")
+
+
 def main() -> int:
     if len(sys.argv) != 3:
         print(__doc__)
@@ -87,6 +152,11 @@ def main() -> int:
         im.save(os.path.join(OUT, f"{stem}.png"))
         to_white(im).save(os.path.join(OUT, f"{stem}-white.png"))
         print(f"{stem:8} {im.size[0]}x{im.size[1]}")
+        # Only the anvil gets vectorised. The lockup is type, and tracing type
+        # produces outlines that are not the typeface: ask BYU Marriott
+        # Marketing for the real EPS or SVG instead.
+        if stem == "anvil":
+            trace_svg(im, stem)
     return 0
 
 

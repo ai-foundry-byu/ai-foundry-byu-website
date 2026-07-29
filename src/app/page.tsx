@@ -51,13 +51,18 @@ function Hero() {
         {/* The anvil, above the headline and on the same centre axis. It is
             decorative here: the header already carries the identifying lockup,
             so this one is aria-hidden rather than announced twice. */}
+        {/* The SVG, not the PNG, so it stays crisp at any size and on any
+            display. unoptimized because Next's image optimizer refuses SVG
+            unless dangerouslyAllowSVG is set, and turning that on globally to
+            serve one first-party file is a bad trade. */}
         <Image
-          src="/brand/anvil-white.png"
+          src="/brand/anvil-white.svg"
           alt=""
           aria-hidden
           width={290}
           height={181}
           priority
+          unoptimized
           className="h-16 w-auto md:h-20"
         />
 
