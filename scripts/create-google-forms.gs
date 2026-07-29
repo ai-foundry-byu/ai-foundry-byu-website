@@ -16,8 +16,19 @@
  * fields for a quote, this asks eight, and the other thirty-odd fields from
  * AI-Foundry-Project-Brief.pdf are the second form, sent after first contact.
  *
- * Safe to re-run. It creates new files every time rather than editing
- * existing ones, so nothing already collecting responses can be clobbered.
+ * NOT blindly safe to re-run, and an earlier version of this comment claiming
+ * otherwise is how four duplicate files ended up in the shared Drive on
+ * 2026-07-29. It never overwrites, which was true, but it happily builds a
+ * second copy of a form that already exists. assertNotAlreadyThere_ now blocks
+ * that, and each build function takes force = true if you really mean it.
+ *
+ * Three entry points. Pick the right one in the dropdown next to Run, and do
+ * NOT press Escape to close that dropdown: it reverts the selection without
+ * changing what the label appears to say.
+ *
+ *   createAiFoundryForms   quote form + intake survey   (already built)
+ *   createNetworkForm      join the network             (already built)
+ *   trashFilesByIdOnly     cleanup, by explicit id
  */
 
 // "02 Deals & Clients" in the AI Foundry shared Drive. Client intake belongs
@@ -54,11 +65,103 @@ function createAiFoundryForms() {
   return out;
 }
 
+/**
+ * Join the network. SEPARATE ENTRY POINT on purpose.
+ *
+ * Run THIS one, not createAiFoundryForms, when you only want the network form.
+ * The function above builds the quote form and the survey from scratch every
+ * time, so running it again would leave you with duplicates of two forms that
+ * are already live and already collecting.
+ *
+ * Select `createNetworkForm` in the function dropdown next to Run.
+ */
+function createNetworkForm() {
+  const folder = DriveApp.getFolderById(TARGET_FOLDER_ID);
+  const net = buildNetworkForm_(folder);
+
+  const out = [
+    '',
+    '===============================================================',
+    ' Join the network form created',
+    '===============================================================',
+    '',
+    '    edit:      ' + net.editUrl,
+    '    responses: ' + net.sheetUrl,
+    '',
+    '    PASTE THIS into FORMS.network in src/lib/content.ts:',
+    '    ' + net.embedUrl,
+    '',
+    '===============================================================',
+  ].join('\n');
+
+  Logger.log(out);
+  return out;
+}
+
+/**
+ * The network form.
+ *
+ * Shorter than the quote form, and it should stay that way. Nobody is buying
+ * anything here, they are raising a hand, so every extra field is pure cost.
+ * Email is the only thing actually required: everything else is nice to have
+ * and none of it should stop someone joining.
+ *
+ * The interest checkboxes match NETWORK_INTERESTS in src/lib/content.ts, which
+ * is what the website renders beside this form. If you edit one, edit both.
+ *
+ * On merging JD's existing list: the response sheet is the merge target. Match
+ * his columns to these, append his rows underneath, then dedupe on email. Keep
+ * the timestamp column, an empty timestamp is how you will tell an imported
+ * row from one that came through the form.
+ */
+function buildNetworkForm_(folder, force) {
+  assertNotAlreadyThere_('AI Foundry: Join the network', folder, force);
+  const form = FormApp.create('AI Foundry: Join the network');
+
+  form.setDescription(
+    'Alumni, friends, and builders. Tell us what you want in on: events, the ' +
+    'weekly digest, the talent network, or a project of your own.'
+  );
+  form.setConfirmationMessage(
+    'You are in. We will be in touch based on what you picked.'
+  );
+  form.setCollectEmail(false);
+  form.setProgressBar(false);
+
+  form.addTextItem().setTitle('Full name').setRequired(false);
+
+  form.addTextItem()
+    .setTitle('Email')
+    .setRequired(true)
+    .setValidation(FormApp.createTextValidation()
+      .setHelpText('Enter a valid email address.')
+      .requireTextIsEmail()
+      .build());
+
+  form.addTextItem().setTitle('Company or organization').setRequired(false);
+  form.addTextItem().setTitle('Role').setRequired(false);
+  form.addTextItem().setTitle('LinkedIn').setRequired(false);
+
+  form.addCheckboxItem()
+    .setTitle("I'm interested in")
+    .setHelpText('Pick as many as apply.')
+    .setChoiceValues([
+      'Live BYU-sponsored AI events',
+      'Weekly AI digest',
+      'Access to the cohort for talent',
+      'Submitting a project proposal',
+    ])
+    .setRequired(false);
+
+  return finish_(form, 'AI Foundry: Network signups', folder);
+}
+
 /* ─────────────────────────────────────────────────────────────
    Form 1: Get a quote. Eight fields, about two minutes.
    ───────────────────────────────────────────────────────────── */
 
-function buildQuoteForm_(folder) {
+function buildQuoteForm_(folder, force) {
+  assertNotAlreadyThere_('AI Foundry: Request a quote', folder, force);
   const form = FormApp.create('AI Foundry: Request a quote');
 
   form.setDescription(
@@ -126,7 +229,8 @@ function buildQuoteForm_(folder) {
    and a required field they cannot answer is a reason to stop.
    ───────────────────────────────────────────────────────────── */
 
-function buildSurveyForm_(folder) {
+function buildSurveyForm_(folder, force) {
+  assertNotAlreadyThere_('AI Foundry: Project intake survey', folder, force);
   const form = FormApp.create('AI Foundry: Project intake survey');
 
   form.setDescription(
@@ -248,6 +352,76 @@ function buildSurveyForm_(folder) {
 
 function section_(form, title) {
   form.addPageBreakItem().setTitle(title);
+}
+
+/**
+ * Move specific files to the Drive trash, by id.
+ *
+ * Written to clean up the duplicates from the 2026-07-29 incident. Trash, not
+ * permanent deletion: Drive keeps trashed files for 30 days, so a wrong id here
+ * is recoverable. It logs the title of every file before trashing it, so the
+ * log is the record of exactly what went.
+ *
+ * Edit the list, select this function in the dropdown, Run.
+ */
+function trashFilesByIdOnly() {
+  const ids = [
+    // Duplicates created 2026-07-29 21:34 by an accidental run of
+    // createAiFoundryForms. Verified by creation timestamp, and the live site
+    // points at the 19:42 originals, not these.
+    '17_DnHilzGPRE9sIuLLVhQdO0sFM5o9PPgfQFQmNl3TQ', // form  Request a quote (dup)
+    '14NUKjaiS2wpYaS5JSX7d96HXHeqQEVVjLSyPDaNFbTA', // sheet Quote requests (dup)
+    '18MOCyoEFg8pwYL5Hd2e3Jg6s8velJO6_9cDC7I_soEo', // form  Project intake survey (dup)
+    '1-AWfjgr2B1fbmndP7F3NBN5p9-dFTyN-kIseyv-Te_U', // sheet Intake survey responses (dup)
+  ];
+
+  const log = [''];
+  ids.forEach(function (id) {
+    try {
+      const file = DriveApp.getFileById(id);
+      const title = file.getName();
+      file.setTrashed(true);
+      log.push('  trashed  ' + title + '  (' + id + ')');
+    } catch (e) {
+      log.push('  SKIPPED  ' + id + '  ' + e.message);
+    }
+  });
+  log.push('');
+  log.push('  Recoverable from Drive trash for 30 days.');
+  Logger.log(log.join('\n'));
+  return log.join('\n');
+}
+
+/**
+ * Refuse to build a form that already exists in the folder.
+ *
+ * Added after a real incident on 2026-07-29: pressing Escape to close the
+ * function dropdown silently reverted the selection to createAiFoundryForms,
+ * Run executed that instead of createNetworkForm, and it cheerfully built a
+ * second copy of two forms that were already live. Four junk files in a shared
+ * Drive, and the only reason it was not worse is that neither form had
+ * responses yet.
+ *
+ * "Safe to re-run because it never edits anything" was true and also useless:
+ * the danger was never overwriting, it was duplicating. This is the guard that
+ * should have been here from the start.
+ *
+ * Pass force = true only if you genuinely want a second copy.
+ */
+function assertNotAlreadyThere_(title, folder, force) {
+  if (force) return;
+  const existing = folder.getFilesByName(title);
+  if (existing.hasNext()) {
+    const file = existing.next();
+    throw new Error(
+      'A form called "' + title + '" already exists in this folder:\n' +
+      file.getUrl() + '\n\n' +
+      'Building another one would give you duplicates. If that is really what ' +
+      'you want, call the build function with force = true. Otherwise pick a ' +
+      'different function in the dropdown next to Run, and note that pressing ' +
+      'Escape on that dropdown reverts your selection.'
+    );
+  }
 }
 
 /** Link a response sheet, move both files into the shared folder, return URLs. */

@@ -1,13 +1,16 @@
-# The two forms
+# The three forms
 
-> **Built and live, 2026-07-29.** Both owned by `aifoundry.byu@gmail.com`, filed in
-> **02 Deals & Clients**. Verified publicly reachable: all eight questions render for
-> an anonymous visitor with no Google sign-in.
+> **Built and live, 2026-07-29.** All three owned by `aifoundry.byu@gmail.com`, filed in
+> **02 Deals & Clients**. Verified publicly reachable: every question renders for an
+> anonymous visitor with no Google sign-in.
+>
+> Quote form is on `/quote`, network form is on `/network`, survey is emailed.
 >
 > | | Edit | Responses |
 > |---|---|---|
 > | Get a quote | [form](https://docs.google.com/forms/d/1tfwnK9BDuG8fKrhLtL8uy8RK9enbHGSUMrYkYufOiB0/edit) | [sheet](https://docs.google.com/spreadsheets/d/1mG0PeVp1ZsuheWYM3tGDJ3FwgZ7qSw0Vk1iN9d_cyyE/edit) |
 > | Project intake survey | [form](https://docs.google.com/forms/d/1yUVL6nKvG-LUWGogazSH2H5kIp7vOK8q5_cxz6WpJYo/edit) | [sheet](https://docs.google.com/spreadsheets/d/1kaTEwirk5_cdHkrbnXJ1H_P8eyX4n7YoGRQ6g659lqQ/edit) |
+> | Join the network | [form](https://docs.google.com/forms/d/1pSeIx4wwMLBCgnrk0jciO-WTJ5SHCLvvnWUSEGOjLWU/edit) | [sheet](https://docs.google.com/spreadsheets/d/17I2IK5W_88iuncKTE5YuZtS1HWU_KsnXhacGF81MXb4/edit) |
 >
 > Survey share link, for emailing after first contact:
 > `https://docs.google.com/forms/d/e/1FAIpQLSfzSBpHwIw9E5ppyx1WcEFseNBNvkUBBBwR3LvX6SIh7C_C1A/viewform`
@@ -101,11 +104,68 @@ Closing message, verbatim from the brief:
 
 ---
 
+---
+
+## Form 3: Join the network
+
+Lives on `/network`. **Six fields, one of them required.**
+
+Nobody is buying anything here, they are raising a hand, so every extra field is
+pure cost. Email is the only thing actually required.
+
+| # | Field | Type | Required |
+|---|---|---|---|
+| 1 | Full name | Short answer | No |
+| 2 | Email | Short answer, email validation | **Yes** |
+| 3 | Company or organization | Short answer | No |
+| 4 | Role | Short answer | No |
+| 5 | LinkedIn | Short answer | No |
+| 6 | I'm interested in | Checkboxes | No |
+
+Checkbox options, which **must** stay in step with `NETWORK_INTERESTS` in
+`src/lib/content.ts`, since that is what the page renders beside the form:
+
+- Live BYU-sponsored AI events
+- Weekly AI digest
+- Access to the cohort for talent
+- Submitting a project proposal
+
+### Merging JD's existing list
+
+JD may already own a join-the-network list. Treat **this form's response sheet as
+the merge target**, not the other way round: the sheet the form writes into is the
+one the program account owns and the one that keeps growing.
+
+1. Open `AI Foundry: Network signups`
+2. Map JD's columns onto the six above. Anything he has that does not map, add as a
+   new column to the right of the form's columns. Never insert a column in the
+   middle, it breaks the form's write position
+3. Append his rows underneath. **Leave the Timestamp cell empty on imported rows.**
+   That empty timestamp is how you tell an import from a real submission later
+4. Dedupe on email, keeping the row with the earlier timestamp where both have one
+
+Worth deciding rather than drifting into: whether JD's list holds people who ever
+consented to be emailed by AI Foundry specifically. If it does not, importing them
+into a list you then send a digest to is the kind of thing that gets a BYU program
+a complaint. Ask him where the names came from before merging.
+
+---
+
 ## Building them
 
-`scripts/create-google-forms.gs` builds both forms exactly to this spec, wires each
-to its own response spreadsheet, and files all four in **02 Deals & Clients** in the
-AI Foundry shared Drive (`1x6toDmtaR28SdMDiCpnOfaQBzNxkmRsh`).
+`scripts/create-google-forms.gs` builds the forms to this spec, wires each to its own
+response spreadsheet, and files them in **02 Deals & Clients** in the AI Foundry
+shared Drive (`1x6toDmtaR28SdMDiCpnOfaQBzNxkmRsh`).
+
+**Two separate entry points, and picking the right one matters:**
+
+| Function | Builds |
+|---|---|
+| `createAiFoundryForms` | Get a quote **and** the intake survey. Already run. Running it again makes duplicates |
+| `createNetworkForm` | Join the network only |
+
+Select the function in the dropdown next to Run. Forms 1 and 2 are already live and
+already collecting, so use `createNetworkForm` from here on.
 
 Run it once at script.google.com, signed in as whichever account should **own** the
 forms. Ownership matters more than it looks: the owner keeps the form and its

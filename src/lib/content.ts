@@ -286,8 +286,11 @@ export const FORMS: { intake: string | null; network: string | null } = {
   // Responses land in "AI Foundry: Quote requests" in the same folder.
   intake:
     "https://docs.google.com/forms/d/e/1FAIpQLSc0fG4nrUqMch40-KFW6gdF4lTzibDxxORGlB8yXCfZDuoj3g/viewform?embedded=true",
-  // Still to build. The network form is a different set of fields, see FORMS.md.
-  network: null,
+  // "AI Foundry: Join the network", same owner and folder. Six fields, only the
+  // email required. Responses land in "AI Foundry: Network signups", which is
+  // also the merge target for JD's existing list. See FORMS.md.
+  network:
+    "https://docs.google.com/forms/d/e/1FAIpQLSc9FWFpkqD4R81s-WDh7Gqzf-WfwyfDog7NnRvmZC87fc5bLQ/viewform?embedded=true",
 }
 
 /* ────────────────────────────────────────────────────────────
