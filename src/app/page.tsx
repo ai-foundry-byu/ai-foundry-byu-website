@@ -6,11 +6,10 @@ import {
   FORMS,
   HERO_STATEMENT,
   HERO_SUPPORT,
-  INTAKE_CLOSING,
-  INTAKE_LEAD,
-  INTAKE_SECTIONS,
   MISSION,
   QUOTE_HEADING,
+  QUOTE_LEAD,
+  QUOTE_STEPS,
   VALUES,
   VISION,
 } from "@/lib/content"
@@ -47,19 +46,26 @@ function Hero() {
       */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" />
 
-      <div className="mx-auto max-w-6xl px-6 py-28 md:py-40">
-        <div className="flex items-start gap-5">
-          <span aria-hidden className="ember-bar ember-bar-heat mt-3 h-24 w-1 shrink-0 md:h-32" />
-          <h1 className="wonk max-w-4xl font-serif text-4xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-6xl md:text-7xl">
-            {HERO_STATEMENT}
-          </h1>
-        </div>
+      <div className="mx-auto flex max-w-6xl flex-col items-center px-6 py-28 text-center md:py-40">
+        {/* The accent bar moves above the headline when the hero is centred.
+            Beside it, it would pull the whole block off axis. */}
+        <span aria-hidden className="ember-bar ember-bar-heat h-14 w-1" />
+
+        {/*
+          max-w-4xl, not the full column. Marketing Lab centres three lines of
+          two or three words each, which is why theirs reads as a statement.
+          Centring a full sentence across a wide measure reads as mush, so the
+          width is capped to force the same two-to-three line break.
+        */}
+        <h1 className="wonk mt-8 max-w-4xl font-serif text-4xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-6xl md:text-7xl">
+          {HERO_STATEMENT}
+        </h1>
 
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text-on-inverse-muted">
           {HERO_SUPPORT}
         </p>
 
-        <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
           {/*
             A plain anchor, not a Link, and that is deliberate. This scrolls
             down the same page to the Get a quote section. globals.css sets
@@ -108,12 +114,12 @@ function MissionVisionValues() {
         </div>
 
         <div className="mt-24">
-          <p className="eyebrow text-text-accent">Values</p>
-          <h2 className="mt-4 font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-4xl">
-            The standard we hold.
-          </h2>
+          {/* The eyebrow is the whole heading. There was a line here that said
+              "The standard we hold." It said nothing the three values below do
+              not say better, so it is gone. */}
+          <h2 className="eyebrow text-text-accent">Values</h2>
 
-          <div className="mt-12 grid gap-px border border-border-subtle bg-border-subtle md:grid-cols-3">
+          <div className="mt-8 grid gap-px border border-border-subtle bg-border-subtle md:grid-cols-3">
             {VALUES.map((value) => (
               <article key={value.name} className="bg-surface-default p-8">
                 <span aria-hidden className="ember-bar block h-1 w-10" />
@@ -141,53 +147,44 @@ function SubmitAProject() {
     <section id="quote" className="surface-paper-dim scroll-mt-16">
       <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
         <div className="max-w-3xl">
-          <p className="eyebrow text-text-primary opacity-80">
-            Start a project
-          </p>
-          <h2 className="mt-4 font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-5xl">
+          <h2 className="font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-5xl">
             {QUOTE_HEADING}
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-text-primary">
-            {INTAKE_LEAD}
+            {QUOTE_LEAD}
           </p>
         </div>
 
-        <div className="mt-16 grid gap-14 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-20">
-          {/*
-            What the form asks, listed before it. A visitor can judge the
-            effort up front instead of discovering thirty fields halfway in,
-            which is the single biggest reason intake forms get abandoned.
-          */}
+        <div className="mt-16 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)] lg:gap-20">
+          {/* The form leads now. It is eight fields, so there is nothing to
+              warn anyone about before they start. */}
           <div>
-            <h3 className="font-serif text-xl font-semibold text-text-primary">
-              What you will be asked
+            <EmbeddedForm src={FORMS.intake} title="Get a quote" height={720} />
+          </div>
+
+          <div>
+            <h3 className="eyebrow text-text-primary opacity-80">
+              What happens next
             </h3>
-            <ol className="mt-6 space-y-5">
-              {INTAKE_SECTIONS.map((section) => (
-                <li key={section.n} className="flex gap-4">
+            <ol className="mt-6 space-y-6">
+              {QUOTE_STEPS.map((step) => (
+                <li key={step.n} className="flex gap-4">
                   {/* opacity floor is contrast, not taste: 60% navy on the
                       tinted band measures 3.83:1 and fails AA at this size */}
-                  <span className="eyebrow mt-1 shrink-0 text-text-primary opacity-80">
-                    {String(section.n).padStart(2, "0")}
+                  <span className="eyebrow mt-0.5 shrink-0 text-text-primary opacity-80">
+                    {String(step.n).padStart(2, "0")}
                   </span>
                   <span>
                     <span className="block text-sm font-semibold text-text-primary">
-                      {section.title}
+                      {step.title}
                     </span>
                     <span className="mt-1 block text-sm leading-relaxed text-text-primary opacity-80">
-                      {section.detail}
+                      {step.detail}
                     </span>
                   </span>
                 </li>
               ))}
             </ol>
-          </div>
-
-          <div>
-            <EmbeddedForm src={FORMS.intake} title="Project intake brief" />
-            <p className="mt-6 text-sm leading-relaxed text-text-primary opacity-80">
-              {INTAKE_CLOSING}
-            </p>
           </div>
         </div>
       </div>

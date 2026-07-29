@@ -79,26 +79,87 @@ export const ERA_NARRATIVE =
  *  on purpose: the button describes what you do, the section what you get. */
 export const QUOTE_HEADING = "Get a quote"
 
-export const INTAKE_LEAD =
-  "Please complete this form to the extent possible. Your responses are used to prepare a scope of work, cost estimate, and delivery timeline. All information is treated as confidential."
+export const QUOTE_LEAD =
+  "Tell us what you want built. We come back with a scope of work, a cost estimate, and a delivery timeline. All information is treated as confidential."
 
-export const INTAKE_CLOSING =
-  "Upon receipt, we will review your responses, follow up with any clarifying questions, and provide a written scope of work covering deliverables, cost, and schedule."
+/**
+ * The eight fields that go on the page.
+ *
+ * BYU Marketing Lab's quote form, the closest comparable and the one this site
+ * is modelled on, asks exactly six: first name, last name, phone, email,
+ * company, brief project description. Those six are all here.
+ *
+ * Two are added, and only two. Website and timeline are each a single tap and
+ * each changes how the work gets scoped, which is the bar a field has to clear
+ * to earn a place before first contact.
+ *
+ * Budget is deliberately NOT here. It is the strongest qualifier in the brief
+ * and the fastest way to lose a first-time visitor who has not yet been given a
+ * reason to trust the program. It moves to the follow-up survey, once there is
+ * a conversation to hang it on.
+ *
+ * The other thirty-odd fields in the intake brief are the follow-up survey
+ * below. Nothing from the brief is lost, it is just sequenced.
+ */
+export type QuoteField = {
+  label: string
+  type: "text" | "email" | "tel" | "url" | "textarea" | "select"
+  required: boolean
+  help?: string
+  options?: string[]
+}
 
+export const QUOTE_FIELDS: QuoteField[] = [
+  { label: "First name", type: "text", required: true },
+  { label: "Last name", type: "text", required: true },
+  { label: "Email", type: "email", required: true },
+  { label: "Phone number", type: "tel", required: true },
+  { label: "Company", type: "text", required: true },
+  { label: "Website", type: "url", required: false },
+  {
+    label: "What do you want built",
+    type: "textarea",
+    required: true,
+    help: "A few sentences is plenty. If you are not sure yet, say so, that is a normal place to start.",
+  },
+  {
+    label: "When do you need it",
+    type: "select",
+    required: false,
+    options: [
+      "As soon as possible",
+      "Within a semester",
+      "Within the year",
+      "Exploring, no date yet",
+    ],
+  },
+]
+
+/** What happens after the form. Three steps, so nobody wonders. */
+export const QUOTE_STEPS: { n: number; title: string; detail: string }[] = [
+  { n: 1, title: "You send the short form", detail: "Eight fields. Two minutes." },
+  { n: 2, title: "We follow up", detail: "A conversation, plus a longer intake survey covering process, users, data, platform, and compliance." },
+  { n: 3, title: "You get a written scope", detail: "Deliverables, cost, and schedule, in writing." },
+]
+
+/**
+ * The follow-up intake survey: the rest of AI-Foundry-Project-Brief.pdf.
+ * Not rendered as form fields on the page. Kept here because it is the spec for
+ * the second Google Form, and because it is the record of what the brief asks.
+ */
 export type IntakeSection = { n: number; title: string; detail: string }
 
-export const INTAKE_SECTIONS: IntakeSection[] = [
-  { n: 1, title: "Client information", detail: "Name, company, email, telephone, industry, website, and a brief description of the business." },
-  { n: 2, title: "Current process", detail: "The process to replace or improve, step by step. How often it runs, who runs it, hours per week, and where it currently fails." },
-  { n: 3, title: "Objectives", detail: "The intended outcome, and one or more measurable success criteria." },
-  { n: 4, title: "Users", detail: "Who will use it, their roles and headcount, and their technical proficiency." },
-  { n: 5, title: "Scope", detail: "Three to five capabilities required for the initial release, capabilities desired later, and explicit exclusions." },
-  { n: 6, title: "Data and integrations", detail: "Where the relevant data lives, which systems it must integrate with, whether access can be provided, and whether sample files are available." },
-  { n: 7, title: "Platform", detail: "Target environment, and whether it runs continuously in the background or on demand." },
-  { n: 8, title: "Compliance and privacy", detail: "Applicable regulations, sensitive data, and any action that must require human approval." },
-  { n: 9, title: "Design references", detail: "Applications you consider well designed and why, and applications you find difficult and why." },
-  { n: 10, title: "Timeline and budget", detail: "Target delivery date, budget range, prior attempts and their outcomes, and who owns and is trained on the result." },
-  { n: 11, title: "Additional information", detail: "Anything else relevant to scoping the work." },
+export const SURVEY_SECTIONS: IntakeSection[] = [
+  { n: 1, title: "Current process", detail: "The process to replace or improve, step by step. How often it runs, who runs it, hours per week, and where it currently fails." },
+  { n: 2, title: "Objectives", detail: "The intended outcome, and one or more measurable success criteria." },
+  { n: 3, title: "Users", detail: "Who will use it, their roles and headcount, and their technical proficiency." },
+  { n: 4, title: "Scope", detail: "Three to five capabilities required for the initial release, capabilities desired later, and explicit exclusions." },
+  { n: 5, title: "Data and integrations", detail: "Where the relevant data lives, which systems it must integrate with, whether access can be provided, and whether sample files are available." },
+  { n: 6, title: "Platform", detail: "Target environment, and whether it runs continuously in the background or on demand." },
+  { n: 7, title: "Compliance and privacy", detail: "Applicable regulations, sensitive data, and any action that must require human approval." },
+  { n: 8, title: "Design references", detail: "Applications you consider well designed and why, and applications you find difficult and why." },
+  { n: 9, title: "Budget and ownership", detail: "Budget range, prior attempts and their outcomes, and who owns and is trained on the result." },
+  { n: 10, title: "Additional information", detail: "Anything else relevant to scoping the work." },
 ]
 
 /* ────────────────────────────────────────────────────────────
