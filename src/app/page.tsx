@@ -8,6 +8,9 @@ import {
   HERO_STATEMENT,
   HERO_SUPPORT,
   MISSION,
+  OFFERINGS,
+  OFFERINGS_HEADING,
+  OFFERINGS_LEAD,
   QUOTE_HEADING,
   QUOTE_LEAD,
   QUOTE_STEPS,
@@ -22,7 +25,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <MissionVisionValues />
-        <SubmitAProject />
+        <GetAQuote />
       </main>
       <SiteFooter />
     </>
@@ -179,7 +182,7 @@ function MissionVisionValues() {
    3. Get a quote, the #quote anchor target
    ──────────────────────────────────────────────────────────── */
 
-function SubmitAProject() {
+function GetAQuote() {
   return (
     <section
       id="quote"
@@ -195,7 +198,54 @@ function SubmitAProject() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)] lg:gap-20">
+        {/*
+          What we sell, before what we ask for.
+
+          Someone arriving on Get a quote from the top bar has not necessarily
+          read anything else on the site. Putting the offerings above the form
+          means the first thing they meet is what the engagement is, not a
+          request for their phone number.
+        */}
+        <div className="mt-20">
+          <h3 className="font-serif text-2xl font-semibold tracking-[-0.01em] md:text-3xl">
+            {OFFERINGS_HEADING}
+          </h3>
+          <p className="mt-4 max-w-2xl leading-relaxed text-text-on-inverse-muted">
+            {OFFERINGS_LEAD}
+          </p>
+
+          <div className="mt-10 grid gap-px border border-border-on-inverse bg-border-on-inverse md:grid-cols-3">
+            {OFFERINGS.map((offering) => (
+              <article
+                key={offering.name}
+                className="flex flex-col bg-surface-inverse p-8"
+              >
+                <h4 className="font-serif text-lg font-semibold leading-snug md:text-xl">
+                  {offering.name}
+                </h4>
+                <p className="mt-4 text-sm leading-relaxed text-text-on-inverse-muted">
+                  {offering.blurb}
+                </p>
+                <ul className="mt-6 space-y-3">
+                  {offering.points.map((point) => (
+                    <li key={point} className="flex gap-3 text-sm leading-relaxed">
+                      {/* The accent as a fill, never as text. Orange type on
+                          navy is 2.90:1 and fails, but a square of it is not
+                          type and carries no meaning on its own. */}
+                      <span
+                        aria-hidden
+                        className="ember-bar mt-[0.45rem] h-1.5 w-1.5 shrink-0"
+                      />
+                      <span className="text-text-on-inverse">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-20 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)] lg:gap-20">
           {/* The form leads now. It is eight fields, so there is nothing to
               warn anyone about before they start. */}
           <div>

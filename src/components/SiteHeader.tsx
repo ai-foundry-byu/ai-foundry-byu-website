@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { NAV, PROGRAM, SCHOOL_FULL } from "@/lib/content"
+import { NAV, NAV_CTA, PROGRAM, SCHOOL_FULL } from "@/lib/content"
 
 /**
  * Top bar. Navy, so it reads as one surface with the hero below it. Two tabs,
@@ -43,6 +43,11 @@ export function SiteHeader() {
                 </Link>
               </li>
             ))}
+            <li className="ml-3">
+              <Link href={NAV_CTA.href} className="btn-ember px-6 py-2.5 text-sm">
+                {NAV_CTA.label}
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -66,6 +71,14 @@ export function SiteHeader() {
                   </Link>
                 </li>
               ))}
+              <li className="px-4 pb-2 pt-3">
+                <Link
+                  href={NAV_CTA.href}
+                  className="btn-ember w-full px-4 py-2.5 text-sm"
+                >
+                  {NAV_CTA.label}
+                </Link>
+              </li>
             </ul>
           </nav>
         </details>

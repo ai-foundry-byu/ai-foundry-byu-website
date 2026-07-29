@@ -79,6 +79,51 @@ export const ERA_NARRATIVE =
  *  on purpose: the button describes what you do, the section what you get. */
 export const QUOTE_HEADING = "Get a quote"
 
+/**
+ * What we sell. This runs BEFORE the form fields, so someone arriving cold from
+ * the top bar reads what the engagement actually is before being asked for their
+ * phone number.
+ */
+export const OFFERINGS_HEADING = "Three offerings."
+
+export const OFFERINGS_LEAD =
+  "Engagements usually combine them. Most clients start with one and add the others as the work proves out."
+
+export type Offering = { name: string; blurb: string; points: string[] }
+
+export const OFFERINGS: Offering[] = [
+  {
+    name: "Full-stack applications",
+    blurb:
+      "Net-new web and mobile applications, built end to end on a modern stack and shipped to production. Any language the job calls for.",
+    points: [
+      "Customer-facing products (B2C)",
+      "Products you sell to other businesses (B2B)",
+      "Internal tools and line-of-business systems",
+    ],
+  },
+  {
+    name: "AI integration and orchestration",
+    blurb:
+      "AI wired into the systems you already run, rather than a standalone prototype that never reaches anyone's daily work.",
+    points: [
+      "Agents and copilots that work against your data",
+      "Automations across Slack, Notion, and your existing stack",
+      "Document processing, extraction, routing, and summarization",
+    ],
+  },
+  {
+    name: "AI enablement and training",
+    blurb:
+      "We set your team up to build this way themselves, using the same tooling we use on the engagement.",
+    points: [
+      "Claude Code, Codex, and frontier agent tooling",
+      "Agentic workflow and automation setup",
+      "Co-working alongside your staff, then handoff",
+    ],
+  },
+]
+
 export const QUOTE_LEAD =
   "Tell us what you want built. We come back with a scope of work, a cost estimate, and a delivery timeline. All information is treated as confidential."
 
@@ -254,3 +299,12 @@ export const NAV: NavLink[] = [
   { label: "Join the network", href: "/network" },
   { label: "About us", href: "/about" },
 ]
+
+/**
+ * The one call to action in the bar, styled as a button rather than a tab.
+ *
+ * It points at the same place the hero button does. There is deliberately only
+ * one Get a quote destination on the site: two would mean two versions of the
+ * offerings and the form to keep in step, and they would drift.
+ */
+export const NAV_CTA: NavLink = { label: "Get a quote", href: "/#quote" }

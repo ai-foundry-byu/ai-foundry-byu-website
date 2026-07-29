@@ -27,9 +27,13 @@ Zero env vars is a feature. It removes the entire class of failure that broke th
 /about                About Us, 15 MBA tiles
 ```
 
-**Top nav:** `Join the network` and `About us`, two plain tabs on a navy bar.
-Click either and it goes straight there. No dropdowns.
-`Submit a project` is NOT a nav item. It lives on the landing page only.
+**Top nav:** `Join the network` and `About us` as plain tabs, plus `Get a quote`
+as a button, all on a navy bar. No dropdowns.
+
+`Get a quote` in the bar points at `/#quote`, the same place the hero button goes.
+**There is deliberately only one Get a quote destination.** A separate `/quote` page
+would mean two copies of the offerings and the form to keep in step, and they would
+drift. `Submit a project` is the hero button only, never a nav item.
 
 ## Landing page, in order
 
@@ -70,6 +74,16 @@ Verbatim. Do not paraphrase, do not shorten, do not "improve."
 3. **Relentless Urgency.** We don't wait for permission to act on what we already know is right. Free, responsible people don't wait for institutional consensus. Urgency is a choice, the only thing that turns belief into shipped work instead of another meeting. It is how we stay at the frontier, and how we bring the frontier back to BYU.
 
 ### 3. Get a quote, anchor `#quote`
+
+Order within the section matters: **the offerings run before the form fields.**
+Someone arriving here from the top bar has not necessarily read anything else on
+the site, so the first thing they meet is what the engagement is, not a request
+for their phone number.
+
+1. Heading and lead
+2. **Three offerings**: full-stack applications, AI integration and orchestration,
+   AI enablement and training. Copy lives in `OFFERINGS` in `content.ts`
+3. The eight-field form, with What happens next beside it
 
 The eleven-section intake brief is **split across two forms**, decided 2026-07-28
 after a teardown of byumarketinglab.com. Nothing from the brief was dropped, it was
