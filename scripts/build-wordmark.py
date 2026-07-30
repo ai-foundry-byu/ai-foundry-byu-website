@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
-Builds a PROPOSAL wordmark: the AI-anvil glyph standing in for the letters "AI"
-inside the BYU Marriott / AI Foundry co-brand lockup.
+Builds the wordmark: the AI glyph standing in for the letters "AI" inside the
+BYU Marriott / AI Foundry co-brand lockup.
+
+This is the OFFICIAL lockup as of 2026-07-29, by Brandon's decision, and it is
+what the live site uses on every surface.
 
     pip3 install --user Pillow
-    python3 scripts/build-wordmark-proposal.py <glyph.png> <lockup.png>
+    python3 scripts/build-wordmark.py <glyph.png> <lockup.png>
 
 Scott's idea, 2026-07-29: if the mark reads as "AI" then it can BE the "AI" in
 the wordmark, and the program stops needing a separate logo beside the lockup.
@@ -28,17 +31,17 @@ glyph gained. The word space, the divider spacing and the right margin all stay
 what BYU Marriott set them to. Nothing is re-typeset and no letterform is
 redrawn.
 
-## Compliance, read this before shipping anything it makes
+## Provenance
 
-This produces a DERIVATIVE of an approved co-brand lockup. BYU's rule is that
-the lockup comes from BYU Marriott Marketing and you never make your own
-version, which is exactly the rule that ruled out the old af-* Block Y mark.
-Substituting a glyph for two letters is a smaller change than redrawing a mark,
-but it is still a change to an approved asset.
+The glyph substitution alters the lockup BYU Marriott Marketing issued, so for
+the record: Brandon directed on 2026-07-29 that it be treated as official, on the
+basis that Marriott will sign off. That is a decision, not a formal approval on
+file, and it is written here so anyone who needs the paper trail knows where to
+start rather than assuming one exists.
 
-Treat the output as a proposal to show Scott and then take to Marriott
-Marketing. It is deliberately written outside public/ so it cannot be served or
-deployed by accident.
+Outputs land outside public/. The files the site actually serves are the trimmed
+copies in public/brand/, installed deliberately rather than by this script, so
+regenerating cannot silently change the live logo.
 """
 
 import os

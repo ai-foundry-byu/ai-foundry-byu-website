@@ -147,8 +147,32 @@ contract. `npm run check:contrast` fails the build on a violation.
 - Sentence case headlines. **No em dashes, ever**
 - Never "the Marriott School". "BYU Marriott School of Business" first reference, "BYU Marriott" after
 - Never a standalone "AI Foundry" without BYU identification
-- Use the co-brand lockup only, never a standalone AI Foundry mark. The real one
-  arrived 2026-07-28 and is in `public/brand/`
+- Use the co-brand lockup only, never a standalone AI Foundry mark
+- **The official lockup is the glyph wordmark**, `public/brand/wordmark-glyph-white.png`,
+  where the AI glyph stands in for the letters "AI". Treated as official from
+  2026-07-29 by Brandon's decision. Regenerate with
+  `scripts/build-wordmark.py`, then trim to content before installing
+- The earlier lettered lockup is kept at `public/brand/lockup-white.png` as the
+  revert path. Nothing references it
+
+## The header glyph, and a measurement I got wrong
+
+I argued against the glyph in the header on legibility grounds, calling it
+illegible at 24px. That was wrong and the reasoning behind it was wrong.
+
+The glyph renders 16.6px tall at the desktop header height and 11.1px at the
+mobile one, and I judged from those numbers. They are CSS pixels. Every device
+that matters renders at a device pixel ratio of 2 or 3, so the browser actually
+rasterises the mark at roughly 33px on desktop and 22px on mobile. Rendered at
+the real device resolution, the A, the diagonal and the horn all hold.
+
+What survives of the objection is a taste question, not an accessibility one: the
+glyph reads as "A plus something" rather than unambiguously "AI", and it is
+visually heavier than the lettered version. Brandon's call, and it is made.
+
+The lesson worth keeping: when judging whether artwork survives at a size, use
+device pixels, not CSS pixels. A 2x display gives you twice the raster you think
+you have.
 
 ## Type scale, set 2026-07-28
 
@@ -292,7 +316,9 @@ the real lockup before launch.
       the Services Track tiers (Select, Preferred, Global Premier) are gated on counts
       of *certified individuals*, starting at ten for Select, so a tier badge is a
       different and stronger claim than plain membership and may not apply yet
-- [ ] Regenerate `og-image.png` and the favicons from the real lockup. The carried-over ones probably still hold the unapproved Block Y derivative
+- [x] ~~Regenerate `og-image.png` and the favicons~~ **Done 2026-07-29.** Both are
+      generated from the glyph now, by `scripts/build-icons.py` and
+      `scripts/build-og-image.py`. Neither is hand-made any more
 
 Two things I decided rather than block on, both easy to reverse:
 
