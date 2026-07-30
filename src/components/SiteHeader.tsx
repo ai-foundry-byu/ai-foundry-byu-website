@@ -1,13 +1,18 @@
 import Image from "next/image"
 import Link from "next/link"
+import { MotionCta } from "@/components/MotionCta"
 import { NAV, NAV_CTA, PROGRAM, SCHOOL_FULL } from "@/lib/content"
 
 /**
  * Top bar. Navy, so it reads as one surface with the hero below it. Two tabs,
  * Join the network and About us. Click either and it takes you straight there.
  *
- * Deliberately a server component. The mobile menu is a native <details>, so
- * the header ships zero JavaScript.
+ * Still a server component. The mobile menu is a native <details>, so the
+ * disclosure needs no script.
+ *
+ * The Get a quote button is the exception: it is a MotionCta, which is a client
+ * component, so that one leaf hydrates. It used to be true that this header
+ * shipped no JavaScript of its own and that is no longer the case.
  *
  * The mark is the real co-brand lockup produced for the program, in its white
  * reversal. BYU's rule is that marks appear in navy or white only, so a
@@ -21,9 +26,9 @@ export function SiteHeader() {
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center">
           <Image
-            src="/brand/lockup-white.png"
+            src="/brand/wordmark-glyph-white.png"
             alt={`${SCHOOL_FULL}, ${PROGRAM}`}
-            width={3305}
+            width={3407}
             height={360}
             priority
             className="h-6 w-auto md:h-9"
@@ -44,9 +49,12 @@ export function SiteHeader() {
               </li>
             ))}
             <li className="ml-3">
-              <Link href={NAV_CTA.href} className="btn-ember px-6 py-2.5 text-base">
+              <MotionCta
+                href={NAV_CTA.href}
+                className="btn-ember px-6 py-2.5 text-base"
+              >
                 {NAV_CTA.label}
-              </Link>
+              </MotionCta>
             </li>
           </ul>
         </nav>
@@ -72,12 +80,12 @@ export function SiteHeader() {
                 </li>
               ))}
               <li className="px-4 pb-2 pt-3">
-                <Link
+                <MotionCta
                   href={NAV_CTA.href}
                   className="btn-ember w-full px-4 py-2.5 text-base"
                 >
                   {NAV_CTA.label}
-                </Link>
+                </MotionCta>
               </li>
             </ul>
           </nav>

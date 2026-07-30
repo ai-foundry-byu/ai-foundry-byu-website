@@ -1,7 +1,7 @@
 import Image from "next/image"
-import Link from "next/link"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
+import { MotionCta } from "@/components/MotionCta"
 import {
   BUILD_HEADING,
   BUILDERS_DETAIL,
@@ -56,22 +56,26 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" />
 
       <div className="mx-auto flex max-w-6xl flex-col items-center px-6 py-28 text-center md:py-40">
-        {/* The anvil, above the headline and on the same centre axis. It is
+        {/* The AI glyph, above the headline and on the same centre axis. It is
             decorative here: the header already carries the identifying lockup,
-            so this one is aria-hidden rather than announced twice. */}
+            so this one is aria-hidden rather than announced twice.
+
+            h-20 md:h-24, up from h-16 md:h-20. This mark is 1.37:1 where the
+            old anvil was 1.60:1, so at the same height it reads narrower and
+            lighter. The extra height restores the optical weight the hero had. */}
         {/* The SVG, not the PNG, so it stays crisp at any size and on any
             display. unoptimized because Next's image optimizer refuses SVG
             unless dangerouslyAllowSVG is set, and turning that on globally to
             serve one first-party file is a bad trade. */}
         <Image
-          src="/brand/anvil-white.svg"
+          src="/brand/glyph-white.svg"
           alt=""
           aria-hidden
-          width={290}
-          height={181}
+          width={535}
+          height={391}
           priority
           unoptimized
-          className="h-16 w-auto md:h-20"
+          className="h-20 w-auto md:h-24"
         />
 
         {/*
@@ -106,20 +110,21 @@ function Hero() {
             the hero from collapsing upward. */}
         <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
           {/*
-            A plain anchor, not a Link, and that is deliberate. This scrolls
-            down the same page to the Get a quote section. globals.css sets
-            scroll-behavior smooth, so the browser animates it with no
-            JavaScript at all.
+            A same-page anchor, not a route link, and that is deliberate. This
+            scrolls down to the Get a quote section, and globals.css sets
+            scroll-behavior smooth so the browser animates it. MotionCta keeps it
+            an <a> for exactly that reason: next/link would intercept the click
+            and route instead of scrolling.
           */}
-          <a href="#quote" className="btn-ember px-8 py-4 text-base">
+          <MotionCta href="#quote" className="btn-ember px-8 py-4 text-base">
             Submit a project
-          </a>
-          <Link
+          </MotionCta>
+          <MotionCta
             href="/network"
             className="inline-flex items-center justify-center border border-border-on-inverse px-8 py-4 text-base font-semibold text-text-on-inverse transition-colors hover:border-border-accent"
           >
             Join the network
-          </Link>
+          </MotionCta>
         </div>
       </div>
     </section>
@@ -391,9 +396,9 @@ function GetAQuote() {
         {/* The one way through to the form, and the same button treatment as
             the top bar so the call to action reads as one thing site-wide. */}
         <div className="mt-16">
-          <Link href={QUOTE_CTA.href} className="btn-ember px-9 py-4 text-base">
+          <MotionCta href={QUOTE_CTA.href} className="btn-ember px-9 py-4 text-base">
             {QUOTE_CTA.label}
-          </Link>
+          </MotionCta>
           <p className="mt-5 text-base text-text-on-inverse-muted">
             {QUOTE_CTA_NOTE}
           </p>

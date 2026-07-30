@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Builds the favicons and app icons from the anvil mark.
+Builds the favicons and app icons from the AI glyph.
 
     pip3 install --user Pillow
     python3 scripts/build-icons.py
@@ -10,7 +10,7 @@ with that one: orange on navy measures 2.90:1, which fails the contrast contract
 this repo enforces everywhere else, and a bare "AI" is a standalone mark with no
 BYU identification, which the naming rules do not allow.
 
-The anvil is the right mark for a square: it is the program's own symbol, it
+The glyph is the right mark for a square: it is the program's own symbol, it
 reads at 16px, and white on navy is 13.56:1.
 
 Out:
@@ -37,15 +37,17 @@ APP = os.path.join(HERE, "..", "src", "app")
 NAVY = (0, 46, 93, 255)
 WHITE = (255, 255, 255, 255)
 
-# How much of the tile the mark spans. The anvil is a wide mark, roughly 1.6:1,
-# so sizing it by width is what keeps it from looking lost in a square.
-MARK_WIDTH = 0.68
+# How much of the tile the mark spans, sized by WIDTH because the mark is wider
+# than tall. The AI glyph is about 1.37:1 where the old anvil was 1.60:1, so at
+# the same width fraction it stands taller in the tile. 0.62 keeps the optical
+# area about what the anvil had and preserves the corner breathing room.
+MARK_WIDTH = 0.62
 CORNER = 0.18  # corner radius as a fraction of the tile
 SS = 4  # supersample factor
 
 
 def tile(size: int, rounded: bool, mark: Image.Image) -> Image.Image:
-    """One icon: navy tile, white anvil centred on it."""
+    """One icon: navy tile, white glyph centred on it."""
     s = size * SS
     img = Image.new("RGBA", (s, s), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img)
@@ -86,9 +88,11 @@ def svg_icon(anvil_svg: str) -> str:
 
 
 def main() -> int:
-    anvil = Image.open(os.path.join(PUBLIC, "brand", "anvil-white.png")).convert("RGBA")
+    mark_png = os.path.join(PUBLIC, "brand", "glyph-white.png")
+    anvil = Image.open(mark_png).convert("RGBA")
+    anvil = anvil.crop(anvil.getbbox())
 
-    with open(os.path.join(PUBLIC, "brand", "anvil-white.svg")) as fh:
+    with open(os.path.join(PUBLIC, "brand", "glyph-white.svg")) as fh:
         with open(os.path.join(PUBLIC, "icon.svg"), "w") as out:
             out.write(svg_icon(fh.read()))
     print("  icon.svg")

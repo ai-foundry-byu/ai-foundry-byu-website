@@ -15,9 +15,9 @@ export function SiteFooter() {
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-sm">
             <Image
-              src="/brand/lockup-white.png"
+              src="/brand/wordmark-glyph-white.png"
               alt={`${SCHOOL_FULL}, ${PROGRAM}`}
-              width={3305}
+              width={3407}
               height={360}
               className="h-8 w-auto"
             />

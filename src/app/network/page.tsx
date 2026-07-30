@@ -77,14 +77,14 @@ export default function NetworkPage() {
                 dangerouslyAllowSVG is set globally, and turning that on to serve
                 one first-party file is a bad trade. */}
             <Image
-              src="/brand/anvil-white.svg"
+              src="/brand/glyph-white.svg"
               alt=""
               aria-hidden
-              width={290}
-              height={181}
+              width={535}
+              height={391}
               priority
               unoptimized
-              className="h-16 w-auto md:h-20"
+              className="h-20 w-auto md:h-24"
             />
 
             {/*
