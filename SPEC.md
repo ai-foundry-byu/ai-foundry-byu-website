@@ -233,9 +233,16 @@ Where the code lives:
 
 Notes on how it was built:
 
-- **Zero client JavaScript.** The mobile menu is a native `<details>`, and the hero
-  button is a plain `#quote` anchor that the browser scrolls smoothly on its own.
-  Every route prerenders static
+- **One client component, `MotionCta`.** Everything else is a server component and
+  every route still prerenders to static HTML. The mobile menu is a native
+  `<details>` and the hero button is a plain `#quote` anchor the browser scrolls
+  itself, so neither needs script.
+
+  This used to say "zero client JavaScript", which was always an overclaim: Next's
+  App Router ships a framework bundle for hydration regardless. The accurate
+  statement is "no client components, all routes static", and as of 2026-07-29 it
+  is "one client component". Keep the boundary that tight. `MotionCta` is a small
+  leaf, so the button hydrates rather than the page
 - **Zero dependencies beyond Next and React.** Dropped `@supabase/supabase-js` and
   `motion`, both unused here. Nothing left to misconfigure
 - The hero background is a separate layer already in place, so the video can drop in
