@@ -53,3 +53,4 @@ supabase/.temp/
 # permanent repo weight. The sources and the script ARE committed.
 _brand-src/proposed/
 _brand-src/variants/
+_brand-src/pass2/
