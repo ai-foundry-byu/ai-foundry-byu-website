@@ -53,7 +53,7 @@ export function SiteFooter() {
         </div>
 
         <p className="mt-12 border-t border-border-on-inverse pt-6 text-sm leading-relaxed text-text-on-inverse-muted">
-          {PROGRAM}, {SCHOOL_FULL}. Provo, Utah.
+          © {new Date().getFullYear()} {PROGRAM}, {SCHOOL_FULL}. Provo, Utah.
         </p>
       </div>
     </footer>
