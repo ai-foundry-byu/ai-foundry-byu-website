@@ -429,17 +429,17 @@ export type Principle = { title: string; blurb: string; credit: string }
 
 export const CULTURE_EYEBROW = "Our culture"
 
-export const CULTURE_HEADING = "What you are getting into"
+export const CULTURE_HEADING = "Who we are"
 
 export const CULTURE_LEAD =
-  "AI Foundry is a program of the BYU Marriott School of Business, so the school's vision, mission, and values sit at the top of our pyramid. Everything after them is a double click: how those values show up in our daily work. Whether you are hiring us or joining us, this is the culture you are signing up for."
+  "AI Foundry is a program of the BYU Marriott School of Business and completely aligned to its mission, vision, and values."
 
 /**
  * The top of the pyramid: BYU Marriott's own vision, mission, values, and
  * guiding principle, verbatim as published by the school. The Foundry does
  * not edit these; it inherits them.
  */
-export const MARRIOTT_EYEBROW = "The top of the pyramid: BYU Marriott"
+export const MARRIOTT_EYEBROW = "BYU Marriott"
 
 export const MARRIOTT_VISION =
   "We aspire to transform the world through Christlike leadership."
@@ -476,7 +476,7 @@ export const MARRIOTT_GUIDING = {
     "We evaluate our decisions and actions by the impact they will have on the academic experience, professional preparation, character development, emotional well-being, and spiritual growth of our students.",
 }
 
-export const CULTURE_DOUBLE_CLICK_HEADING = "The double click: how we operate"
+export const CULTURE_DOUBLE_CLICK_HEADING = "How we operate"
 
 export const CULTURE_DOUBLE_CLICK_LEAD =
   "In the spirit of Brigham Young's admonition to gather up all the good and true principles wherever they are found, these operating principles are gathered from four organizations we study and admire: Amazon's Leadership Principles, Bridgewater's original philosophy, McKinsey's values, and the Christlike attributes taught in Preach My Gospel. Credit is noted where it is owed."
