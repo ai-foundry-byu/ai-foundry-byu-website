@@ -402,6 +402,97 @@ export const FACULTY = {
 }
 
 /* ────────────────────────────────────────────────────────────
+   Culture
+
+   Scott's synthesis brief, 2026-08-01: establish the program's cultural DNA
+   by gathering principles from four organizations, in the spirit of Brigham
+   Young's admonition to gather up all the good and true principles wherever
+   they are found. Sources, credited by name on the page:
+
+     Amazon        Leadership Principles
+     Bridgewater   the original philosophy
+     McKinsey      purpose, mission, and values
+     The Church of Jesus Christ of Latter-day Saints
+                   Christlike attributes, Preach My Gospel ch. 6
+
+   The principles are synthesized in our own words, never quoted, and each row
+   names the organizations it draws from. The two practices (Ask First and the
+   red face test) are the Foundry's own.
+
+   This is the draft for the team to review at the Friday meeting; expect the
+   language to be edited there.
+   ──────────────────────────────────────────────────────────── */
+
+export type Principle = { title: string; blurb: string; credit: string }
+
+export const CULTURE_EYEBROW = "Our culture"
+
+export const CULTURE_HEADING = "How we operate"
+
+export const CULTURE_LEAD =
+  "In the spirit of Brigham Young's admonition to gather up all the good and true principles wherever they are found, these principles are gathered from four organizations we study and admire: Amazon's Leadership Principles, Bridgewater's original philosophy, McKinsey's values, and the Christlike attributes taught in Preach My Gospel. Credit for each is noted where it is owed."
+
+export const CULTURE_PRINCIPLES: Principle[] = [
+  {
+    title: "Client results first",
+    blurb:
+      "We put the client's interest ahead of our own and measure ourselves by whether their performance actually improves.",
+    credit: "After McKinsey",
+  },
+  {
+    title: "Radical truthfulness",
+    blurb:
+      "We say what is true, especially when it is uncomfortable, and we carry an obligation to dissent when we disagree.",
+    credit: "After Bridgewater and McKinsey",
+  },
+  {
+    title: "Ownership",
+    blurb:
+      "We act on behalf of the whole program, never say that is not my job, and keep a bias for action.",
+    credit: "After Amazon",
+  },
+  {
+    title: "The highest standards",
+    blurb:
+      "We hold standards others may find unreasonably high, and we keep raising them. Work counts when it ships and works.",
+    credit: "After Amazon and McKinsey",
+  },
+  {
+    title: "Learn relentlessly",
+    blurb:
+      "We stay curious, dive deep, and treat mistakes as tuition for the lessons they carry.",
+    credit: "After Amazon and Bridgewater",
+  },
+  {
+    title: "Meaningful work, meaningful relationships",
+    blurb:
+      "We pursue excellence together and care about the people we do it with.",
+    credit: "After Bridgewater",
+  },
+  {
+    title: "Christlike character",
+    blurb:
+      "Faith, hope, charity, virtue, knowledge, patience, humility, and diligence govern how we treat every client, teammate, and competitor.",
+    credit: "After Preach My Gospel",
+  },
+]
+
+export const CULTURE_PRACTICES: Principle[] = [
+  {
+    title: "Ask first",
+    blurb:
+      "Everyone here is empowered to give feedback, and the stronger habit is asking for it. The norm at the Foundry is to ask first.",
+    credit: "Ours",
+  },
+  {
+    title: "The red face test",
+    blurb:
+      "When the right course is ambiguous, ask: could I explain this decision to a leader I respect without going red in the face? If not, do not do it.",
+    credit: "Ours",
+  },
+]
+
+/* ────────────────────────────────────────────────────────────
    Forms
 
    As of 2026-08-01 the forms are native components (QuoteForm, NetworkForm)

@@ -2,7 +2,17 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
-import { ERA_NARRATIVE, FACULTY, SCHOOL_FULL, TEAM } from "@/lib/content"
+import {
+  CULTURE_EYEBROW,
+  CULTURE_HEADING,
+  CULTURE_LEAD,
+  CULTURE_PRACTICES,
+  CULTURE_PRINCIPLES,
+  ERA_NARRATIVE,
+  FACULTY,
+  SCHOOL_FULL,
+  TEAM,
+} from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "About us",
@@ -97,6 +107,84 @@ export default function AboutPage() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ────────────────────────────────────────────────────
+            Culture. The people above, the principles they run on below.
+
+            The principles are gathered from four named organizations (see
+            the Culture block in content.ts for the brief and the sources)
+            and each row credits where it came from. Rendered as the same
+            hairline-divided ledger /network uses: a title column sized to
+            hold the longest title, the blurb in the reading column, and the
+            credit under the blurb in the muted size.
+            ──────────────────────────────────────────────────── */}
+        <section className="surface-paper-dim">
+          <div className="mx-auto max-w-3xl px-6 py-20 md:py-24">
+            <p className="eyebrow text-center text-text-accent">
+              {CULTURE_EYEBROW}
+            </p>
+            <h2 className="mt-4 text-center font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-4xl">
+              {CULTURE_HEADING}
+            </h2>
+            <p className="mx-auto mt-6 max-w-[42rem] text-base leading-relaxed text-text-primary opacity-90">
+              {CULTURE_LEAD}
+            </p>
+
+            <ul className="mt-12 border-t border-border-subtle">
+              {CULTURE_PRINCIPLES.map((p) => (
+                <li
+                  key={p.title}
+                  className="grid gap-x-8 gap-y-1.5 border-b border-border-subtle py-5 md:grid-cols-[minmax(0,17rem)_minmax(0,1fr)]"
+                >
+                  <div className="flex gap-3">
+                    <span
+                      aria-hidden
+                      className="ember-bar mt-[0.45rem] h-1.5 w-1.5 shrink-0"
+                    />
+                    <p className="text-base font-semibold leading-relaxed text-text-primary">
+                      {p.title}
+                    </p>
+                  </div>
+                  <div className="pl-[1.125rem] md:pl-0">
+                    <p className="text-base leading-relaxed text-text-primary opacity-80">
+                      {p.blurb}
+                    </p>
+                    <p className="mt-1 text-sm text-text-primary opacity-60">
+                      {p.credit}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            {/* The two practices are the Foundry's own, so they get their own
+                small heading rather than hiding among the borrowed rows. */}
+            <h3 className="mt-12 text-center font-serif text-2xl font-semibold tracking-[-0.01em] text-text-primary">
+              Two practices we hold ourselves to
+            </h3>
+            <ul className="mt-8 border-t border-border-subtle">
+              {CULTURE_PRACTICES.map((p) => (
+                <li
+                  key={p.title}
+                  className="grid gap-x-8 gap-y-1.5 border-b border-border-subtle py-5 md:grid-cols-[minmax(0,17rem)_minmax(0,1fr)]"
+                >
+                  <div className="flex gap-3">
+                    <span
+                      aria-hidden
+                      className="ember-bar mt-[0.45rem] h-1.5 w-1.5 shrink-0"
+                    />
+                    <p className="text-base font-semibold leading-relaxed text-text-primary">
+                      {p.title}
+                    </p>
+                  </div>
+                  <p className="pl-[1.125rem] text-base leading-relaxed text-text-primary opacity-80 md:pl-0">
+                    {p.blurb}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       </main>
