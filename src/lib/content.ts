@@ -400,7 +400,7 @@ export const FACULTY = {
   detail:
     "Associate Teaching Professor of Strategy at the " +
     SCHOOL_FULL +
-    ", and previously a consultant at McKinsey & Company.",
+    ", and former consultant at McKinsey & Company.",
 }
 
 /* ────────────────────────────────────────────────────────────
