@@ -6,7 +6,7 @@ import { QuoteForm } from "@/components/QuoteForm"
 import { QUOTE_LEAD, QUOTE_STEPS, SCHOOL_FULL } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Request a quote",
+  title: "Request a proposal",
   description:
     "Tell AI Foundry, an experiential learning program of the " +
     SCHOOL_FULL +
@@ -30,7 +30,7 @@ export default function QuotePage() {
         <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
           <div className="text-center">
             <h1 className="font-serif text-4xl font-semibold tracking-[-0.02em] md:text-5xl">
-              Request a quote
+              Request a proposal
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-on-inverse-muted">
               {QUOTE_LEAD}

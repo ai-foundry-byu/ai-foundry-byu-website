@@ -98,7 +98,7 @@ function Hero() {
             and route instead of scrolling.
           */}
           <MotionCta href="#quote" className="btn-ember px-8 py-4 text-base">
-            Submit a project
+            Request a proposal
           </MotionCta>
           <MotionCta
             href="/network"

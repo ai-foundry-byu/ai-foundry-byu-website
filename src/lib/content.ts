@@ -422,6 +422,6 @@ export const NAV: NavLink[] = [
  * hero button and the top bar both land on the offerings; the only route to
  * the form is through them.
  */
-export const NAV_CTA: NavLink = { label: "Get a quote", href: "/#quote" }
+export const NAV_CTA: NavLink = { label: "Request a proposal", href: "/#quote" }
 
-export const QUOTE_CTA: NavLink = { label: "Request a quote", href: "/quote" }
+export const QUOTE_CTA: NavLink = { label: "Request a proposal", href: "/quote" }

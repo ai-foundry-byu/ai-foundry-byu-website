@@ -163,7 +163,7 @@ export function QuoteForm() {
         disabled={status === "submitting"}
         className="btn-ember mt-8 w-full px-6 py-3 text-base disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
-        {status === "submitting" ? "Submitting..." : "Request a quote"}
+        {status === "submitting" ? "Submitting..." : "Request a proposal"}
       </button>
     </form>
   )

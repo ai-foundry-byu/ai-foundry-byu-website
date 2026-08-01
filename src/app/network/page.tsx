@@ -77,7 +77,7 @@ export default function NetworkPage() {
               further down.
             */}
             <h1 className="font-serif text-4xl font-semibold leading-[1.08] tracking-[-0.02em] md:text-6xl">
-              Forge with us.
+              Forge intelligence with us.
             </h1>
           </div>
         </section>
