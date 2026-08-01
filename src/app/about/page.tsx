@@ -3,11 +3,18 @@ import Image from "next/image"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
 import {
+  CULTURE_DOUBLE_CLICK_HEADING,
+  CULTURE_DOUBLE_CLICK_LEAD,
   CULTURE_EYEBROW,
   CULTURE_HEADING,
   CULTURE_LEAD,
   CULTURE_PRACTICES,
   CULTURE_PRINCIPLES,
+  MARRIOTT_EYEBROW,
+  MARRIOTT_GUIDING,
+  MARRIOTT_MISSION,
+  MARRIOTT_VALUES,
+  MARRIOTT_VISION,
   ERA_NARRATIVE,
   FACULTY,
   SCHOOL_FULL,
@@ -111,14 +118,18 @@ export default function AboutPage() {
         </section>
 
         {/* ────────────────────────────────────────────────────
-            Culture. The people above, the principles they run on below.
+            Culture. The people above, the pyramid they run on below.
 
-            The principles are gathered from four named organizations (see
-            the Culture block in content.ts for the brief and the sources)
-            and each row credits where it came from. Rendered as the same
-            hairline-divided ledger /network uses: a title column sized to
-            hold the longest title, the blurb in the reading column, and the
-            credit under the blurb in the muted size.
+            The pyramid reads top down, and the page renders it in that
+            order. The apex is BYU Marriott's own vision, mission, values,
+            and guiding principle, verbatim and credited: the program
+            inherits them, it does not edit them. They get the navy plate
+            because primacy should be visible, not just stated. Below the
+            plate is the double click: operating principles gathered from
+            four named organizations (see the Culture block in content.ts),
+            each row crediting where it came from, rendered as the same
+            hairline-divided ledger /network uses. The audience is a client
+            or a prospective student deciding what they are signing up for.
             ──────────────────────────────────────────────────── */}
         <section className="surface-paper-dim">
           <div className="mx-auto max-w-3xl px-6 py-20 md:py-24">
@@ -132,7 +143,60 @@ export default function AboutPage() {
               {CULTURE_LEAD}
             </p>
 
-            <ul className="mt-12 border-t border-border-subtle">
+            {/* The apex: Marriott, on navy. */}
+            <div className="mt-12 bg-surface-inverse p-8 text-text-on-inverse md:p-12">
+              <p className="eyebrow text-text-on-inverse-muted">
+                {MARRIOTT_EYEBROW}
+              </p>
+
+              <div className="mt-8 space-y-6">
+                <div>
+                  <p className="eyebrow text-text-on-inverse-muted">Vision</p>
+                  <p className="mt-2 font-serif text-2xl font-semibold leading-snug tracking-[-0.01em] md:text-3xl">
+                    {MARRIOTT_VISION}
+                  </p>
+                </div>
+                <div>
+                  <p className="eyebrow text-text-on-inverse-muted">Mission</p>
+                  <p className="mt-2 font-serif text-2xl font-semibold leading-snug tracking-[-0.01em] md:text-3xl">
+                    {MARRIOTT_MISSION}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-10 grid gap-x-10 gap-y-8 border-t border-border-on-inverse pt-8 sm:grid-cols-2">
+                {MARRIOTT_VALUES.map((v) => (
+                  <div key={v.title}>
+                    <p className="text-base font-semibold">{v.title}</p>
+                    <p className="mt-2 text-base leading-relaxed text-text-on-inverse-muted">
+                      {v.blurb}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10 border-t border-border-on-inverse pt-8">
+                <p className="eyebrow text-text-on-inverse-muted">
+                  Guiding principle
+                </p>
+                <p className="mt-2 text-base font-semibold">
+                  {MARRIOTT_GUIDING.title}
+                </p>
+                <p className="mt-2 text-base leading-relaxed text-text-on-inverse-muted">
+                  {MARRIOTT_GUIDING.blurb}
+                </p>
+              </div>
+            </div>
+
+            {/* The double click: the Foundry's operating principles. */}
+            <h3 className="mt-16 text-center font-serif text-2xl font-semibold tracking-[-0.01em] text-text-primary">
+              {CULTURE_DOUBLE_CLICK_HEADING}
+            </h3>
+            <p className="mx-auto mt-4 max-w-[42rem] text-base leading-relaxed text-text-primary opacity-90">
+              {CULTURE_DOUBLE_CLICK_LEAD}
+            </p>
+
+            <ul className="mt-10 border-t border-border-subtle">
               {CULTURE_PRINCIPLES.map((p) => (
                 <li
                   key={p.title}

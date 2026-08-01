@@ -135,8 +135,10 @@ export const BUILDERS_HEADLINE =
  * here: the reader does not need to know what a pod is to understand that the
  * mix of people is matched to the job.
  *
- * The undergraduates are not counted in this line any more. Brandon's call. The
- * roster on /about is fifteen MBAs, so this and that page now agree.
+ * The undergraduates are not counted in this line. Brandon's call, made when
+ * the roster was MBAs only. The /about roster now interleaves eight
+ * undergraduates among the fifteen MBAs (Scott, 2026-08-01), so "15 MBAs"
+ * here is still true but no longer the whole roster.
  *
  * "15" as a numeral, not spelled out, also Brandon's call. It is a credibility
  * stat and numerals read as more concrete than words for a number a buyer is
@@ -363,27 +365,27 @@ export type Member = {
 
 export const TEAM: Member[] = [
   { name: "JD Davenport", role: "Managing Director", bio: "JD is the Managing Director of AI Foundry and a BYU MBA candidate. Before the MBA he was an AI product consultant at Deloitte, then went from Technical PM to Principal at National Grid in about two years, building a cloud portfolio from zero to 500-plus services and an AI-driven pricing engine. He started AI Foundry to give MBAs real reps building and shipping with AI agents.", linkedin: "https://www.linkedin.com/in/jd-davenport/", photo: "/team/jd-davenport.jpg" },
-  { name: "Rachel Moulton", role: "Chief of Staff", bio: "Rachel is involved in healthcare analytics and product management with a background in public health. She's focused on improving healthcare delivery through data and strategy and hopes to drive meaningful change in healthcare outcomes and experiences.", linkedin: "https://www.linkedin.com/in/rachel-moulton", photo: "/team/rachel-moulton.jpg" },
   { name: "Sophia Strong", role: "Undergraduate", bio: "Sophia is a BYU Strategic Management student and a product management intern at BambooHR, with prior product work at Entrata, Leland, and Bankaroo.", linkedin: "https://www.linkedin.com/in/sophia-strong/", photo: "/team/sophia-strong.jpg" },
-  { name: "Corbin Sterling", role: "Director of Marketing", bio: "Corbin is a BYU MBA candidate concentrating in Marketing and Strategy, with a creative background rooted in music and movie production. He is focused on using AI tools to sharpen how brands market and decide what to build next.", linkedin: "https://www.linkedin.com/in/corbinsterling/", photo: "/team/corbin-sterling.jpg" },
-  { name: "Brandon Jeppson", role: "BYU Products", bio: "Brandon is a BYU MBA ('27) in Product Management, and the VP of Sales at Cougar Strategy Group. He is currently standing up the partnership motion at Redo, and is building AI operating systems to open new revenue channels with leading 3PL and logistics providers.", linkedin: "https://www.linkedin.com/in/bjepp/", photo: "/team/brandon-jeppson.jpg" },
+  { name: "Rachel Moulton", role: "Chief of Staff", bio: "Rachel is involved in healthcare analytics and product management with a background in public health. She's focused on improving healthcare delivery through data and strategy and hopes to drive meaningful change in healthcare outcomes and experiences.", linkedin: "https://www.linkedin.com/in/rachel-moulton", photo: "/team/rachel-moulton.jpg" },
   { name: "Nathan McCauley", role: "Undergraduate", bio: "Nathan is a BYU Strategy and Computer Science student and an associate product manager intern at Google, focused on helping students break into product management.", linkedin: "https://www.linkedin.com/in/nate-mccauley/", photo: "/team/nate-mccauley.jpg" },
-  { name: "Alex Sisk", role: "External Deals", bio: "Alex is an MBA candidate concentrating in Finance with a background spanning commercial real estate, SaaS sales engineering, and entrepreneurship. He is launching a mortgage company with an AI-native operations strategy.", linkedin: "https://www.linkedin.com/in/alex-sisk/", photo: "/team/alex-sisk.jpg" },
-  { name: "Abe Bedard", role: "SMBs", bio: "Abraham is a strategy-obsessed entrepreneur, BYU MBA ('27), and CEO at Yatta Golf. After scaling the brand from scratch to $7M+ in annual revenue, his mission remains unchanged: build wicked-good product, develop world-class talent, and help humans enjoy the heck out of life.", linkedin: "https://www.linkedin.com/in/abraham-bedard/", photo: "/team/abe-bedard.jpg" },
+  { name: "Corbin Sterling", role: "Director of Marketing", bio: "Corbin is a BYU MBA candidate concentrating in Marketing and Strategy, with a creative background rooted in music and movie production. He is focused on using AI tools to sharpen how brands market and decide what to build next.", linkedin: "https://www.linkedin.com/in/corbinsterling/", photo: "/team/corbin-sterling.jpg" },
   { name: "Ella Moore", role: "Undergraduate", bio: "Ella is a BYU student, president of the BYU Product Management Association, and an incoming summer analyst at Goldman Sachs.", linkedin: "https://www.linkedin.com/in/ella-moore24/", photo: "/team/ella-moore.jpg" },
-  { name: "Felix Vivanco Salazar", role: "Alumni Relations", bio: null, linkedin: "https://www.linkedin.com/in/felix-vivanco/", photo: "/team/felix-vivanco-salazar.jpg" },
-  { name: "Tulga Ganbat", role: "Product Evaluation and QC", bio: "Tulga is an MBA candidate in Marketing and Product Management with a bachelor's degree in Statistics and Data Science. He is the founder of Orchuul.mn, Mongolia's first and largest AI-powered translation marketplace, which he independently built and scaled.", linkedin: "https://www.linkedin.com/in/tulgaganbat", photo: "/team/tulga-ganbat.jpg" },
+  { name: "Brandon Jeppson", role: "BYU Products", bio: "Brandon is a BYU MBA ('27) in Product Management, and the VP of Sales at Cougar Strategy Group. He is currently standing up the partnership motion at Redo, and is building AI operating systems to open new revenue channels with leading 3PL and logistics providers.", linkedin: "https://www.linkedin.com/in/bjepp/", photo: "/team/brandon-jeppson.jpg" },
   { name: "Calvin Nickerson", role: "Undergraduate", bio: "Calvin is a Finance student at BYU Marriott and an aspiring management consultant, currently working with Solar Grazing Solutions.", linkedin: "https://www.linkedin.com/in/calvin-nickerson/", photo: "/team/calvin-nickerson.jpg" },
+  { name: "Alex Sisk", role: "External Deals", bio: "Alex is an MBA candidate concentrating in Finance with a background spanning commercial real estate, SaaS sales engineering, and entrepreneurship. He is launching a mortgage company with an AI-native operations strategy.", linkedin: "https://www.linkedin.com/in/alex-sisk/", photo: "/team/alex-sisk.jpg" },
+  { name: "Jordan Faust", role: "Undergraduate", bio: "Jordan is a BYU Strategic Management student working in AI product management at Leland.", linkedin: "https://www.linkedin.com/in/jordan-faust-5a1028207/", photo: "/team/jordan-faust.jpg" },
+  { name: "Abe Bedard", role: "SMBs", bio: "Abraham is a strategy-obsessed entrepreneur, BYU MBA ('27), and CEO at Yatta Golf. After scaling the brand from scratch to $7M+ in annual revenue, his mission remains unchanged: build wicked-good product, develop world-class talent, and help humans enjoy the heck out of life.", linkedin: "https://www.linkedin.com/in/abraham-bedard/", photo: "/team/abe-bedard.jpg" },
+  { name: "Carter King", role: "Undergraduate", bio: "Carter is a Strategy student at BYU and a builder in Sandbox.", linkedin: "https://www.linkedin.com/in/carter-king1/", photo: "/team/carter-king.jpg" },
+  { name: "Felix Vivanco Salazar", role: "Alumni Relations", bio: null, linkedin: "https://www.linkedin.com/in/felix-vivanco/", photo: "/team/felix-vivanco-salazar.jpg" },
+  { name: "Tate Stevens", role: "Undergraduate", bio: "Tate is a BYU student, VP of the Management Consulting Association, and an AI solutions architect at Cicero, part of MGT.", linkedin: "https://www.linkedin.com/in/tate-stevens-604299222/", photo: "/team/tate-stevens.jpg" },
+  { name: "Tulga Ganbat", role: "Product Evaluation and QC", bio: "Tulga is an MBA candidate in Marketing and Product Management with a bachelor's degree in Statistics and Data Science. He is the founder of Orchuul.mn, Mongolia's first and largest AI-powered translation marketplace, which he independently built and scaled.", linkedin: "https://www.linkedin.com/in/tulgaganbat", photo: "/team/tulga-ganbat.jpg" },
+  { name: "Kainoa Shintaku", role: "Undergraduate", bio: "Kainoa is a BYU Marriott student focused on AI architecture and implementation, currently with TechForce Advisors.", linkedin: "https://www.linkedin.com/in/kainoa-shintaku-6b23472a7/", photo: "/team/kainoa-shintaku.jpg" },
   { name: "Jake Healey", role: "AI Tooling", bio: null, linkedin: "https://www.linkedin.com/in/jacobjhealey/", photo: "/team/jake-healey.jpg" },
   { name: "Sylvan Scott", role: "Thought Leadership", bio: null, linkedin: "https://www.linkedin.com/in/sylvan-j-scott/", photo: "/team/sylvan-scott.jpg" },
-  { name: "Jordan Faust", role: "Undergraduate", bio: "Jordan is a BYU Strategic Management student working in AI product management at Leland.", linkedin: "https://www.linkedin.com/in/jordan-faust-5a1028207/", photo: "/team/jordan-faust.jpg" },
   { name: "Chase Clement", role: "Finance", bio: "Chase is an MBA candidate concentrating in Finance with a background in enterprise systems implementation and financial operations. A former Division 1 javelin thrower, he is now launching a mortgage company built on AI-driven automation.", linkedin: "https://www.linkedin.com/in/chase-clement9", photo: "/team/chase-clement.jpg" },
   { name: "John Passey", role: "UX and UI Design", bio: "John is an MBA candidate at BYU Marriott with five years of experience making health insurance easier to understand, navigate, and use.", linkedin: "https://www.linkedin.com/in/johnpassey/", photo: "/team/john-passey.jpg" },
-  { name: "Carter King", role: "Undergraduate", bio: "Carter is a Strategy student at BYU and a builder in Sandbox.", linkedin: "https://www.linkedin.com/in/carter-king1/", photo: "/team/carter-king.jpg" },
   { name: "Tyler Doman", role: "Education and Training", bio: "Tyler is a BYU MBA ('27) on the entrepreneurship track with a background in strategy and growth. He is pursuing Entrepreneurship Through Acquisition, where he plans to acquire a small business and use AI implementation to professionalize and scale its operations.", linkedin: "https://www.linkedin.com/in/tyler-doman/", photo: "/team/tyler-doman.jpg" },
-  { name: "Tate Stevens", role: "Undergraduate", bio: "Tate is a BYU student, VP of the Management Consulting Association, and an AI solutions architect at Cicero, part of MGT.", linkedin: "https://www.linkedin.com/in/tate-stevens-604299222/", photo: "/team/tate-stevens.jpg" },
   { name: "Enoch Councill", role: "Ambassador, Cougar Capital", bio: "Enoch is a BYU MBA candidate and the Director of AI at Cougar Capital, the student-run investment fund, where he builds tools to speed up and sharpen the VC process. Before his MBA he worked in technology implementations, pre-sales, and customer success within B2B SaaS.", linkedin: "https://www.linkedin.com/in/enochcouncill/", photo: "/team/enoch-councill.jpg" },
-  { name: "Kainoa Shintaku", role: "Undergraduate", bio: "Kainoa is a BYU Marriott student focused on AI architecture and implementation, currently with TechForce Advisors.", linkedin: "https://www.linkedin.com/in/kainoa-shintaku-6b23472a7/", photo: "/team/kainoa-shintaku.jpg" },
   { name: "Jorge Beltran", role: "Ambassador, Savage", bio: "Jorge is an MBA candidate at BYU Marriott and a Finance Intern at Ford Motor Company. Previously he led organizations through ERP transformations as a Senior Supply Chain Consultant.", linkedin: "https://www.linkedin.com/in/jorge-u-beltran/", photo: "/team/jorge-beltran.jpg" },
 ]
 
@@ -427,10 +429,57 @@ export type Principle = { title: string; blurb: string; credit: string }
 
 export const CULTURE_EYEBROW = "Our culture"
 
-export const CULTURE_HEADING = "How we operate"
+export const CULTURE_HEADING = "What you are getting into"
 
 export const CULTURE_LEAD =
-  "In the spirit of Brigham Young's admonition to gather up all the good and true principles wherever they are found, these principles are gathered from four organizations we study and admire: Amazon's Leadership Principles, Bridgewater's original philosophy, McKinsey's values, and the Christlike attributes taught in Preach My Gospel. Credit for each is noted where it is owed."
+  "AI Foundry is a program of the BYU Marriott School of Business, so the school's vision, mission, and values sit at the top of our pyramid. Everything after them is a double click: how those values show up in our daily work. Whether you are hiring us or joining us, this is the culture you are signing up for."
+
+/**
+ * The top of the pyramid: BYU Marriott's own vision, mission, values, and
+ * guiding principle, verbatim as published by the school. The Foundry does
+ * not edit these; it inherits them.
+ */
+export const MARRIOTT_EYEBROW = "The top of the pyramid: BYU Marriott"
+
+export const MARRIOTT_VISION =
+  "We aspire to transform the world through Christlike leadership."
+
+export const MARRIOTT_MISSION =
+  "We develop leaders of faith, intellect, and character."
+
+export const MARRIOTT_VALUES: { title: string; blurb: string }[] = [
+  {
+    title: "Faith in Christ",
+    blurb:
+      "We value deep and abiding faith in Jesus Christ. Our faith gives us the capacity to envision a better future, the confidence to make that future happen, and the courage to act in the face of challenges.",
+  },
+  {
+    title: "Integrity in Action",
+    blurb:
+      "We value integrity and hold ourselves to the highest moral and ethical standards. Acting with integrity builds trust, strengthens character, and focuses our ambitions on things of eternal consequence.",
+  },
+  {
+    title: "Respect for All",
+    blurb:
+      "We value respect for all individuals as children of God and recognize the inherent worth, divine potential, and agency of each person. A climate of respect and belonging enhances our learning, facilitates collaboration, and encourages personal growth.",
+  },
+  {
+    title: "Excellence",
+    blurb:
+      "We value excellence in learning, teaching, research, management, and leadership. An expectation of excellence magnifies our influence and motivates us to continually improve.",
+  },
+]
+
+export const MARRIOTT_GUIDING = {
+  title: "Centered on Students",
+  blurb:
+    "We evaluate our decisions and actions by the impact they will have on the academic experience, professional preparation, character development, emotional well-being, and spiritual growth of our students.",
+}
+
+export const CULTURE_DOUBLE_CLICK_HEADING = "The double click: how we operate"
+
+export const CULTURE_DOUBLE_CLICK_LEAD =
+  "In the spirit of Brigham Young's admonition to gather up all the good and true principles wherever they are found, these operating principles are gathered from four organizations we study and admire: Amazon's Leadership Principles, Bridgewater's original philosophy, McKinsey's values, and the Christlike attributes taught in Preach My Gospel. Credit is noted where it is owed."
 
 export const CULTURE_PRINCIPLES: Principle[] = [
   {
