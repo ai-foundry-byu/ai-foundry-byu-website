@@ -1,5 +1,12 @@
 # The three forms
 
+> **Superseded on the site, 2026-08-01.** `/quote` and `/network` now render
+> native forms (QuoteForm, NetworkForm) posting to `/api/quote` and
+> `/api/network`, which write to the Supabase project the previous site used.
+> The Google Forms below still exist and the emailed survey is still current,
+> but nothing on the site embeds them anymore. This file stays as the record
+> of the field design, which the native forms reproduce.
+
 > **Built and live, 2026-07-29.** All three owned by `aifoundry.byu@gmail.com`, filed in
 > **02 Deals & Clients**. Verified publicly reachable: every question renders for an
 > anonymous visitor with no Google sign-in.
