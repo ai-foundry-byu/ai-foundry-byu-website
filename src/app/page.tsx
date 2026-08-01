@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
 import { MotionCta } from "@/components/MotionCta"
@@ -56,27 +55,9 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" />
 
       <div className="mx-auto flex max-w-6xl flex-col items-center px-6 py-28 text-center md:py-40">
-        {/* The AI glyph, above the headline and on the same centre axis. It is
-            decorative here: the header already carries the identifying lockup,
-            so this one is aria-hidden rather than announced twice.
-
-            h-20 md:h-24, up from h-16 md:h-20. This mark is 1.37:1 where the
-            old anvil was 1.60:1, so at the same height it reads narrower and
-            lighter. The extra height restores the optical weight the hero had. */}
-        {/* The SVG, not the PNG, so it stays crisp at any size and on any
-            display. unoptimized because Next's image optimizer refuses SVG
-            unless dangerouslyAllowSVG is set, and turning that on globally to
-            serve one first-party file is a bad trade. */}
-        <Image
-          src="/brand/glyph-white.svg"
-          alt=""
-          aria-hidden
-          width={535}
-          height={391}
-          priority
-          unoptimized
-          className="h-20 w-auto md:h-24"
-        />
+        {/* The AI glyph that used to sit above the headline was removed
+            2026-08-01. The header lockup already identifies the program, so
+            the headline now leads the hero on its own. */}
 
         {/*
           max-w-4xl, not the full column. Marketing Lab centres three lines of
@@ -84,7 +65,7 @@ function Hero() {
           Centring a full sentence across a wide measure reads as mush, so the
           width is capped to force the same two-to-three line break.
         */}
-        <h1 className="wonk mt-8 max-w-4xl font-serif text-4xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-6xl md:text-7xl">
+        <h1 className="wonk max-w-4xl font-serif text-4xl font-semibold leading-[1.05] tracking-[-0.02em] sm:text-6xl md:text-7xl">
           {HERO_STATEMENT}
         </h1>
 

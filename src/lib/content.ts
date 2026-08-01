@@ -329,7 +329,7 @@ export type Interest = { title: string; blurb: string }
  */
 export const NETWORK_INTERESTS: Interest[] = [
   { title: "Live BYU-sponsored AI events", blurb: "In-person sessions on the most cutting-edge technologies as they land." },
-  { title: "Weekly AI digest", blurb: "A tight weekly read on what is moving in AI, curated for the BYU network." },
+  { title: "Periodic AI digest", blurb: "A tight read on what is moving in AI, curated for the BYU network." },
   { title: "Access to the cohort for talent", blurb: "An introduction to the cohort when you are hiring builders." },
   { title: "Submitting a project proposal", blurb: "Something you want built. This routes to the project intake brief." },
 ]

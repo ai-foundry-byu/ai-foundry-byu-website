@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
 import { NetworkForm } from "@/components/NetworkForm"
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Join the AI Foundry network at the " +
     SCHOOL_FULL +
-    ". Events, a weekly AI digest, access to the cohort for hiring, and project proposals.",
+    ". Events, a periodic AI digest, access to the cohort for hiring, and project proposals.",
   alternates: { canonical: "/network" },
 }
 
@@ -39,12 +38,12 @@ export default function NetworkPage() {
       <SiteHeader />
       <main>
         {/* ────────────────────────────────────────────────────
-            1. Hero. Anvil, headline, nothing else.
+            1. Hero. Headline, nothing else.
             ──────────────────────────────────────────────────── */}
         {/* surface-iron, not the surface-iron-deep the landing hero uses. That
             class pools its light radially at 28% from the left, which is right
             for a left-aligned hero and wrong for a centred one: the brightest
-            part of the band would sit off to one side of the anvil. This class
+            part of the band would sit off to one side of the headline. This class
             is a straight top-to-bottom tonal gradient, so it stays symmetrical
             about the same axis as the content. */}
         <section className="surface-iron text-text-on-inverse">
@@ -54,38 +53,18 @@ export default function NetworkPage() {
             The old padding was sized for an eyebrow, a heading, and three lines
             of lead copy. Two of those three are gone, so the same padding left
             the navy band 413px tall around 177px of content and the navy-to-white
-            boundary sat far below the fold of the composition. This is measured
-            against the content it actually holds now: 80px anvil + 32px gap +
-            65px headline, with 80px of air above and below at md.
+            boundary sat far below the fold of the composition. With the anvil
+            glyph also gone the band now holds the 65px headline alone, framed
+            by the same 80px of air above and below at md.
 
             Not py-28 md:py-40 like the landing hero either. That hero carries
             four stacked elements and is the first thing on the site; this is an
             interior page whose job is to hand you to the form quickly.
           */}
           <div className="mx-auto flex max-w-3xl flex-col items-center px-6 py-16 text-center md:py-20">
-            {/* The anvil, above the headline and on the same centre axis, exactly
-                as the landing hero does it. It replaces the orange bar that used
-                to sit beside the heading: a bar to the left of a centred block
-                pushes the block off its own axis, so the accent moves above the
-                headline instead of next to it.
-
-                Decorative, so aria-hidden with an empty alt. The header lockup
-                above already identifies the program; announcing it twice on one
-                screen is noise for a screen reader.
-
-                unoptimized because Next's image optimizer refuses SVG unless
-                dangerouslyAllowSVG is set globally, and turning that on to serve
-                one first-party file is a bad trade. */}
-            <Image
-              src="/brand/glyph-white.svg"
-              alt=""
-              aria-hidden
-              width={535}
-              height={391}
-              priority
-              unoptimized
-              className="h-20 w-auto md:h-24"
-            />
+            {/* The anvil glyph that used to sit above this headline was removed
+                2026-08-01, same day and same reason as the landing hero's: the
+                header lockup already identifies the program. */}
 
             {/*
               No `wonk` class, deliberately. Fraunces' off-baseline alternates are
@@ -95,11 +74,9 @@ export default function NetworkPage() {
 
               No eyebrow above this either. It said "Join the network", which is
               also the nav tab, the document title, and the form's own heading
-              further down. And with the anvil above the headline, a third stacked
-              line between them breaks the anvil-to-headline pairing that is the
-              whole point of borrowing the landing hero's arrangement.
+              further down.
             */}
-            <h1 className="mt-8 font-serif text-4xl font-semibold leading-[1.08] tracking-[-0.02em] md:text-6xl">
+            <h1 className="font-serif text-4xl font-semibold leading-[1.08] tracking-[-0.02em] md:text-6xl">
               Forge with us.
             </h1>
           </div>

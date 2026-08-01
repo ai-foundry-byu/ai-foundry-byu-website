@@ -88,7 +88,7 @@ export function NetworkForm() {
     <form onSubmit={onSubmit} className="border border-border-subtle bg-surface-default p-6 md:p-10">
       <p className="text-base leading-relaxed text-text-primary opacity-80">
         Alumni, friends, and builders. Tell us what you want in on: events,
-        the weekly digest, the talent network, or a project of your own.
+        the AI digest, the talent network, or a project of your own.
       </p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
