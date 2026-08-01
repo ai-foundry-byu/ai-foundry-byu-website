@@ -83,10 +83,22 @@ export const ERA_NARRATIVE =
  * That makes this biography about our own people rather than a claim of any
  * relationship with those companies.
  *
+ *   Google          Nathan McCauley
+ *   Deloitte        JD Davenport
  *   National Grid   JD Davenport
  *   Ford            Jorge Beltran
+ *   BambooHR        Sophia Strong
+ *   Leland          Jordan Faust
+ *   Cicero          Tate Stevens
  *   Redo            Brandon Jeppson
  *   Yatta Golf      Abe Bedard
+ *
+ * Entrata is traceable (Sophia Strong) but left off the headline to keep the
+ * sentence readable; Deloitte took its slot as the more recognizable name.
+ *
+ * Goldman Sachs is deliberately NOT here even though Ella Moore's bio names
+ * it: she is an incoming summer analyst, and incoming is not shipped. Same
+ * reasoning as Siemens below. It goes up when the internship has happened.
  *
  * The rules matter more than the copy:
  *
@@ -114,7 +126,7 @@ export const ERA_NARRATIVE =
 export const BUILDERS_EYEBROW = "The builders"
 
 export const BUILDERS_HEADLINE =
-  "Our builders have shipped at National Grid, Ford, Redo, and Yatta Golf."
+  "Our builders have shipped at Google, Deloitte, National Grid, Ford, BambooHR, Leland, Cicero, Redo, and Yatta Golf."
 
 /**
  * "Velocity pods" is Brandon's term and is used deliberately. It is internal
@@ -350,7 +362,7 @@ export type Member = {
 }
 
 export const TEAM: Member[] = [
-  { name: "JD Davenport", role: "Managing Director", bio: "JD is the Managing Director of AI Foundry and a BYU MBA candidate. Before the MBA he went from Technical PM to Principal at National Grid in about two years, building a cloud portfolio from zero to 500-plus services and an AI-driven pricing engine. He started AI Foundry to give MBAs real reps building and shipping with AI agents.", linkedin: "https://www.linkedin.com/in/jd-davenport/", photo: "/team/jd-davenport.jpg" },
+  { name: "JD Davenport", role: "Managing Director", bio: "JD is the Managing Director of AI Foundry and a BYU MBA candidate. Before the MBA he was an AI product consultant at Deloitte, then went from Technical PM to Principal at National Grid in about two years, building a cloud portfolio from zero to 500-plus services and an AI-driven pricing engine. He started AI Foundry to give MBAs real reps building and shipping with AI agents.", linkedin: "https://www.linkedin.com/in/jd-davenport/", photo: "/team/jd-davenport.jpg" },
   { name: "Rachel Moulton", role: "Chief of Staff", bio: "Rachel is involved in healthcare analytics and product management with a background in public health. She's focused on improving healthcare delivery through data and strategy and hopes to drive meaningful change in healthcare outcomes and experiences.", linkedin: "https://www.linkedin.com/in/rachel-moulton", photo: "/team/rachel-moulton.jpg" },
   { name: "Sophia Strong", role: "Undergraduate", bio: "Sophia is a BYU Strategic Management student and a product management intern at BambooHR, with prior product work at Entrata, Leland, and Bankaroo.", linkedin: "https://www.linkedin.com/in/sophia-strong/", photo: "/team/sophia-strong.jpg" },
   { name: "Corbin Sterling", role: "Director of Marketing", bio: "Corbin is a BYU MBA candidate concentrating in Marketing and Strategy, with a creative background rooted in music and movie production. He is focused on using AI tools to sharpen how brands market and decide what to build next.", linkedin: "https://www.linkedin.com/in/corbinsterling/", photo: "/team/corbin-sterling.jpg" },
@@ -361,17 +373,17 @@ export const TEAM: Member[] = [
   { name: "Ella Moore", role: "Undergraduate", bio: "Ella is a BYU student, president of the BYU Product Management Association, and an incoming summer analyst at Goldman Sachs.", linkedin: "https://www.linkedin.com/in/ella-moore24/", photo: "/team/ella-moore.jpg" },
   { name: "Felix Vivanco Salazar", role: "Alumni Relations", bio: null, linkedin: "https://www.linkedin.com/in/felix-vivanco/", photo: "/team/felix-vivanco-salazar.jpg" },
   { name: "Tulga Ganbat", role: "Product Evaluation and QC", bio: "Tulga is an MBA candidate in Marketing and Product Management with a bachelor's degree in Statistics and Data Science. He is the founder of Orchuul.mn, Mongolia's first and largest AI-powered translation marketplace, which he independently built and scaled.", linkedin: "https://www.linkedin.com/in/tulgaganbat", photo: "/team/tulga-ganbat.jpg" },
-  { name: "Calvin Nickerson", role: "Undergraduate", bio: null, linkedin: "https://www.linkedin.com/in/calvin-nickerson/", photo: "/team/calvin-nickerson.jpg" },
+  { name: "Calvin Nickerson", role: "Undergraduate", bio: "Calvin is a Finance student at BYU Marriott and an aspiring management consultant, currently working with Solar Grazing Solutions.", linkedin: "https://www.linkedin.com/in/calvin-nickerson/", photo: "/team/calvin-nickerson.jpg" },
   { name: "Jake Healey", role: "AI Tooling", bio: null, linkedin: "https://www.linkedin.com/in/jacobjhealey/", photo: "/team/jake-healey.jpg" },
   { name: "Sylvan Scott", role: "Thought Leadership", bio: null, linkedin: "https://www.linkedin.com/in/sylvan-j-scott/", photo: "/team/sylvan-scott.jpg" },
-  { name: "Jordan Faust", role: "Undergraduate", bio: null, linkedin: "https://www.linkedin.com/in/jordan-faust-5a1028207/", photo: "/team/jordan-faust.jpg" },
+  { name: "Jordan Faust", role: "Undergraduate", bio: "Jordan is a BYU Strategic Management student working in AI product management at Leland.", linkedin: "https://www.linkedin.com/in/jordan-faust-5a1028207/", photo: "/team/jordan-faust.jpg" },
   { name: "Chase Clement", role: "Finance", bio: "Chase is an MBA candidate concentrating in Finance with a background in enterprise systems implementation and financial operations. A former Division 1 javelin thrower, he is now launching a mortgage company built on AI-driven automation.", linkedin: "https://www.linkedin.com/in/chase-clement9", photo: "/team/chase-clement.jpg" },
   { name: "John Passey", role: "UX and UI Design", bio: "John is an MBA candidate at BYU Marriott with five years of experience making health insurance easier to understand, navigate, and use.", linkedin: "https://www.linkedin.com/in/johnpassey/", photo: "/team/john-passey.jpg" },
-  { name: "Carter King", role: "Undergraduate", bio: null, linkedin: "https://www.linkedin.com/in/carter-king1/", photo: "/team/carter-king.jpg" },
+  { name: "Carter King", role: "Undergraduate", bio: "Carter is a Strategy student at BYU and a builder in Sandbox.", linkedin: "https://www.linkedin.com/in/carter-king1/", photo: "/team/carter-king.jpg" },
   { name: "Tyler Doman", role: "Education and Training", bio: "Tyler is a BYU MBA ('27) on the entrepreneurship track with a background in strategy and growth. He is pursuing Entrepreneurship Through Acquisition, where he plans to acquire a small business and use AI implementation to professionalize and scale its operations.", linkedin: "https://www.linkedin.com/in/tyler-doman/", photo: "/team/tyler-doman.jpg" },
-  { name: "Tate Stevens", role: "Undergraduate", bio: null, linkedin: "https://www.linkedin.com/in/tate-stevens-604299222/", photo: "/team/tate-stevens.jpg" },
+  { name: "Tate Stevens", role: "Undergraduate", bio: "Tate is a BYU student, VP of the Management Consulting Association, and an AI solutions architect at Cicero, part of MGT.", linkedin: "https://www.linkedin.com/in/tate-stevens-604299222/", photo: "/team/tate-stevens.jpg" },
   { name: "Enoch Councill", role: "Ambassador, Cougar Capital", bio: "Enoch is a BYU MBA candidate and the Director of AI at Cougar Capital, the student-run investment fund, where he builds tools to speed up and sharpen the VC process. Before his MBA he worked in technology implementations, pre-sales, and customer success within B2B SaaS.", linkedin: "https://www.linkedin.com/in/enochcouncill/", photo: "/team/enoch-councill.jpg" },
-  { name: "Kainoa Shintaku", role: "Undergraduate", bio: null, linkedin: "https://www.linkedin.com/in/kainoa-shintaku-6b23472a7/", photo: "/team/kainoa-shintaku.jpg" },
+  { name: "Kainoa Shintaku", role: "Undergraduate", bio: "Kainoa is a BYU Marriott student focused on AI architecture and implementation, currently with TechForce Advisors.", linkedin: "https://www.linkedin.com/in/kainoa-shintaku-6b23472a7/", photo: "/team/kainoa-shintaku.jpg" },
   { name: "Jorge Beltran", role: "Ambassador, Savage", bio: "Jorge is an MBA candidate at BYU Marriott and a Finance Intern at Ford Motor Company. Previously he led organizations through ERP transformations as a Senior Supply Chain Consultant.", linkedin: "https://www.linkedin.com/in/jorge-u-beltran/", photo: "/team/jorge-beltran.jpg" },
 ]
 
