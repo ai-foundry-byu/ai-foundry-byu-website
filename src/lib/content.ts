@@ -528,7 +528,7 @@ export const CULTURE_PRINCIPLES: Principle[] = [
 
 export const CULTURE_PRACTICES: Principle[] = [
   {
-    title: "Ask first",
+    title: "Ask for feedback",
     blurb:
       "Everyone here is empowered to give feedback, and the stronger habit is asking for it. The norm at the Foundry is to ask first.",
     credit: "Ours",
