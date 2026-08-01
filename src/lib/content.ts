@@ -33,7 +33,7 @@ export const HERO_STATEMENT = "An AI-native product studio and consultancy."
  *  is, on first reference and in full, per the naming rule above. Anything about
  *  who builds and what ships belongs further down the page, not here. */
 export const HERO_SUPPORT =
-  "An official experiential learning program of the " + SCHOOL_FULL + "."
+  "An experiential learning program of the " + SCHOOL_FULL + "."
 
 /* ────────────────────────────────────────────────────────────
    Mission, vision, values. VERBATIM. Do not edit without Brandon.
