@@ -54,9 +54,8 @@ export default function AboutPage() {
 
         <section className="surface-paper">
           <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
-            <p className="eyebrow text-text-accent">The team</p>
-            <h2 className="mt-4 font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-4xl">
-              Names you can look up.
+            <h2 className="font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-4xl">
+              The team
             </h2>
 
             <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
