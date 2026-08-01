@@ -135,20 +135,20 @@ export const BUILDERS_HEADLINE =
  * here: the reader does not need to know what a pod is to understand that the
  * mix of people is matched to the job.
  *
- * The undergraduates are not counted in this line. Brandon's call, made when
- * the roster was MBAs only. The /about roster now interleaves eight
- * undergraduates among the fifteen MBAs (Scott, 2026-08-01), so "15 MBAs"
- * here is still true but no longer the whole roster.
+ * "30 students", not "15 MBAs", per Scott 2026-08-01: the roster now includes
+ * the undergraduates, and the count covers the whole program rather than the
+ * MBA cohort alone.
  *
- * "15" as a numeral, not spelled out, also Brandon's call. It is a credibility
- * stat and numerals read as more concrete than words for a number a buyer is
- * meant to weigh. Note that "(Approximately two minutes)" under the quote button
- * is still spelled out, so the site is not internally consistent on this. That is
- * defensible, since one is a claim about scale and the other is an aside about
- * effort, but if it ever gets normalised, normalise it everywhere at once.
+ * "30" as a numeral, not spelled out, per Brandon's original call on "15". It
+ * is a credibility stat and numerals read as more concrete than words for a
+ * number a buyer is meant to weigh. Note that "(Approximately two minutes)"
+ * under the quote button is still spelled out, so the site is not internally
+ * consistent on this. That is defensible, since one is a claim about scale and
+ * the other is an aside about effort, but if it ever gets normalised,
+ * normalise it everywhere at once.
  */
 export const BUILDERS_DETAIL =
-  "15 MBAs from a range of disciplines and backgrounds, working in velocity pods matched to the expertise your project needs."
+  "30 students from a range of disciplines and backgrounds, working in velocity pods matched to the expertise your project needs."
 
 /**
  * The section heading on the landing page.
