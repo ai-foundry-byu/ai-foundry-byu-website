@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
-import { EmbeddedForm } from "@/components/EmbeddedForm"
-import { FORMS, NETWORK_INTERESTS, SCHOOL_FULL } from "@/lib/content"
+import { NetworkForm } from "@/components/NetworkForm"
+import { NETWORK_INTERESTS, SCHOOL_FULL } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Join the network",
@@ -114,8 +114,8 @@ export default function NetworkPage() {
             someone already committed; these are the offer itself.
 
             The lead paragraph that used to introduce all of this is gone from
-            the page and from content.ts. It is not lost: it is the Google Form's
-            own description, so it renders inside the plate below, once, in the
+            the page and from content.ts. It is not lost: it is NetworkForm's
+            own intro line, so it renders inside the plate below, once, in the
             place where it is actually load-bearing.
             ──────────────────────────────────────────────────── */}
         <section className="surface-paper">
@@ -225,17 +225,10 @@ export default function NetworkPage() {
               both, and the desktop case is the one that was broken.
             */}
             <div className="mt-16">
-              {/* Six questions. Measured content: about 1515px at a 390px
-                  viewport, about 1415px from md up. These sit roughly 85px
-                  above that, which clears Submit and the help icon without
-                  leaving a few hundred pixels of dead white under the form.
-                  1460 at md was tried first and left only 45px, which is too
-                  thin to survive Google changing anything. */}
-              <EmbeddedForm
-                src={FORMS.network}
-                title="Join the network"
-                heightClass="h-[1600px] sm:h-[1540px] md:h-[1500px]"
-              />
+              {/* Native form posting to /api/network, which upserts into
+                  Supabase keyed on email. Its height is its content's height,
+                  so the measured-iframe bookkeeping the embed needed is gone. */}
+              <NetworkForm />
               <p className="mt-6 text-center text-base text-text-primary opacity-80">
                 No spam. Leave at any time.
               </p>

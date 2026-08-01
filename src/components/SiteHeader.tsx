@@ -14,11 +14,10 @@ import { NAV, NAV_CTA, PROGRAM, SCHOOL_FULL } from "@/lib/content"
  * component, so that one leaf hydrates. It used to be true that this header
  * shipped no JavaScript of its own and that is no longer the case.
  *
- * The mark is the real co-brand lockup produced for the program, in its white
- * reversal. BYU's rule is that marks appear in navy or white only, so a
- * single-colour white reversal is the sanctioned treatment on a dark surface.
- * The letterforms are untouched: `scripts/build-brand-assets.py` knocks the
- * white background out and recolours, it never redraws.
+ * The mark is the BYU Marriott + AI Foundry wordmark carried over from the
+ * original site, in its light reversal for dark surfaces. BYU's rule is that
+ * marks appear in navy or white only, so the white treatment is the
+ * sanctioned one here.
  */
 export function SiteHeader() {
   return (
@@ -26,9 +25,9 @@ export function SiteHeader() {
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center">
           <Image
-            src="/brand/wordmark-glyph-white.png"
+            src="/byu-marriott-ai-foundry-light.png"
             alt={`${SCHOOL_FULL}, ${PROGRAM}`}
-            width={3407}
+            width={3305}
             height={360}
             priority
             className="h-6 w-auto md:h-9"

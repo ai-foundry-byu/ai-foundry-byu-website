@@ -384,25 +384,17 @@ export const FACULTY = {
 /* ────────────────────────────────────────────────────────────
    Forms
 
-   Deliberately no backend, no database, and no environment variables:
-   the whole class of deploy failure that broke the previous project
-   cannot happen here. Both forms are embedded from a hosted form tool.
+   As of 2026-08-01 the forms are native components (QuoteForm, NetworkForm)
+   posting to /api/quote and /api/network, which write to the same Supabase
+   project the previous site used. The embedded Google Forms era, including
+   the FORMS url map that lived here, is recorded in FORMS.md; the Google
+   Forms themselves still exist under aifoundry.byu@gmail.com but nothing on
+   the site renders them.
 
-   To go live, paste the share URL. Nothing else needs to change.
+   The deploy now needs two env vars, SUPABASE_URL and SUPABASE_SERVICE_KEY.
+   Both API routes create their client lazily at request time, so a build
+   without them still succeeds; only a submission fails.
    ──────────────────────────────────────────────────────────── */
-
-export const FORMS: { intake: string | null; network: string | null } = {
-  // "AI Foundry: Request a quote", owned by aifoundry.byu@gmail.com, filed in
-  // 02 Deals & Clients. Built by scripts/create-google-forms.gs on 2026-07-29.
-  // Responses land in "AI Foundry: Quote requests" in the same folder.
-  intake:
-    "https://docs.google.com/forms/d/e/1FAIpQLSc0fG4nrUqMch40-KFW6gdF4lTzibDxxORGlB8yXCfZDuoj3g/viewform?embedded=true",
-  // "AI Foundry: Join the network", same owner and folder. Six fields, only the
-  // email required. Responses land in "AI Foundry: Network signups", which is
-  // also the merge target for JD's existing list. See FORMS.md.
-  network:
-    "https://docs.google.com/forms/d/e/1FAIpQLSc9FWFpkqD4R81s-WDh7Gqzf-WfwyfDog7NnRvmZC87fc5bLQ/viewform?embedded=true",
-}
 
 /* ────────────────────────────────────────────────────────────
    Navigation

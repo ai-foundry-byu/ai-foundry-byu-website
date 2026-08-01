@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { SiteHeader } from "@/components/SiteHeader"
 import { SiteFooter } from "@/components/SiteFooter"
-import { EmbeddedForm } from "@/components/EmbeddedForm"
-import { FORMS, QUOTE_LEAD, QUOTE_STEPS, SCHOOL_FULL } from "@/lib/content"
+import { QuoteForm } from "@/components/QuoteForm"
+import { QUOTE_LEAD, QUOTE_STEPS, SCHOOL_FULL } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Request a quote",
@@ -38,19 +38,10 @@ export default function QuotePage() {
           </div>
 
           <div className="mt-14">
-            {/*
-              Eight questions. Heights measured against a real 390px viewport,
-              not guessed: the form's content runs about 1895px there, so 1950
-              clears Submit with roughly 55px of slack. It shortens as the
-              breakpoints rise because Google's card caps at 640px wide, so the
-              labels stop rewrapping once the column can hold that.
-            */}
-            <EmbeddedForm
-              src={FORMS.intake}
-              title="Request a quote"
-              heightClass="h-[1950px] sm:h-[1890px] md:h-[1840px]"
-              tone="inverse"
-            />
+            {/* Native form posting to /api/quote, which writes to Supabase.
+                On this navy band it renders as a white plate, exactly as the
+                embedded form it replaced did. */}
+            <QuoteForm />
           </div>
 
           {/* After the form, not before it. Someone who is ready to fill it in
