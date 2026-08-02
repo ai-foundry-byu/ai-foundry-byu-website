@@ -128,6 +128,57 @@ export const BUILDERS_EYEBROW = "The builders"
 export const BUILDERS_HEADLINE =
   "Our builders have shipped at Google, Deloitte, National Grid, Ford, BambooHR, Leland, Cicero, Redo, and Yatta Golf."
 
+/* ────────────────────────────────────────────────────────────
+   Showcase: reference builds
+
+   The gallery that backs the proof band with artifacts. Same honesty rules
+   as the employer list: these are products built by people on /about (both
+   are Scott's), stated as exactly that, no client claimed. When a client
+   agrees to be named (Breckenridge is the likely first), it joins as a
+   third card and the grid goes three across.
+
+   Images are cropped screenshots of the live products in public/showcase/,
+   1200x750 (16:10). The French 80/20 shot is deliberately cropped to the
+   product panel so no account name or personal data appears.
+   ──────────────────────────────────────────────────────────── */
+
+export type ShowcaseItem = {
+  name: string
+  blurb: string
+  tags: string[]
+  links: { href: string; label: string }[]
+  image: string
+}
+
+export const SHOWCASE_EYEBROW = "Reference builds"
+
+export const SHOWCASE_HEADING = "Products we have shipped."
+
+export const SHOWCASE_LEAD =
+  "Built by the people on the About page. Live and in use today."
+
+export const SHOWCASE: ShowcaseItem[] = [
+  {
+    name: "French 80/20",
+    blurb:
+      "An AI-native French learning app for web and iPhone, built around the words you actually use and a measured climb to 80% of everyday French.",
+    tags: ["Web", "iOS app"],
+    links: [{ href: "https://french8020.com", label: "french8020.com" }],
+    image: "/showcase/french8020.jpg",
+  },
+  {
+    name: "LawGrader / WriteGrader",
+    blurb:
+      "Agentic grading for legal and academic writing. It drafts the scores and the margin comments; the instructor keeps the final say on every grade.",
+    tags: ["Web", "AI grading"],
+    links: [
+      { href: "https://lawgrader.ai", label: "lawgrader.ai" },
+      { href: "https://writegrader.com", label: "writegrader.com" },
+    ],
+    image: "/showcase/lawgrader.jpg",
+  },
+]
+
 /**
  * "Velocity pods" is Brandon's term and is used deliberately. It is internal
  * language, so a first-time visitor will not know what a velocity pod is. The

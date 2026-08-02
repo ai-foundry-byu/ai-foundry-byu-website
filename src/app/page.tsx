@@ -17,9 +17,14 @@ import {
   QUOTE_CTA,
   QUOTE_CTA_NOTE,
   QUOTE_LEAD,
+  SHOWCASE,
+  SHOWCASE_EYEBROW,
+  SHOWCASE_HEADING,
+  SHOWCASE_LEAD,
   VALUES,
   VISION,
 } from "@/lib/content"
+import Image from "next/image"
 
 export default function HomePage() {
   return (
@@ -29,6 +34,7 @@ export default function HomePage() {
         <Hero />
         <MissionVisionValues />
         <Proof />
+        <Showcase />
         <GetAQuote />
       </main>
       <SiteFooter />
@@ -275,6 +281,90 @@ function Proof() {
               {PARTNER_DETAIL}
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ────────────────────────────────────────────────────────────
+   3b. Showcase: reference builds
+
+   Sits between the proof band and the quote section on purpose: Proof
+   makes resume claims, this backs them with artifacts, and the reader
+   arrives at the ask already convinced. White surface, so the page
+   rhythm runs white, tinted, white, navy.
+
+   Two wide cards while there are two cases; the grid goes three across
+   when the first nameable client project joins (see SHOWCASE in
+   content.ts for the rules).
+   ──────────────────────────────────────────────────────────── */
+
+function Showcase() {
+  return (
+    <section className="surface-paper">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+        <div className="text-center">
+          <p className="eyebrow text-text-accent">{SHOWCASE_EYEBROW}</p>
+          <h2 className="mt-4 font-serif text-3xl font-semibold tracking-[-0.02em] text-text-primary md:text-4xl">
+            {SHOWCASE_HEADING}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-text-primary opacity-80">
+            {SHOWCASE_LEAD}
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-8 md:grid-cols-2">
+          {SHOWCASE.map((item) => (
+            <article
+              key={item.name}
+              className="flex flex-col border border-border-subtle"
+            >
+              {/* 16:10, matching the 1200x750 source crops exactly, so
+                  object-cover never actually crops anything. */}
+              <div className="relative aspect-[8/5] bg-surface-inverse">
+                <Image
+                  src={item.image}
+                  alt={`Screenshot of ${item.name}`}
+                  fill
+                  sizes="(min-width: 768px) 560px, 90vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-6 md:p-8">
+                <h3 className="font-serif text-2xl font-semibold text-text-primary">
+                  {item.name}
+                </h3>
+                <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
+                  {item.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="flex items-center gap-2 text-sm font-semibold text-text-primary opacity-80"
+                    >
+                      <span aria-hidden className="ember-bar h-1.5 w-1.5 shrink-0" />
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-base leading-relaxed text-text-primary opacity-90">
+                  {item.blurb}
+                </p>
+                <p className="mt-auto flex flex-wrap gap-x-6 pt-5">
+                  {item.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-ember text-base font-semibold"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
