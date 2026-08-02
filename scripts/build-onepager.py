@@ -24,9 +24,22 @@ def esc(s):
     return html.escape(s or "")
 
 
-# Leadership = everything that is not "Undergraduate"
-leads = [m for m in TEAM if m["role"] != "Undergraduate"]
-undergrads = [m for m in TEAM if m["role"] == "Undergraduate"]
+# One team. Interleave so the roster does not read as two tiers, and show no
+# Foundry titles at all: name plus bio only.
+_a = [m for m in TEAM if m["role"] != "Undergraduate"]
+_b = [m for m in TEAM if m["role"] == "Undergraduate"]
+ROSTER = []
+if _b:
+    step = len(_a) / len(_b)
+    bi, acc = 0, step
+    for i, m in enumerate(_a):
+        ROSTER.append(m)
+        if bi < len(_b) and i + 1 >= acc:
+            ROSTER.append(_b[bi]); bi += 1; acc += step
+    ROSTER.extend(_b[bi:])
+else:
+    ROSTER = list(_a)
+assert len(ROSTER) == len(TEAM), (len(ROSTER), len(TEAM))
 
 
 def person_card(m, show_role=True):
@@ -112,8 +125,7 @@ li:before {{ content: ""; position: absolute; left: 0; top: 5.5px;
 .ph {{ width: 100%; height: 100%; background: #E8EAED; }}
 """
 
-lead_cards = "\n".join(person_card(m) for m in leads)
-ug_cards = "\n".join(person_card(m, show_role=False) for m in undergrads)
+team_cards = "\n".join(person_card(m, show_role=False) for m in ROSTER)
 
 DOC = f"""<!doctype html>
 <html><head><meta charset="utf-8"><title>AI Foundry</title><style>{CSS}</style></head>
@@ -223,27 +235,18 @@ would take.</p>
 <div class="appendix">
   <div class="eyebrow" style="margin-top:0">Appendix</div>
   <h2>The team.</h2>
-  <p style="max-width:86%">AI Foundry is 30 builders working in mixed teams. MBAs cover
-  product, deals, marketing, finance, and design; undergraduate builders do the engineering.
-  Delivery teams are staffed from both.</p>
+  <p style="max-width:86%">AI Foundry is 30 builders working in mixed teams, across product,
+  engineering, deals, marketing, finance, and design. Every engagement is staffed from the
+  whole bench.</p>
 
-  <div class="eyebrow">MBA leadership</div>
-  <div class="grid4">{lead_cards}</div>
-
-  <div class="ugsec">
-    <div class="eyebrow" style="margin-top:0">Undergraduate builders</div>
-    <p style="max-width:86%">Undergraduate builders come from the Marriott School's strategy
-    and applied AI coursework. They are staffed onto delivery teams alongside the MBAs and do
-    the engineering.</p>
-    <div class="grid4">{ug_cards}</div>
-  </div>
+  <div class="grid4">{team_cards}</div>
 </div>
 
 </body></html>"""
 
 out = HERE / "AI-Foundry-onepager.html"
 out.write_text(DOC, encoding="utf-8")
-print("wrote", out, f"({len(leads)} leads, {len(undergrads)} undergrads)")
+print("wrote", out, f"({len(TEAM)} people, single team grid)")
 missing = [m["name"] for m in TEAM if not m["bio"]]
 if missing:
     print("MISSING BIOS:", ", ".join(missing))
