@@ -387,6 +387,41 @@ body {
   );
 }
 
+/* ── Hero sparks: tiny crisp motes rising off the forge.
+   Carried over from the original site. Sparse, low opacity, never
+   blurred; tuned by per-spark CSS variables set in Sparks.tsx. ── */
+@keyframes spark-rise {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--spark-peak, 0.65);
+  }
+  85% {
+    opacity: 0.08;
+  }
+  100% {
+    transform: translate3d(var(--spark-drift, -24px), -420px, 0);
+    opacity: 0;
+  }
+}
+.spark {
+  position: absolute;
+  bottom: -6px;
+  border-radius: 9999px;
+  background: var(--ember);
+  pointer-events: none;
+  animation: spark-rise var(--spark-dur, 9s) linear infinite;
+  animation-delay: var(--spark-delay, 0s);
+  will-change: transform, opacity;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spark {
+    display: none;
+  }
+}
+
 /* ── Selection ── */
 ::selection {
   background: var(--ember);

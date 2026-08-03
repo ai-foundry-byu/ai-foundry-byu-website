@@ -27,6 +27,7 @@ import {
 } from "@/lib/content"
 import Link from "next/link"
 import { ShowcaseCard } from "@/components/ShowcaseCard"
+import { Sparks } from "@/components/Sparks"
 import { GraduationCap, Layers, Workflow, type LucideIcon } from "lucide-react"
 
 /**
@@ -73,6 +74,9 @@ function Hero() {
         this section has to move. That was the point of building it this way.
       */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10" />
+
+      {/* Embers rising off the forge, carried over from the original site. */}
+      <Sparks />
 
       <div className="mx-auto flex max-w-6xl flex-col items-center px-6 py-28 text-center md:py-40">
         {/* The AI glyph that used to sit above the headline was removed
