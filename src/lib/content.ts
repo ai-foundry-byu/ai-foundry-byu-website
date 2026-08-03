@@ -675,6 +675,17 @@ export const ROADMAP_LEAD =
 export const CERT_GOAL = 10
 
 /**
+ * The contract target, and the date it is measured on.
+ *
+ * Deliberately NOT rendered on the public roadmap. It is the internal wall
+ * metric, and a prospective client reading the current number against it
+ * would be the most expensive sentence this site could publish. It lives on
+ * the gated operating view instead.
+ */
+export const CONTRACT_GOAL = 20
+export const CONTRACT_DEADLINE = "2026-09-01"
+
+/**
  * `stat` names a field on the live stats object, so the number is read
  * rather than written. `null` means the item has no number yet, which is
  * honest and preferable to inventing one.
@@ -734,7 +745,6 @@ export const ROADMAP: RoadmapPhase[] = [
         detail:
           "Organizations committing project work, mentorship, and access to the cohort.",
         status: "active",
-        stat: { field: "foundingPartners", caption: "engaged" },
       },
     ],
   },
@@ -744,6 +754,12 @@ export const ROADMAP: RoadmapPhase[] = [
     subtitle: "Reach, presence, and the first events",
     items: [
       {
+        name: "Reaching the BYU Marriott cohort directly",
+        detail:
+          "Meeting MBAs where they already are, in the channels the school already runs, rather than waiting for them to find the program.",
+        status: "active",
+      },
+      {
         name: "The network",
         detail:
           "Alumni, faculty, founders, and builders who want the digest, the events, or first access to the cohort when they are hiring.",
@@ -751,18 +767,17 @@ export const ROADMAP: RoadmapPhase[] = [
         stat: { field: "network", caption: "people in the network" },
       },
       {
-        name: "Project pipeline",
-        detail:
-          "Inbound proposals from this site, routed to scoping and matched to a velocity pod.",
-        status: "active",
-        stat: { field: "proposals", caption: "proposals received" },
-      },
-      {
         name: "Marketing and LinkedIn",
         detail:
           "Building the program's presence across BYU Marriott and the wider AI and venture community.",
         status: "active",
         stat: { field: "linkedinFollowers", caption: "followers" },
+      },
+      {
+        name: "Client project pipeline",
+        detail:
+          "Scoping inbound work from this site and matching each project to a velocity pod. First engagements are being scoped now.",
+        status: "active",
       },
       {
         name: "Launch party",

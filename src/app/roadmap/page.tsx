@@ -95,13 +95,22 @@ function Hero() {
 type Cell = { label: string; value: number | null; caption: string }
 
 function Counts({ stats }: { stats: RoadmapStats }) {
+  /*
+   * Six counts became four, and the two that went are the point.
+   *
+   * A number belongs here only if it is both true and worth a stranger's
+   * attention. Founding partners currently reads zero and genuine inbound
+   * proposals reads one, so as counters they say "nothing is happening here"
+   * to the exact reader we want. Both remain on the roadmap below as items
+   * with an honest status, which is the difference between not boasting and
+   * not disclosing. Nothing is hidden: the internal operating view carries
+   * every figure, including the ones that hurt.
+   */
   const cells: Cell[] = [
     { label: "Network", value: stats.network, caption: "people in the network" },
-    { label: "LinkedIn", value: stats.linkedinFollowers, caption: "followers" },
-    { label: "Proposals", value: stats.proposals, caption: "projects submitted" },
     { label: "Applications", value: stats.applications, caption: "to the cohort" },
+    { label: "LinkedIn", value: stats.linkedinFollowers, caption: "followers" },
     { label: "Advisory board", value: stats.advisoryBoard, caption: "confirmed" },
-    { label: "Founding partners", value: stats.foundingPartners, caption: "engaged" },
   ]
 
   return (
@@ -110,7 +119,8 @@ function Counts({ stats }: { stats: RoadmapStats }) {
         {/* gap-px over a bordered background, so the hairlines between cells
             are the background showing through rather than six sets of
             borders that would double up where they meet. */}
-        <div className="grid gap-px border border-border-on-inverse bg-border-on-inverse sm:grid-cols-2 lg:grid-cols-3">
+        {/* Four cells, so four across at desktop rather than a 3+1 orphan row. */}
+        <div className="grid gap-px border border-border-on-inverse bg-border-on-inverse sm:grid-cols-2 lg:grid-cols-4">
           {cells.map((cell) => (
             <div
               key={cell.label}

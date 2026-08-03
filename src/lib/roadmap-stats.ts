@@ -17,12 +17,42 @@ import { createClient } from "@supabase/supabase-js"
 export type RoadmapStats = {
   network: number | null
   applications: number | null
+  /** Genuine inbound only. Test and self-submitted rows are excluded. */
   proposals: number | null
+  /** Rows excluded as test data, so the filter itself stays auditable. */
+  proposalsExcluded: number | null
+  /** Proposals that have become signed work. The contract target measures this. */
+  contractsSigned: number | null
   advisoryBoard: number | null
   foundingPartners: number | null
   linkedinFollowers: number | null
   claudeArchCerts: number | null
   readAt: Date
+}
+
+/** Signed work. Anything short of these is still a conversation. */
+const SIGNED = new Set(["signed", "contracted", "won", "active"])
+
+/**
+ * Rows that are ours, not a client's.
+ *
+ * The proposals table is fed by a public form that was smoke-tested through
+ * production, so it holds seeded rows alongside real inbound. Counting the
+ * raw table published five proposals when one was genuine: two were
+ * test-smoke@example.com, one was a smoke-test agent, and one was JD
+ * submitting to his own site while checking the form worked.
+ *
+ * This is the same failure as counting the advisory pipeline as the advisory
+ * board, and it fails the same way: quietly, and in our favour. The filter is
+ * therefore deliberately blunt and is applied before any number is published.
+ */
+const TEST_EMAIL = /(^|@)(test|smoke)|test-smoke|smoketest|@example\.(com|org)|@clawd\.ai/i
+const OWN_EMAIL = /jddavenport|@byu\.edu$|aifoundry/i
+
+function isTestRow(email: unknown): boolean {
+  const e = String(email ?? "").trim().toLowerCase()
+  if (!e) return true // no contact address is not a lead
+  return TEST_EMAIL.test(e) || OWN_EMAIL.test(e)
 }
 
 /** Every field null. What we render when there is no database to talk to. */
@@ -31,6 +61,8 @@ function emptyStats(): RoadmapStats {
     network: null,
     applications: null,
     proposals: null,
+    proposalsExcluded: null,
+    contractsSigned: null,
     advisoryBoard: null,
     foundingPartners: null,
     linkedinFollowers: null,
@@ -121,10 +153,30 @@ export async function getRoadmapStats(): Promise<RoadmapStats> {
     return latest
   }
 
-  const [network, applications, proposals, people, metrics] = await Promise.all([
+  /**
+   * Proposals, split into genuine inbound, excluded test rows, and signed work.
+   * Read as rows rather than a head count because the split needs the columns.
+   */
+  async function proposals() {
+    const { data, error } = await supabase
+      .from("project_proposals")
+      .select("email,status")
+    if (error) {
+      console.error("roadmap stats: project_proposals:", error.message)
+      return null
+    }
+    const real = data.filter((r) => !isTestRow(r.email))
+    return {
+      real: real.length,
+      excluded: data.length - real.length,
+      signed: real.filter((r) => SIGNED.has(String(r.status).toLowerCase())).length,
+    }
+  }
+
+  const [network, applications, deals, people, metrics] = await Promise.all([
     count("network_members"),
     count("foundry_applications"),
-    count("project_proposals"),
+    proposals(),
     tiers(),
     weekly(),
   ])
@@ -132,7 +184,9 @@ export async function getRoadmapStats(): Promise<RoadmapStats> {
   return {
     network,
     applications,
-    proposals,
+    proposals: deals ? deals.real : null,
+    proposalsExcluded: deals ? deals.excluded : null,
+    contractsSigned: deals ? deals.signed : null,
     advisoryBoard: people ? people.advisory : null,
     foundingPartners: people ? people.founding : null,
     linkedinFollowers: metrics.linkedin_followers ?? null,
