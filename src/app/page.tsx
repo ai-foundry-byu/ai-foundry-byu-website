@@ -25,6 +25,18 @@ import {
   VISION,
 } from "@/lib/content"
 import Image from "next/image"
+import { GraduationCap, Layers, Workflow, type LucideIcon } from "lucide-react"
+
+/**
+ * Icons are presentation, not copy, so the mapping lives here rather than in
+ * content.ts. Keyed by offering name; a renamed offering falls back to Layers,
+ * so a copy edit can never crash the page.
+ */
+const OFFERING_ICONS: Record<string, LucideIcon> = {
+  "Full-stack applications": Layers,
+  "AI integration and orchestration": Workflow,
+  "AI enablement and training": GraduationCap,
+}
 
 export default function HomePage() {
   return (
@@ -413,6 +425,20 @@ function GetAQuote() {
                 key={offering.name}
                 className="flex flex-col bg-surface-inverse p-8"
               >
+                {/* One Lucide icon per offering, keyed by name below. White
+                    stroke on navy, decorative, so aria-hidden: the heading
+                    under it already names the card. */}
+                <span aria-hidden className="mb-5 flex justify-center">
+                  {(() => {
+                    const IconFor = OFFERING_ICONS[offering.name] ?? Layers
+                    return (
+                      <IconFor
+                        className="h-8 w-8 text-text-on-inverse"
+                        strokeWidth={1.5}
+                      />
+                    )
+                  })()}
+                </span>
                 {/*
                   22px at md, up from 20px, and it must stay on one line.
 
