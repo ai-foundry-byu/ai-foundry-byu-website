@@ -161,7 +161,7 @@ export const SHOWCASE_LEAD =
 export const WORK_HEADING = "Built here. Running now."
 
 export const WORK_LEAD =
-  "Every entry is live and in use today, built by the people on the About page. Client engagements join this page as clients agree to be named."
+  "Every entry is live and in use today, built by the people on the About page."
 
 export const WORK_CTA = { label: "See all our work", href: "/work" }
 
