@@ -61,17 +61,39 @@ export async function getRoadmapStats(): Promise<RoadmapStats> {
     return count ?? 0
   }
 
-  /** People per tier. One query, since both tiers come off the same table. */
+  /**
+   * People per tier, COUNTING ONLY THOSE WHO HAVE ACTUALLY SAID YES.
+   *
+   * The tier column is a pipeline stage, not a commitment: `advisory_t1`
+   * holds prospects and warm leads alongside real board members. Counting
+   * the tier alone published eight advisory board members when three had
+   * confirmed, and it counted a person whose acceptance was later retracted
+   * as a fabricated meeting-note extraction.
+   *
+   * So the status column is the gate, and it is an allowlist rather than a
+   * denylist on purpose. A status nobody has thought about yet must fail
+   * closed and go uncounted. The failure mode we are protecting against is
+   * overclaiming a credential in public, and undercounting our own board is
+   * a far cheaper mistake than naming someone who never agreed.
+   *
+   * A verbal yes does not count either. Aaron Arnoldsen has been a verbal
+   * commitment since 2026-06-15 with the written invite still unsent; until
+   * that is signed he is a commitment we owe, not a credential we hold.
+   */
+  const COMMITTED = new Set(["confirmed", "signed", "active"])
+
   async function tiers(): Promise<{ advisory: number; founding: number } | null> {
-    const { data, error } = await supabase.from("af_people").select("tier")
+    const { data, error } = await supabase.from("af_people").select("tier,status")
     if (error) {
       console.error("roadmap stats: af_people:", error.message)
       return null
     }
-    const has = (...t: string[]) => data.filter((r) => t.includes(r.tier)).length
+    const committed = data.filter((r) => COMMITTED.has(String(r.status)))
+    const inTier = (...t: string[]) =>
+      committed.filter((r) => t.includes(r.tier)).length
     return {
-      advisory: has("advisory_t1", "advisory_t2"),
-      founding: has("founding_lead"),
+      advisory: inTier("advisory_t1", "advisory_t2"),
+      founding: inTier("founding_lead"),
     }
   }
 
