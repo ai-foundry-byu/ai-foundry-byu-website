@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { NAV, PROGRAM, QUOTE_CTA, SCHOOL_FULL } from "@/lib/content"
+import { NAV, PROGRAM, QUOTE_CTA, ROADMAP_LINK, SCHOOL_FULL } from "@/lib/content"
 
 /**
  * Footer. Navy surface, so every text colour here comes from the
@@ -46,6 +46,15 @@ export function SiteFooter() {
                   className="text-base text-text-on-inverse transition-opacity hover:opacity-70"
                 >
                   {QUOTE_CTA.label}
+                </Link>
+              </li>
+              {/* Footer only, never the top bar. See the note on ROADMAP_LINK. */}
+              <li>
+                <Link
+                  href={ROADMAP_LINK.href}
+                  className="text-base text-text-on-inverse transition-opacity hover:opacity-70"
+                >
+                  {ROADMAP_LINK.label}
                 </Link>
               </li>
             </ul>

@@ -647,3 +647,174 @@ export const NAV: NavLink[] = [
 export const NAV_CTA: NavLink = { label: "Request a proposal", href: "/#quote" }
 
 export const QUOTE_CTA: NavLink = { label: "Request a proposal", href: "/quote" }
+
+/* ────────────────────────────────────────────────────────────
+   Roadmap
+
+   What the program is building, in three phases, at /roadmap.
+
+   The counts on that page are NOT here: they are read live from the
+   database at request time (see src/lib/roadmap-stats.ts). Only the
+   things a human decides live in this file. That split is the whole
+   point of the page. A number nobody has to remember to update cannot
+   go stale, and a phase status nobody can fake cannot be optimistic.
+
+   So: if you are tempted to hardcode a count below, read the stat from
+   the database instead. If it is not in the database yet, leave the
+   item without a stat rather than typing a number that will rot.
+   ──────────────────────────────────────────────────────────── */
+
+export const ROADMAP_EYEBROW = "Roadmap"
+
+export const ROADMAP_HEADING = "What we are building, and where it stands."
+
+export const ROADMAP_LEAD =
+  "Three phases, in order. The counts on this page are read from our own systems each time it loads, so what you see is the current number and not a figure from the last time somebody updated a slide."
+
+/** The cert goal. Referenced by the page for its progress bar. */
+export const CERT_GOAL = 10
+
+/**
+ * `stat` names a field on the live stats object, so the number is read
+ * rather than written. `null` means the item has no number yet, which is
+ * honest and preferable to inventing one.
+ *
+ * `status` is the one genuinely hand-maintained field on this page. It is
+ * a judgement, not a measurement, so it cannot be derived. Keep it honest:
+ * "live" means a visitor can use it today, "active" means work is
+ * happening this month, "planned" means it is agreed but not started.
+ */
+export type RoadmapStatus = "live" | "active" | "planned"
+
+export type RoadmapItem = {
+  name: string
+  detail: string
+  status: RoadmapStatus
+  /** Field on the live stats object, and the caption to read it under. */
+  stat?: { field: string; caption: string }
+  /** Renders a progress bar toward CERT_GOAL instead of a plain count. */
+  goal?: boolean
+}
+
+export type RoadmapPhase = {
+  n: number
+  title: string
+  subtitle: string
+  items: RoadmapItem[]
+}
+
+export const ROADMAP: RoadmapPhase[] = [
+  {
+    n: 1,
+    title: "Foundation",
+    subtitle: "Identity, leadership, and credentials",
+    items: [
+      {
+        name: "Mission, brand, and website",
+        detail:
+          "Mission and vision decided and proofed. This site is live on the BYU domain, with the proposal and network forms writing to our own database.",
+        status: "live",
+      },
+      {
+        name: "Claude Architect certification",
+        detail:
+          "The cohort certifies on the frontier agent tooling we build with. Leadership first, then out to the wider roster.",
+        status: "active",
+        goal: true,
+      },
+      {
+        name: "Advisory board",
+        detail:
+          "Senior advisors across AI, venture, and industry, recruited to advise the program rather than to decorate a page.",
+        status: "active",
+        stat: { field: "advisoryBoard", caption: "confirmed" },
+      },
+      {
+        name: "Founding partners",
+        detail:
+          "Organizations committing project work, mentorship, and access to the cohort.",
+        status: "active",
+        stat: { field: "foundingPartners", caption: "engaged" },
+      },
+    ],
+  },
+  {
+    n: 2,
+    title: "Community",
+    subtitle: "Reach, presence, and the first events",
+    items: [
+      {
+        name: "The network",
+        detail:
+          "Alumni, faculty, founders, and builders who want the digest, the events, or first access to the cohort when they are hiring.",
+        status: "active",
+        stat: { field: "network", caption: "people in the network" },
+      },
+      {
+        name: "Project pipeline",
+        detail:
+          "Inbound proposals from this site, routed to scoping and matched to a velocity pod.",
+        status: "active",
+        stat: { field: "proposals", caption: "proposals received" },
+      },
+      {
+        name: "Marketing and LinkedIn",
+        detail:
+          "Building the program's presence across BYU Marriott and the wider AI and venture community.",
+        status: "active",
+        stat: { field: "linkedinFollowers", caption: "followers" },
+      },
+      {
+        name: "Launch party",
+        detail:
+          "The public launch, bringing the network, the advisory board, and the founding partners into one room.",
+        status: "planned",
+      },
+      {
+        name: "MBA case competition",
+        detail:
+          "A low-stakes AI case competition for BYU MBAs. It builds the culture and surfaces the builders worth recruiting.",
+        status: "planned",
+      },
+    ],
+  },
+  {
+    n: 3,
+    title: "Programs",
+    subtitle: "Competition, conference, and scale",
+    items: [
+      {
+        name: "Competitive product competition",
+        detail:
+          "A high-stakes AI product competition with a real judging panel and partner sponsors.",
+        status: "planned",
+      },
+      {
+        name: "School-wide hackathon",
+        detail:
+          "BYU-wide and cross-disciplinary. Mixed teams shipping something that runs, in a weekend.",
+        status: "planned",
+      },
+      {
+        name: "Conference",
+        detail:
+          "Speakers, demos, and a recruiting showcase. Whether it runs in the fall alone or in both semesters is still open.",
+        status: "planned",
+      },
+    ],
+  },
+]
+
+/** Under the counts. Says where they came from, so nobody has to ask. */
+export const ROADMAP_STATS_NOTE =
+  "Read from our own systems when this page loaded."
+
+/**
+ * The roadmap, linked from the footer only.
+ *
+ * Deliberately not a fourth item in the top bar. SPEC.md fixes that bar at
+ * two tabs plus the action, and the roadmap is a page you go looking for
+ * rather than one that should compete with "Request a proposal" for a
+ * first-time visitor's attention.
+ */
+export const ROADMAP_LINK: NavLink = { label: "Roadmap", href: "/roadmap" }
