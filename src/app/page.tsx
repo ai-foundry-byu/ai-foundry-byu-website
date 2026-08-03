@@ -23,8 +23,10 @@ import {
   SHOWCASE_LEAD,
   VALUES,
   VISION,
+  WORK_CTA,
 } from "@/lib/content"
-import Image from "next/image"
+import Link from "next/link"
+import { ShowcaseCard } from "@/components/ShowcaseCard"
 import { GraduationCap, Layers, Workflow, type LucideIcon } from "lucide-react"
 
 /**
@@ -327,56 +329,23 @@ function Showcase() {
         </div>
 
         <div className="mt-14 grid gap-8 md:grid-cols-2">
-          {SHOWCASE.map((item) => (
-            <article
-              key={item.name}
-              className="flex flex-col border border-border-subtle"
-            >
-              {/* 16:10, matching the 1200x750 source crops exactly, so
-                  object-cover never actually crops anything. */}
-              <div className="relative aspect-[8/5] bg-surface-inverse">
-                <Image
-                  src={item.image}
-                  alt={`Screenshot of ${item.name}`}
-                  fill
-                  sizes="(min-width: 768px) 560px, 90vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-6 md:p-8">
-                <h3 className="font-serif text-2xl font-semibold text-text-primary">
-                  {item.name}
-                </h3>
-                <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
-                  {item.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="flex items-center gap-2 text-sm font-semibold text-text-primary opacity-80"
-                    >
-                      <span aria-hidden className="ember-bar h-1.5 w-1.5 shrink-0" />
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 text-base leading-relaxed text-text-primary opacity-90">
-                  {item.blurb}
-                </p>
-                <p className="mt-auto flex flex-wrap gap-x-6 pt-5">
-                  {item.links.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link-ember text-base font-semibold"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </p>
-              </div>
-            </article>
+          {SHOWCASE.slice(0, 3).map((item) => (
+            <ShowcaseCard key={item.name} item={item} />
           ))}
+        </div>
+
+        {/* The band highlights; /work holds everything. slice(0, 3) above is
+            the cap that makes this link honest once the list outgrows it. */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            href={WORK_CTA.href}
+            className="inline-flex items-center justify-center border border-border-strong px-8 py-3.5 text-base font-semibold text-text-primary transition-colors hover:border-border-accent"
+          >
+            {WORK_CTA.label}
+            <span aria-hidden className="ml-2 text-text-accent">
+              &rarr;
+            </span>
+          </Link>
         </div>
       </div>
     </section>

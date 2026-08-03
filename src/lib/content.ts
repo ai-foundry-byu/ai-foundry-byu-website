@@ -157,6 +157,14 @@ export const SHOWCASE_HEADING = "Products we have shipped."
 export const SHOWCASE_LEAD =
   "Built by the people on the About page. Live and in use today."
 
+/** /work page copy. The landing band highlights; /work holds everything. */
+export const WORK_HEADING = "Built here. Running now."
+
+export const WORK_LEAD =
+  "Every entry is live and in use today, built by the people on the About page. Client engagements join this page as clients agree to be named."
+
+export const WORK_CTA = { label: "See all our work", href: "/work" }
+
 export const SHOWCASE: ShowcaseItem[] = [
   {
     name: "French 80/20",
@@ -620,6 +628,7 @@ export type NavLink = { label: string; href: string }
 
 /** Two tabs. Click either one and it takes you straight there. */
 export const NAV: NavLink[] = [
+  { label: "Our work", href: "/work" },
   { label: "Join the network", href: "/network" },
   { label: "About us", href: "/about" },
 ]
