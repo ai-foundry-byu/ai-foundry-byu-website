@@ -173,7 +173,7 @@ export const SHOWCASE: ShowcaseItem[] = [
     tags: ["Web", "AI grading"],
     links: [
       { href: "https://lawgrader.ai", label: "lawgrader.ai" },
-      { href: "https://writegrader.com", label: "writegrader.com" },
+      { href: "https://new.writegrader.com", label: "new.writegrader.com" },
     ],
     image: "/showcase/lawgrader.jpg",
   },
