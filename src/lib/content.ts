@@ -167,6 +167,16 @@ export const WORK_CTA = { label: "See all our work", href: "/work" }
 
 export const SHOWCASE: ShowcaseItem[] = [
   {
+    name: "App Feedback Loop",
+    blurb:
+      "Open-source build spec for an AI-native feedback widget: one click captures a screenshot and the machine context around it, Claude Code fixes with that context loaded, and the fix commit closes the loop back to the reporter. Built into every app we ship.",
+    tags: ["Open source", "AI-native dev"],
+    links: [
+      { href: "https://github.com/ai-foundry-byu/app-feedback-loop", label: "GitHub" },
+    ],
+    image: "/showcase/app-feedback-loop.jpg",
+  },
+  {
     name: "French 80/20",
     blurb:
       "An AI-native French learning app for web and iPhone, built around the words you actually use and a measured climb to 80% of everyday French.",
