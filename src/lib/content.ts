@@ -132,14 +132,25 @@ export const BUILDERS_HEADLINE =
    Showcase: reference builds
 
    The gallery that backs the proof band with artifacts. Same honesty rules
-   as the employer list: these are products built by people on /about (both
-   are Scott's), stated as exactly that, no client claimed. When a client
-   agrees to be named (Breckenridge is the likely first), it joins as a
-   third card and the grid goes three across.
+   as the employer list: these are products built by people on /about, stated
+   as exactly that, no client claimed. When a client agrees to be named
+   (Breckenridge is the likely first), it joins the grid the same way.
+
+   Order is alphabetical, and the landing band shows the first three. Nothing
+   else about the sequence is meaningful, so a build that should be seen on
+   the landing page has to earn its place by name, not by being newest.
+
+   Every blurb states where the build actually is. CareBridge Connect is a
+   live product that has not yet gone live inside a facility, so its blurb
+   says it is onboarding rather than implying residents are on it today, and
+   it repeats none of the outcome numbers on its own marketing site: those
+   are the product's claims to its buyers, not results we have watched.
 
    Images are cropped screenshots of the live products in public/showcase/,
    1200x750 (16:10). The French 80/20 shot is deliberately cropped to the
-   product panel so no account name or personal data appears.
+   product panel so no account name or personal data appears. The CareBridge
+   shot is the marketing hero, whose in-app panel is an illustration, so no
+   real PHI can ever ride along in the image.
    ──────────────────────────────────────────────────────────── */
 
 export type ShowcaseItem = {
@@ -154,14 +165,21 @@ export const SHOWCASE_EYEBROW = "Reference builds"
 
 export const SHOWCASE_HEADING = "Products we have shipped."
 
+/**
+ * "Live and in use today" was true of every entry until CareBridge Connect
+ * joined, which is a shipped product still onboarding its first facilities.
+ * The lead now claims shipped rather than in-service, which covers all four
+ * without overstating any one, and each card says where its build actually
+ * stands.
+ */
 export const SHOWCASE_LEAD =
-  "Built by the people on the About page. Live and in use today."
+  "Built by the people on the About page. Real products, shipped and running."
 
 /** /work page copy. The landing band highlights; /work holds everything. */
 export const WORK_HEADING = "Built here. Running now."
 
 export const WORK_LEAD =
-  "Every entry is live and in use today, built by the people on the About page."
+  "Every entry is a real product, shipped and running, built by the people on the About page."
 
 export const WORK_CTA = { label: "See all our work", href: "/work" }
 
@@ -175,6 +193,16 @@ export const SHOWCASE: ShowcaseItem[] = [
       { href: "https://github.com/ai-foundry-byu/app-feedback-loop", label: "GitHub" },
     ],
     image: "/showcase/app-feedback-loop.jpg",
+  },
+  {
+    name: "CareBridge Connect",
+    blurb:
+      "An AI-native administration system for skilled nursing and acute care. It turns the notes staff already write in the EHR into plain-language updates for approved family members: changes of condition, appointments, events. HIPAA-compliant architecture throughout, with role-based access, encryption, and audit logging on every PHI access. Onboarding its first five facilities, each over 100 residents.",
+    tags: ["Web", "Healthcare"],
+    links: [
+      { href: "https://carebridgeconnect.ai", label: "carebridgeconnect.ai" },
+    ],
+    image: "/showcase/carebridge-connect.jpg",
   },
   {
     name: "French 80/20",

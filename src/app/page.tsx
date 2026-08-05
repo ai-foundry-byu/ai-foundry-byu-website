@@ -313,9 +313,9 @@ function Proof() {
    arrives at the ask already convinced. White surface, so the page
    rhythm runs white, tinted, white, navy.
 
-   Two wide cards while there are two cases; the grid goes three across
-   when the first nameable client project joins (see SHOWCASE in
-   content.ts for the rules).
+   Three across at desktop, matching the slice(0, 3) below so the band is
+   always one clean row and never leaves an orphan card. Two across at
+   tablet (see SHOWCASE in content.ts for what goes in it).
    ──────────────────────────────────────────────────────────── */
 
 function Showcase() {
@@ -332,7 +332,7 @@ function Showcase() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-2">
+        <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {SHOWCASE.slice(0, 3).map((item) => (
             <ShowcaseCard key={item.name} item={item} />
           ))}

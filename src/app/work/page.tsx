@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Products shipped by AI Foundry, an experiential learning program of the " +
     SCHOOL_FULL +
-    ". Every entry is live and in use today.",
+    ". Every entry is a real product, shipped and running.",
   alternates: { canonical: "/work" },
 }
 
